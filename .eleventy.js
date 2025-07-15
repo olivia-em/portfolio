@@ -49,15 +49,82 @@ module.exports = function (eleventyConfig) {
     return coll;
   });
 
+  // Determine the path prefix based on environment
+  const isProduction = process.env.NODE_ENV === 'production';
+  const pathPrefix = isProduction ? '/portfolio/' : '/';
+
+console.log('Path prefix:', pathPrefix);
+  
   return {
     dir: {
       input: "src",
       includes: "_includes",
       output: "build",
     },
-    pathPrefix: "/portfolio/", // your GitHub Pages repo name
+    pathPrefix: pathPrefix,
   };
 };
+
+// const { DateTime } = require("luxon");
+// const pluginSEO = require("eleventy-plugin-seo");
+
+// module.exports = function (eleventyConfig) {
+//   eleventyConfig.setTemplateFormats([
+//     "html", "njk", "md",
+//     "css", "jpeg", "jpg", "png", "svg", "woff", "woff2",
+//   ]);
+
+//   eleventyConfig.addPassthroughCopy("public");
+//   eleventyConfig.addPassthroughCopy(".nojekyll");
+
+//   const seo = require("./src/seo.json");
+//   if (seo.url === "glitch-default") {
+//     seo.url = `https://${process.env.PROJECT_DOMAIN}.glitch.me`;
+//   }
+//   eleventyConfig.addPlugin(pluginSEO, seo);
+
+//   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
+//     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd");
+//   });
+
+//   eleventyConfig.setBrowserSyncConfig({ ghostMode: false });
+
+//   eleventyConfig.addCollection("posts", function (collection) {
+//     const coll = collection.getFilteredByTag("posts").sort((a, b) => b.data.date - a.data.date);
+//     for (let i = 0; i < coll.length; i++) {
+//       coll[i].data["prevPost"] = coll[i - 1];
+//       coll[i].data["nextPost"] = coll[i + 1];
+//     }
+//     return coll;
+//   });
+
+//   eleventyConfig.addCollection("proj", function (collection) {
+//     const coll = collection.getFilteredByTag("proj").sort((a, b) => b.data.date - a.data.date);
+//     for (let i = 0; i < coll.length; i++) {
+//       coll[i].data["prevPost"] = coll[i - 1];
+//       coll[i].data["nextPost"] = coll[i + 1];
+//     }
+//     return coll;
+//   });
+
+//   eleventyConfig.addCollection("category", function (collection) {
+//     const coll = collection.getFilteredByTag("category").sort((a, b) => b.data.date - a.data.date);
+//     for (let i = 0; i < coll.length; i++) {
+//       coll[i].data["prevPost"] = coll[i - 1];
+//       coll[i].data["nextPost"] = coll[i + 1];
+//     }
+//     return coll;
+//   });
+
+//   return {
+//     dir: {
+//       input: "src",
+//       includes: "_includes",
+//       output: "build",
+//     },
+//     pathPrefix: "/portfolio/", // your GitHub Pages repo name
+//   };
+// };
 
 
 // const { DateTime } = require("luxon");

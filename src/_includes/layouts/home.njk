@@ -15,7 +15,7 @@ templateClass: tmpl-home
       <div class="container">     
         
        {%- for post in collections.posts -%}
-  <a href="{{ post.url }}" class="project-card" data-tags="{{ post.data.tags }}">
+  <a href="{{ post.url | url }}" class="project-card" data-tags="{{ post.data.tags }}">
     {% if post.data.animation %}
       <!-- Render Video Background -->
       <div class="projects video-background">
