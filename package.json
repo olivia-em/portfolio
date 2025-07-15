@@ -7,7 +7,7 @@
     "start": "eleventy --serve",
     "build": "NODE_ENV=production eleventy",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npx gh-pages -d build"
   },
   "dependencies": {
     "eleventy-plugin-seo": "0.5.2",
@@ -20,9 +20,10 @@
   "engines": {
     "node": "14"
   },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/olivia-portfolio"
-  },
+"repository": {
+  "type": "git",
+  "url": "https://github.com/olivia-em/portfolio.git"
+},
   "glitch": {
     "projectType": "generated_static"
   },
