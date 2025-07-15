@@ -55,7 +55,7 @@ module.exports = function (eleventyConfig) {
       includes: "_includes",
       output: "build",
     },
-    // pathPrefix: "/portfolio/", // your GitHub Pages repo name
+    pathPrefix: "/portfolio/", // your GitHub Pages repo name
   };
 };
 
