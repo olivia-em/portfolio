@@ -2,16 +2,20 @@
   "name": "olivia-portfolio",
   "version": "0.1.0",
   "description": "A collection of Olivia Lee's past projects.",
+  "homepage": "https://olivia-em.github.io/portfolio",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "NODE_ENV=production eleventy"
+    "build": "NODE_ENV=production eleventy",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "eleventy-plugin-seo": "0.5.2",
     "luxon": "^3.4.4"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.0"
+    "@11ty/eleventy": "^2.0.0",
+    "gh-pages": "^6.3.0"
   },
   "engines": {
     "node": "14"
