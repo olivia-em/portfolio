@@ -8,6 +8,7 @@ module.exports = function (eleventyConfig) {
   ]);
 
   eleventyConfig.addPassthroughCopy("public");
+  eleventyConfig.addPassthroughCopy(".nojekyll");
 
   const seo = require("./src/seo.json");
   if (seo.url === "glitch-default") {
