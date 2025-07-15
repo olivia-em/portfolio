@@ -1,0 +1,72 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-home
+---
+
+<div class="wrapper home">
+  <div class="home-content" >
+      <div class="home-nav">
+    {{ content | safe }}
+    </div>
+    {# After the the content defined in index.md, list the blog posts in the collection #}
+  <div class="tag">
+ <h4>Frontend Developer & Multimedia Artist, Based in NYC</h4>
+    </div>  
+      <div class="container">     
+        
+       {%- for post in collections.posts -%}
+  <a href="{{ post.url }}" class="project-card" data-tags="{{ post.data.tags }}">
+    {% if post.data.animation %}
+      <!-- Render Video Background -->
+      <div class="projects video-background">
+        <video autoplay loop muted playsinline class="video-content">
+          <source src="{{ post.data.animation }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <h4 class="overlay-content">
+          < {{ post.data.title }} >
+        </h4>
+      </div>
+    {% else %}
+      <!-- Render Image Thumbnail -->
+      <div class="projects" style="background-image: url('{{ post.data.thumbnail }}')">
+        <h4 class="overlay-content">
+          < {{ post.data.title }} >
+        </h4>
+      </div>
+    {% endif %}
+  </a>
+{%- endfor -%}
+
+        
+<!--    {%- for post in collections.posts -%}                           
+    <a href="{{ post.url }}" class="project-card" data-tags="{{post.data.tags}}">
+        <div class="projects video-background">
+            <video autoplay loop muted playsinline class="video-content">
+    <source src="{{ post.data.thumbnail }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+            <h4 class="overlay-content">
+                < {{ post.data.title }} >
+            </h4>
+        </div>
+    </a>
+{%- endfor -%}
+      -->
+          
+<!--         {%- for post in collections.posts -%}                           
+    {% if "all" in post.data.tags %}
+        {% if page.url == post.url %} aria-current="page"{% endif %}       
+        <a href="{{ post.url }}">
+            <div style="background-image: url('{{ post.data.thumbnail }}')" class="projects">
+                <h4>
+                    < {{ post.data.title }} >
+                </h4>
+            </div>
+        </a> 
+    {% endif %}
+{%- endfor -%} -->
+  
+  </div>
+</div>
+  </div>

@@ -1,0 +1,109 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-home
+---
+
+{# This is the template for individual blog posts–it builds the front matter properties into the page #}
+
+<div class="wrapper home">
+  <div class="post-content">
+    
+    
+    <div class="imgs-container">
+
+{%- for post in collections.posts -%}
+  {%- if post.url == page.url -%} {# Check if it's the current post #}
+    
+         {%- if post.data.videos and post.data.videos.length > 0 -%}
+      {%- for video in post.data.videos -%}
+      
+       <video class="videos" controls>
+  <source src='{{ video }}' >
+Your browser does not support the video tag.
+</video>
+
+      {%- endfor -%}
+    {%- endif -%}
+      
+{%- if post.data.media and post.data.media.length > 0 -%}
+  {%- for item in post.data.media -%}
+    {%- if item.type == 'video' -%}
+      <video src='{{ item.src }}' class="photos video-stable" controls style="transform: none !important; object-fit: cover;"></video>
+    {%- else -%}
+      <img src='{{ item.src }}' class="photos">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+      
+      
+      {%- if post.data.images and post.data.images.length > 0 -%}
+      {%- for image in post.data.images -%}
+        <img src='{{ image }}' class="photos">
+
+      {%- endfor -%}
+    {%- endif -%}
+      
+  {%- endif -%}
+{%- endfor -%}
+
+  
+  </div>
+    
+    
+  
+    <div class="post-nav">
+    
+    {# The post front matter includes the title property #}
+    
+    <h1 class="postTitle">{{title}}</h1>
+      
+      
+      
+   
+      
+  
+    {%- for post in collections.posts -%}
+  {%- if post.url == page.url -%}
+    {%- if post.data.blurb and post.data.blurb.length > 0 -%}
+  <div class="cont">    
+<p class="desc">
+{{ post.data.blurb | replace('\n\n', '<br><br>') | safe }}
+</p>
+</div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+         {{ content | safe }} 
+      
+      {%- for post in collections.posts -%}
+  {%- if post.url == page.url -%}
+    {%- if post.data.documentation and post.data.documentation.length > 0 -%}
+      {%- for doc in post.data.documentation -%}
+    <div class="skill-list">
+  <a target="_blank" href="{{documentation}}"><h4 style="font-size: 1.5rem; color: #fe2f20;">
+    Documentation!
+    </h4></a>
+</div>
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%} 
+   
+    </div>
+    
+    <div class="controls">
+    {# The previous and next post data is added in .eleventy.js #}
+  {% if prevPost.url %}
+      <h1 >
+        <a class="previous" href="{{ prevPost.url }}"> <<< </a>
+      </h1>
+    {% endif %}
+        <a style="width: auto;display:flex;justify-content: center;" class="next" href="/"><img class="logo" src="https://cdn.glitch.me/2decb767-8051-4237-974a-927409aa4233/stars1040invert.png?v=1735942380941"></a>
+      {% if nextPost.url %}
+        <h1><a class="next" href="{{ nextPost.url }}"> >>> </a></h1>
+    {% endif %}
+      
+    </div>
+  </div>
+</div>

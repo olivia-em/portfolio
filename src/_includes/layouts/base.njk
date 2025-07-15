@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    {# This is the base template for the site–other templates extend this one #}
+    
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://cdn.glitch.me/2decb767-8051-4237-974a-927409aa4233/stars1040invert.png?v=1735942380941" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="olivia-lee-portfolio" />
+    <link rel="stylesheet" type="text/css" href="/public/style.css" />
+    {% seo "" %}
+  </head>
+  <body>
+       <script>  
+         document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".project-card");
+
+    function adjustCardLayout() {
+        // Get only visible cards
+        const visibleCards = Array.from(cards).filter(card => card.style.display !== "none");
+
+        if (visibleCards.length === 1) {
+            visibleCards[0].style.width = "50vw";
+        } else if (visibleCards.length % 2 === 1) {
+            visibleCards[visibleCards.length - 1].style.width = "60vw"; 
+        }
+    }
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function (e) {
+            e.preventDefault();
+            buttons.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            const filterTag = this.getAttribute("data-filter");
+
+            cards.forEach(card => {
+                const tags = card.getAttribute("data-tags").split(",");
+                if (filterTag === "all" || tags.includes(filterTag)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+          //  setTimeout(adjustCardLayout, 10); // Delay ensures correct rendering
+        });
+    });
+
+    // Run layout fix on page load
+  //  adjustCardLayout();
+});
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     const buttons = document.querySelectorAll(".filter-btn");
+//     const cards = document.querySelectorAll(".project-card");
+
+//     buttons.forEach(button => {
+//         button.addEventListener("click", function (e) {
+//             e.preventDefault();
+//             buttons.forEach(btn => btn.classList.remove("active"));
+//             this.classList.add("active");
+
+//             const filterTag = this.getAttribute("data-filter");
+
+//             cards.forEach(card => {
+//                 const tags = card.getAttribute("data-tags").split(","); // Split by space
+//                 if (filterTag === "all" || tags.includes(filterTag)) {
+//                     card.style.display = "block";
+//                 } else {
+//                     card.style.display = "none";
+//                 }
+//             });
+//         });
+//     });
+// });
+</script>
+<div id="preloader">
+  <img class="logobig a" src="https://cdn.glitch.me/2decb767-8051-4237-974a-927409aa4233/stars1040invert.png?v=1735942380941">
+  <img class="logobig b" src="https://cdn.glitch.me/2decb767-8051-4237-974a-927409aa4233/stars1040invert.png?v=1735942380941">
+  <img class="logobig c" src="https://cdn.glitch.me/2decb767-8051-4237-974a-927409aa4233/stars1040invert.png?v=1735942380941">
+
+    </div>
+  <main class="page-container">
+    <div class="content-wrap">
+    {# Page or post content will appear here #}
+  
+    {{ content | safe }}
+    </div>
+    
+  </main>
+    <script>
+      window.addEventListener("load", function () {
+            var loader = document.getElementById("preloader");
+            loader.classList.add("fade-out");
+
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 500); // Matches CSS transition duration
+        });
+    </script>
+  </body>
+</html>
