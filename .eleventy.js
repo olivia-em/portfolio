@@ -60,10 +60,6 @@ module.exports = function (eleventyConfig) {
 };
 
 
-
-
-
-
 // const { DateTime } = require("luxon");
 // const pluginSEO = require("eleventy-plugin-seo");
 
