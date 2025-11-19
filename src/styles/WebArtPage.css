@@ -1,0 +1,40 @@
+.webart-page {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #0f0f0f;
+}
+
+.webart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.webart-grid-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.webart-grid-item:hover {
+  transform: scale(1.02);
+}
+
+.webart-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .webart-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}

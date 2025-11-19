@@ -1,0 +1,647 @@
+:root {
+  /* Theme variables — tweak here */
+  --bg: #f8f6f3;
+  --text: #111111;
+  --accent: rgb(0, 200, 255);
+  --muted: black;
+
+  --left-width: 34rem; /* width of left column on large screens */
+  --gutter: 2.4rem;
+
+  /* Collage tuning */
+  --collage-gap: 1.2rem;
+  --collage-rotation: 10deg; /* max rotation magnitude */
+  --collage-opacity: 1;
+  --collage-blend: hard-light; /* try: multiply, screen, overlay */
+  --collage-overlap: 0.12; /* overlap factor used for z-index ordering */
+}
+
+/* Page layout */
+.magazine-root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--left-width) 1fr;
+  gap: var(--gutter);
+  background: var(--bg);
+  color: var(--text);
+  /* font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial; */
+  /* padding: 3.2rem; */
+  box-sizing: border-box;
+}
+
+.magazine-left {
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.magazine-name {
+  margin: 0;
+  /* font-size: 2.4rem; */
+  letter-spacing: -0.02em;
+}
+
+.magazine-toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  /* TOC dropdown styling */
+  font-size: 1.08rem;
+}
+
+.toc-category {
+  font-weight: bold;
+  cursor: pointer;
+  /* padding: 0.3em 0.2em; */
+  /* border-radius: 4px; */
+  transition: background 0.2s;
+}
+/* hover styles intentionally left minimal for categories */
+
+.toc-dropdown {
+  /* Always-visible list (no dropdown collapse) */
+  max-height: none;
+  overflow: visible;
+  margin-left: 1.2em;
+  background: none;
+  padding: 0;
+}
+.toc-dropdown li {
+  /* font-weight: normal; */
+  padding: 0.1em 2em;
+  transition: color 0.2s;
+}
+.toc-dropdown li a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-style: italic;
+}
+.toc-dropdown li a:hover {
+  color: var(--accent);
+}
+
+.magazine-toc a {
+  color: var(--text);
+  text-decoration: none;
+  /* font-weight: 600; */
+  font-size: 1.05rem;
+  transition: color 160ms ease;
+}
+
+/* TOC leader dots (dot leaders between title and line end) */
+.magazine-toc a {
+  display: block;
+}
+.magazine-toc a .toc-line {
+  display: flex;
+  align-items: baseline;
+}
+.magazine-toc a .toc-title {
+  white-space: nowrap;
+  z-index: 2;
+}
+.magazine-toc a .toc-leader {
+  flex: 1 1 auto;
+  align-self: baseline;
+  display: block;
+  /* underline from here to the end */
+  border-bottom: 1px solid rgb(0, 200, 255);
+  border-bottom-style: dotted;
+  margin-left: 0.6rem;
+  height: 0.6rem; /* small area for the underline */
+}
+.magazine-toc a .toc-page {
+  margin-left: 0.6rem;
+  color: black;
+  /* font-weight: 600; */
+  white-space: nowrap;
+}
+.magazine-toc a:hover .toc-leader {
+  opacity: 0.45;
+}
+
+.magazine-toc a:hover {
+  color: var(--accent);
+}
+
+/* animate the leader and page when a TocLineTyped reveals them */
+.toc-line .toc-leader {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 260ms cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+.toc-line .toc-page {
+  opacity: 0;
+  transition: opacity 220ms ease, color 160ms ease;
+}
+.toc-line.show-leader .toc-leader {
+  transform: scaleX(1);
+}
+.toc-line.show-leader .toc-page {
+  opacity: 1;
+}
+
+/* make the right-side page number use the accent color on hover of the link */
+.magazine-toc a:hover .toc-page {
+  color: var(--accent);
+}
+
+.magazine-about {
+  margin-top: 1.6rem;
+  padding: 1rem 0 0 0;
+  display: flex;
+  flex-direction: column; /* column layout */
+  gap: 0.45rem;
+}
+.magazine-citations {
+  border-top: 1px dotted rgb(0, 200, 255); /* subtle dotted top border */
+  position: fixed;
+  bottom: 1%;
+  left: 2%;
+}
+.magazine-citations li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  list-style: none;
+  font-size: 0.95rem;
+}
+.magazine-citations .cite-num {
+  font-size: 0.8em;
+  color: var(--accent);
+  min-width: 1.2rem;
+  text-align: right;
+}
+.magazine-citations a {
+  color: var(--text);
+  text-decoration: none;
+}
+.magazine-citations a em {
+  font-style: italic;
+  font-size: 0.95em;
+  color: var(--muted);
+}
+.magazine-citations a:hover em {
+  color: var(--accent);
+}
+
+.collage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: transparent;
+  overflow: hidden;
+  transition: filter 400ms ease;
+}
+
+/* .collage.blurred {
+  filter: blur(12px);
+} */
+
+/* Preview overlay */
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  z-index: 40;
+  pointer-events: none;
+  animation: fadeIn 300ms ease;
+  /* background: rgba(0, 150, 255, 0.6); */
+  background: rgba(20, 0, 150, 0.6);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.preview-images-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.preview-images-stack {
+  width: 80%;
+  max-width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* gap: 2rem; */
+  overflow: hidden;
+}
+
+@media (max-width: 920px) {
+  .preview-images-stack {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+.preview-image {
+  position: relative;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  flex-shrink: 1;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 920px) {
+  .preview-image {
+    max-width: 100%;
+    height: 300px;
+  }
+}
+
+/* Remove individual positioning - no longer needed */
+.preview-image-1 {
+  z-index: 1;
+}
+
+.preview-image-2 {
+  z-index: 2;
+}
+
+.preview-image-3 {
+  z-index: 3;
+}
+
+.preview-blurb {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1.5rem 3rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.collage img.c-img {
+  position: absolute;
+  /* left: 0;
+  top: 0; */
+  /* width: 100%; */
+  /* height: auto; */
+  /* max-height: 46vh; */
+  object-fit: cover; /* preserve aspect ratio while covering the box */
+  border-radius: 0;
+  /* box-shadow: 0 8px 24px rgba(9, 10, 10, 0.06); */
+  mix-blend-mode: var(--collage-blend);
+  opacity: var(--collage-opacity);
+  transition: none;
+  will-change: auto;
+  pointer-events: auto;
+}
+
+/* Image 1 - top left */
+.c-img-1 {
+  left: -20%;
+  top: -10%;
+  z-index: 10;
+  width: 700px;
+  box-shadow: 0px 0px 10px 10px rgb(0, 0, 0);
+  /* max-height: 32vh; */
+}
+
+/* Image 2 - top center */
+.c-img-2 {
+  left: 70%;
+  top: 0%;
+  z-index: 5;
+  width: 32%;
+  display: none;
+  /* max-height: 34vh; */
+}
+
+/* Image 3 - top right */
+.c-img-3 {
+  left: 0%;
+  top: 0%;
+  z-index: 11;
+  width: 900px;
+  height: 100vh;
+  /* display: none; */
+  /* max-height: 30vh; */
+}
+
+/* Image 4 - bottom left */
+.c-img-4 {
+  left: 50%;
+  top: 0%;
+  z-index: 8;
+  width: 70%;
+  display: none;
+  /* max-height: 36vh; */
+}
+
+/* Image 5 - bottom center */
+.c-img-5 {
+  left: 70%;
+  top: 0%;
+  z-index: 1;
+  width: 28%;
+  display: none;
+  /* max-height: 34vh; */
+}
+
+/* Image 6 - bottom right */
+.c-img-6 {
+  left: 0%;
+  top: 0%;
+  z-index: 1;
+  width: 100%;
+  box-shadow: 0px 0px 10px 10px rgb(0, 0, 0);
+  /* filter: invert(100%); */
+  /* display: none; */
+  /* max-height: 32vh; */
+}
+
+.c-img-7 {
+  left: 40%;
+  top: 45%;
+  z-index: 5;
+  width: 600px;
+  filter: invert(100%);
+  box-shadow: 0px 0px 10px 10px rgb(255, 255, 255);
+  /* display: none; */
+  /* max-height: 32vh; */
+}
+
+/* Responsive adjustments */
+@media (max-width: 920px) {
+  .magazine-root {
+    grid-template-columns: 1fr;
+    gap: 0;
+    /* padding: 1.6rem; */
+  }
+  .magazine-left {
+    order: 2;
+    padding: 1.2rem;
+  }
+  .magazine-right {
+    order: 1;
+  }
+
+  /* Disable hover preview on mobile */
+  .preview-overlay {
+    display: none;
+  }
+
+  .collage.blurred {
+    filter: none;
+  }
+
+  /* On small screens we fall back to an inline collage that doesn't cover
+     the full viewport to avoid layout issues on narrow devices. */
+  .collage {
+    position: relative;
+    width: 100%;
+    height: 150%;
+  }
+  .collage img.c-img {
+    position: absolute;
+    /* left: 0;
+  top: 0; */
+    /* width: 100%; */
+    height: auto;
+    /* max-height: 46vh; */
+    object-fit: cover; /* preserve aspect ratio while covering the box */
+    border-radius: 0;
+    /* box-shadow: 0 8px 24px rgba(9, 10, 10, 0.06); */
+    mix-blend-mode: var(--collage-blend);
+    opacity: var(--collage-opacity);
+    transition: none;
+    will-change: auto;
+    pointer-events: auto;
+  }
+
+  /* Image 1 - top left */
+  .c-img-1 {
+    left: -20%;
+    top: -10%;
+    z-index: 10;
+    width: 100px;
+    box-shadow: 0px 0px 10px 10px rgb(0, 0, 0);
+    /* max-height: 32vh; */
+  }
+
+  /* Image 2 - top center */
+  .c-img-2 {
+    left: 70%;
+    top: 0%;
+    z-index: 5;
+    width: 32%;
+    display: none;
+    /* max-height: 34vh; */
+  }
+
+  /* Image 3 - top right */
+  .c-img-3 {
+    left: 0%;
+    top: -20%;
+    z-index: 11;
+    width: 800px;
+    /* display: none; */
+    /* max-height: 30vh; */
+  }
+
+  /* Image 4 - bottom left */
+  .c-img-4 {
+    left: 50%;
+    top: 0%;
+    z-index: 8;
+    width: 70%;
+    display: none;
+    /* max-height: 36vh; */
+  }
+
+  /* Image 5 - bottom center */
+  .c-img-5 {
+    left: 70%;
+    top: 0%;
+    z-index: 1;
+    width: 28%;
+    display: none;
+    /* max-height: 34vh; */
+  }
+
+  /* Image 6 - bottom right */
+  .c-img-6 {
+    left: 0%;
+    top: 0%;
+    z-index: 1;
+    width: 100%;
+    box-shadow: 0px 0px 10px 10px rgb(0, 0, 0);
+    /* filter: invert(100%); */
+    /* display: none; */
+    /* max-height: 32vh; */
+  }
+
+  .c-img-7 {
+    left: 40%;
+    top: 45%;
+    z-index: 0;
+    width: 100px;
+    filter: invert(100%);
+    box-shadow: 0px 0px 10px 10px rgb(255, 255, 255);
+    /* display: none; */
+    /* max-height: 32vh; */
+  }
+}
+
+/* Small helper classes */
+.muted {
+  color: var(--muted);
+}
+
+/* typewriter cursor */
+.cite-sup {
+  font-size: 0.55em; /* smaller superscript */
+  vertical-align: super;
+  margin-left: 0.2rem;
+  color: rgb(0, 200, 255);
+  text-decoration: none;
+}
+
+.magazine-citations {
+  margin-top: 1.2rem;
+  padding: 0;
+  margin: 1.2rem 0 0 0;
+}
+.magazine-citations li {
+  display: inline-block;
+  margin-right: 1rem;
+  list-style: none;
+  font-size: 0.95rem;
+}
+.magazine-citations a {
+  color: var(--text);
+  text-decoration: none;
+}
+.magazine-citations a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.2rem 0.4rem;
+}
+.magazine-citations a:hover {
+  color: var(--accent);
+}
+
+/* Overlay route (pages rendered above the magazine home) */
+.overlay-route {
+  background: white; /* solid background to prevent transparency */
+  color: var(--text);
+  min-height: 100vh;
+  width: 100%;
+  overflow: auto; /* allow page scrolling inside overlay */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure direct children fill the overlay so background covers fully */
+.overlay-route > * {
+  min-height: 100vh;
+  /* background: transparent;  */
+  /* child components can set their own backgrounds */
+}
+@keyframes pageSlideUp {
+  from {
+    transform: translateY(18px);
+    opacity: 0.02;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes pageSlideDown {
+  from {
+    transform: translateY(-18px);
+    opacity: 0.02;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- Intro / reveal animation ---
+   - When the page first loads, the left column will act as a fullscreen
+     overlay (so the typewriter appears as a cover). The right collage is
+     underneath with a white cover on top. After typing finishes the white
+     cover slides left revealing the collage and the left column returns to
+     its normal grid position. */
+
+.magazine-root.intro .magazine-left {
+  /* keep the left column in its normal grid position but sit above the
+     collage cover so visually it appears to fill the viewport without
+     actually changing layout geometry */
+  position: relative;
+  z-index: 60;
+  background: var(--bg);
+  /* match base `.magazine-left` padding to avoid layout jumps when intro
+     class is removed */
+  padding: 2.4rem;
+}
+
+.magazine-root.intro .magazine-right {
+  /* keep the collage in place beneath the left overlay */
+  pointer-events: none;
+}
+
+.collage-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.collage-cover {
+  position: absolute;
+  inset: 0;
+  /* match the left column background so the cover looks like the same panel */
+  background: var(--bg);
+  z-index: 50;
+  transform: translateX(0%);
+  /* slower reveal for a gentler unmasking */
+  transition: transform 2000ms cubic-bezier(0.22, 0.9, 0.35, 1);
+}
+
+.collage-cover.reveal {
+  transform: translateX(-100%);
+}
+
+/* once intro is removed (normal layout) ensure left column uses the defined width */
+.magazine-root:not(.intro) .magazine-left {
+  position: static;
+  width: auto;
+  height: auto;
+  z-index: auto;
+}

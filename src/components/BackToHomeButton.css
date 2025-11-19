@@ -1,0 +1,49 @@
+.back-to-home-button {
+  position: fixed;
+  bottom: 10vh;
+  right: 5vw;
+  width: fit-content;
+  /* height: fit-content; */
+  /* border-radius: 50%; */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 10vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  mix-blend-mode: exclusion;
+  /* backdrop-filter: blur(10px); */
+}
+
+.back-to-home-button:hover {
+  /* background: rgba(0, 200, 255, 0.2); */
+  /* border-color: rgb(0, 200, 255); */
+  color: rgb(0, 200, 255);
+  transform: scale(1.05);
+}
+
+.back-to-home-button:active {
+  transform: scale(0.95);
+}
+
+.back-to-home-button:focus,
+.back-to-home-button:focus-visible {
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .back-to-home-button {
+    bottom: 10vh;
+    right: 5vw;
+    width: fit-content;
+    /* font-size: 20vw; */
+    /* height: 48px; */
+    /* font-size: 20px; */
+  }
+}

@@ -1,0 +1,632 @@
+{
+  "shelves": [
+    {
+      "id": "frontend",
+      "title": "Frontend Development",
+      "hasIndividualPages": true,
+      "heroImage": "/images/frontend/LIP/LIP1.png",
+      "blurb": "Lessons in Perspective is an interactive, web-based poetry collection that explores how every relationship is shaped by the ones that came before it. Built with React and Three.js, this collection makes the browser a space for 3D concrete poetry. Your interaction with the present can unravel the past, illustrating connections that are invisible but felt. Lessons in Perspective offers a poetic meditation on love, memory, and the invisible architectures of life.",
+      "items": [
+        {
+          "id": "lip",
+          "title": "Lessons in Perspective",
+          "slug": "lip",
+          "route": "/works/frontend/lip",
+          "image": "/images/frontend/LIP/LIP1.png",
+          "extraImages": ["/images/frontend/LIP/LIP2.png"],
+          "alt": "LIP thumbnail",
+          "year": null,
+          "description": "Lessons in Perspective is an interactive, web-based poetry collection that explores how every relationship is shaped by the ones that came before it. Built with React and Three.js, this collection makes the browser a space for 3D concrete poetry. Clicking, rotating, and exploring the 3D environment reveals how meaning changes with perspective; your interaction with the present can unravel the past, illustrating connections that are invisible but felt. Lessons in Perspective offers a poetic meditation on love, memory, and the invisible architectures of life.",
+          "tags": ["React", "Three.js", "Poetry"],
+          "url": {
+            "repository": "https://github.com/olivia-em/inperspective",
+            "website": "https://lessons-inperspective.netlify.app/",
+            "documentation": ""
+          },
+          "heroImage": "/images/frontend/LIP/LIP1.png",
+          "blurb": "Lessons in Perspective is an interactive, web-based poetry collection built with React and Three.js."
+        },
+        {
+          "id": "newvoices",
+          "title": "New Voices",
+          "slug": "newvoices",
+          "route": "/works/frontend/newvoices",
+          "image": "/images/frontend/NewVoices/NewVoices1.png",
+          "imageLabel": "After Redesign",
+          "extraImages": ["/images/frontend/NewVoices/old-home2.PNG"],
+          "extraImageLabels": ["Before Redesign"],
+          "alt": "New Voices thumbnail",
+          "year": null,
+          "description": "Under contract, I redesigned the New Voices website. They wanted something more modern and accessible, with less scrolling and a new color way. I reorganized the back-end structure of their website, created custom styling, added a newsletter pop-up, and made the website more mobile friendly. The images below are the after & before, and you can visit the website at newvoices.org.",
+          "tags": ["HTML", "CSS", "Wordpress"],
+          "url": {
+            "repository": "",
+            "website": "https://newvoices.org/",
+            "documentation": ""
+          },
+          "heroImage": "/images/frontend/NewVoices/NewVoices1.png",
+          "blurb": "Website re-design for a literary magazine showcasing emerging writers."
+        },
+        {
+          "id": "oldportfolio",
+          "title": "Old Portfolio",
+          "slug": "oldportfolio",
+          "route": "/works/frontend/oldportfolio",
+          "image": "/images/frontend/OldPortfolio/port1.png",
+          "extraImages": [
+            "/images/frontend/OldPortfolio/port2.png",
+            "/images/frontend/OldPortfolio/port3.png"
+          ],
+          "alt": "Old Portfolio thumbnail",
+          "year": null,
+          "description": "",
+          "tags": [],
+          "url": { "repository": "", "website": "", "documentation": "" }
+        }
+      ]
+    },
+    {
+      "id": "webart",
+      "title": "Web Art",
+      "hasIndividualPages": false,
+      "route": "/works/webart",
+      "heroImages": [
+        "/images/webart/screensaver.png",
+        "/images/webart/kaleid.jpg"
+      ],
+      "blurb": "Creative coding experiments exploring generative design and interactive art.",
+      "items": [
+        {
+          "id": "3dgrid",
+          "title": "3D Grid",
+          "image": "/images/webart/3Dgrid.png",
+          "alt": "3D Grid",
+          "url": "https://olivia-em.github.io/codeyourway/decode/decode8/index.html"
+        },
+        {
+          "id": "circles",
+          "title": "Circles",
+          "image": "/images/webart/circles.png",
+          "alt": "Circles",
+          "url": "https://olivia-em.github.io/codeyourway/decode/decode1/index.html"
+        },
+        {
+          "id": "cssassemblage",
+          "title": "CSS Assemblage",
+          "image": "/images/webart/cssassemblage.png",
+          "alt": "CSS Assemblage",
+          "url": "https://codepen.io/olee0114/full/zYbXJqq"
+        },
+        {
+          "id": "encode1",
+          "title": "Encode 1",
+          "image": "/images/webart/encode1.png",
+          "alt": "Encode 1",
+          "url": "https://olivia-em.github.io/codeyourway/encode/encode1/index.html"
+        },
+        {
+          "id": "encode2",
+          "title": "Encode 2",
+          "image": "/images/webart/encode2.png",
+          "alt": "Encode 2",
+          "url": "https://olivia-em.github.io/codeyourway/encode/encode2/index.html"
+        },
+        {
+          "id": "encode3",
+          "title": "Encode 3",
+          "image": "/images/webart/encode3.png",
+          "alt": "Encode 3",
+          "url": "https://olivia-em.github.io/codeyourway/encode/encode3/index.html"
+        },
+        {
+          "id": "encode4",
+          "title": "Encode 4",
+          "image": "/images/webart/encode4.png",
+          "alt": "Encode 4",
+          "url": "https://olivia-em.github.io/codeyourway/encode/encode4/index.html"
+        },
+        {
+          "id": "kaleid",
+          "title": "Kaleid",
+          "image": "/images/webart/kaleid.jpg",
+          "alt": "Kaleid",
+          "url": "https://olivia-em.github.io/codeyourway/decode/decode3/index.html"
+        },
+        {
+          "id": "layeredshapes",
+          "title": "Layered Shapes",
+          "image": "/images/webart/layeredshapes.png",
+          "alt": "Layered Shapes",
+          "url": "https://olivia-em.github.io/codeyourway/decode/decode2/index.html"
+        },
+        {
+          "id": "parametrica",
+          "title": "Parametric A",
+          "image": "/images/webart/parametrica.png",
+          "alt": "Parametric A",
+          "url": "https://olivia-em.github.io/codeyourway/explore/explore3/index.html"
+        },
+        {
+          "id": "parametricb",
+          "title": "Parametric B",
+          "image": "/images/webart/parametricb.png",
+          "alt": "Parametric B",
+          "url": "https://olivia-em.github.io/codeyourway/explore/explore5/index.html"
+        },
+        {
+          "id": "parametricc",
+          "title": "Parametric C",
+          "image": "/images/webart/parametricc.png",
+          "alt": "Parametric C",
+          "url": "https://olivia-em.github.io/codeyourway/explore/explore4/index.html"
+        },
+        {
+          "id": "preloader",
+          "title": "Preloader",
+          "image": "/images/webart/preloader.png",
+          "alt": "Preloader",
+          "url": "https://olivia-em.github.io/codeyourway/recode/preLoader/index.html"
+        },
+        {
+          "id": "recode",
+          "title": "Recode",
+          "image": "/images/webart/recode.png",
+          "alt": "Recode",
+          "url": "https://olivia-em.github.io/codeyourway/recode/recode1/index.html"
+        },
+        {
+          "id": "screensaver",
+          "title": "Screensaver",
+          "image": "/images/webart/screensaver.png",
+          "alt": "Screensaver",
+          "url": "https://olivia-em.github.io/codeyourway/recode/screensaver/index.html"
+        },
+        {
+          "id": "spheres",
+          "title": "Spheres",
+          "image": "/images/webart/spheres.jpg",
+          "alt": "Spheres",
+          "url": "https://olivia-em.github.io/codeyourway/recode/recode4/index.html"
+        }
+      ]
+    },
+    {
+      "id": "videoart",
+      "title": "Video Art",
+      "hasIndividualPages": false,
+      "route": "/works/videoart",
+      "heroImages": [
+        "/images/videoart/qatsi.jpg",
+        "/images/videoart/silhouettes.png"
+      ],
+      "blurb": "Video art & short film projects, including Qatsi, which was nominated for Best Visual and awarded Best Sound at the 2024 MIT AI Film Hackathon.",
+      "items": [
+        {
+          "id": "qatsi",
+          "title": "Qatsi",
+          "image": "/images/videoart/qatsi.jpg",
+          "youtubeUrl": "https://youtu.be/Qy7D2O2zytc",
+          "alt": "Qatsi",
+          "tags": [
+            "AI Short Film",
+            "Nominated Best Visual",
+            "Awarded Best Sound"
+          ],
+          "blurb": "An homage to the 1982 film Koyaanisqatsi, “Qatsi” is a visual exploration of motion as the axiom of life—spanning the vastness of the cosmos, the rhythms of nature, and the intimacy of human connection. Created for the MIT AI Filmmaking Hackathon, Qatsi was recognized as a Finalist and received the Best Sound Award, along with an Honorable Mention for Best Visual."
+        },
+        {
+          "id": "alteregos",
+          "title": "Alter Egos",
+          "image": "/images/videoart/alteregos.png",
+          "youtubeUrl": "https://youtu.be/T4Bfi2lBTCE",
+          "alt": "Alter Egos",
+          "tags": ["Promotion", "Performance", "Montage"],
+          "blurb": "As the Graduate Teaching Assistant for Alter Egos: Assuming New Identities Through Costume and Performance, I was responsible for preparing promotional materials for the end of semester performance. I edited this video in Premiere from footage of previous performances. I wanted the class/performance to seem like an eclectic party, and I played with blending modes to layer performances (especially in pairs) to connect to the concept of duality."
+        },
+        {
+          "id": "areyoufree",
+          "title": "Are You Free Tomorrow?",
+          "image": "/images/videoart/areyoufree.png",
+          "youtubeUrl": "https://youtu.be/L0l2DRwhbiM",
+          "alt": "Are You Free Tomorrow?",
+          "tags": ["Short Film", "Visual Poetry", "Montage"],
+          "blurb": "Are You Free Tomorrow? is a rhythmic montage that explores the feeling of being overwhelmed by too many possibilities. Edited in Adobe After Effects."
+        },
+        {
+          "id": "silhouettes",
+          "title": "Silhouettes",
+          "image": "/images/videoart/silhouettes.png",
+          "youtubeUrl": "https://youtu.be/tZa94F7IT3w",
+          "alt": "Silhouettes",
+          "tags": ["Short Film", "Visual Poetry", "Montage"],
+          "blurb": "Silhouettes is a visual poem / montage that contemplates identity and self-perception. Edited in Adobe Premiere Pro."
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "title": "Design / Collage",
+      "hasIndividualPages": false,
+      "route": "/works/design",
+      "heroImage": "/images/design/collage/IMG_0908.JPG",
+      "blurb": "Digital and physical collages blending photography, typography, and mixed media.",
+      "items": [
+        {
+          "id": "alteregosposter",
+          "title": "Alter Egos Poster",
+          "image": "/images/design/AlterEgosPoster.png",
+          "alt": "Alter Egos Poster"
+        },
+        {
+          "id": "img0908",
+          "title": "Collage 1",
+          "image": "/images/design/IMG_0908.JPG",
+          "alt": "Collage 1"
+        },
+        {
+          "id": "img1825",
+          "title": "Collage 2",
+          "image": "/images/design/IMG_1825.JPG",
+          "alt": "Collage 2"
+        },
+        {
+          "id": "img1827",
+          "title": "Collage 3",
+          "image": "/images/design/IMG_1827.JPG",
+          "alt": "Collage 3"
+        },
+        {
+          "id": "img1828",
+          "title": "Collage 4",
+          "image": "/images/design/IMG_1828.JPG",
+          "alt": "Collage 4"
+        },
+        {
+          "id": "img1829",
+          "title": "Collage 5",
+          "image": "/images/design/IMG_1829.JPG",
+          "alt": "Collage 5"
+        },
+        {
+          "id": "img1830",
+          "title": "Collage 6",
+          "image": "/images/design/IMG_1830.JPG",
+          "alt": "Collage 6"
+        },
+        {
+          "id": "img1831",
+          "title": "Collage 7",
+          "image": "/images/design/IMG_1831.JPG",
+          "alt": "Collage 7"
+        },
+        {
+          "id": "img1836",
+          "title": "Collage 8",
+          "image": "/images/design/IMG_1836.JPG",
+          "alt": "Collage 8"
+        },
+        {
+          "id": "img1837",
+          "title": "Collage 9",
+          "image": "/images/design/IMG_1837.JPG",
+          "alt": "Collage 9"
+        },
+        {
+          "id": "img1838",
+          "title": "Collage 10",
+          "image": "/images/design/IMG_1838.JPG",
+          "alt": "Collage 10"
+        },
+        {
+          "id": "img1839",
+          "title": "Collage 11",
+          "image": "/images/design/IMG_1839.JPG",
+          "alt": "Collage 11"
+        },
+        {
+          "id": "img1840",
+          "title": "Collage 12",
+          "image": "/images/design/IMG_1840.JPG",
+          "alt": "Collage 12"
+        },
+        {
+          "id": "img1841",
+          "title": "Collage 13",
+          "image": "/images/design/IMG_1841.JPG",
+          "alt": "Collage 13"
+        },
+        {
+          "id": "img1842",
+          "title": "Collage 14",
+          "image": "/images/design/IMG_1842.JPG",
+          "alt": "Collage 14"
+        },
+        {
+          "id": "img1843",
+          "title": "Collage 15",
+          "image": "/images/design/IMG_1843.JPG",
+          "alt": "Collage 15"
+        },
+        {
+          "id": "img9332",
+          "title": "Collage 16",
+          "image": "/images/design/IMG_9332.JPG",
+          "alt": "Collage 16"
+        },
+        {
+          "id": "recordingfinal",
+          "title": "Recording Final",
+          "image": "/images/design/Lee-Olivia-RecordingFinal.png",
+          "alt": "Recording Final"
+        },
+        {
+          "id": "fbc",
+          "title": "FBC",
+          "image": "/images/design/Olivia-Lee_FBC.png",
+          "alt": "FBC"
+        },
+        {
+          "id": "bodiesbodies",
+          "title": "Bodies Bodies",
+          "image": "/images/design/bodiesbodies.JPG",
+          "alt": "Bodies Bodies"
+        },
+        {
+          "id": "elevate",
+          "title": "Elevate",
+          "image": "/images/design/elevate.JPG",
+          "alt": "Elevate"
+        },
+        {
+          "id": "mindsettings",
+          "title": "Mind Settings",
+          "image": "/images/design/mindsettings.png",
+          "alt": "Mind Settings"
+        },
+        {
+          "id": "perspective",
+          "title": "Perspective",
+          "image": "/images/design/perspective.JPG",
+          "alt": "Perspective"
+        },
+        {
+          "id": "untitled",
+          "title": "Untitled",
+          "image": "/images/design/untitled.jpg",
+          "alt": "Untitled"
+        },
+        {
+          "id": "voyeur",
+          "title": "Voyeur",
+          "image": "/images/design/voyeur.JPG",
+          "alt": "Voyeur"
+        },
+        {
+          "id": "wildflower",
+          "title": "Wildflower",
+          "image": "/images/design/wildflower.png",
+          "alt": "Wildflower"
+        }
+      ]
+    },
+    {
+      "id": "collage",
+      "title": "Collage",
+      "hasIndividualPages": false,
+      "route": "/works/collage",
+      "heroImages": [
+        "/images/design/collage/thumbnails/IMG_0908.jpg",
+        "/images/design/collage/thumbnails/perspective.jpg",
+        "/images/design/collage/thumbnails/voyeur.jpg"
+      ],
+      "blurb": "Layered compositions blending photography, typography, and mixed media.",
+      "items": [
+        {
+          "id": "img0908",
+          "title": "Collage 1",
+          "image": "/images/design/collage/IMG_0908.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_0908.jpg",
+          "alt": "Collage 1"
+        },
+        {
+          "id": "img1825",
+          "title": "Collage 2",
+          "image": "/images/design/collage/IMG_1825.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1825.jpg",
+          "alt": "Collage 2"
+        },
+        {
+          "id": "img1827",
+          "title": "Collage 3",
+          "image": "/images/design/collage/IMG_1827.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1827.jpg",
+          "alt": "Collage 3"
+        },
+        {
+          "id": "img1828",
+          "title": "Collage 4",
+          "image": "/images/design/collage/IMG_1828.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1828.jpg",
+          "alt": "Collage 4"
+        },
+        {
+          "id": "img1829",
+          "title": "Collage 5",
+          "image": "/images/design/collage/IMG_1829.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1829.jpg",
+          "alt": "Collage 5"
+        },
+        {
+          "id": "img1830",
+          "title": "Collage 6",
+          "image": "/images/design/collage/IMG_1830.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1830.jpg",
+          "alt": "Collage 6"
+        },
+        {
+          "id": "img1831",
+          "title": "Collage 7",
+          "image": "/images/design/collage/IMG_1831.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1831.jpg",
+          "alt": "Collage 7"
+        },
+        {
+          "id": "img1832",
+          "title": "Collage 8",
+          "image": "/images/design/collage/IMG_1832.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1832.jpg",
+          "alt": "Collage 8"
+        },
+        {
+          "id": "img1833",
+          "title": "Collage 9",
+          "image": "/images/design/collage/IMG_1833.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1833.jpg",
+          "alt": "Collage 9"
+        },
+        {
+          "id": "img1836",
+          "title": "Collage 10",
+          "image": "/images/design/collage/IMG_1836.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1836.jpg",
+          "alt": "Collage 10"
+        },
+        {
+          "id": "img1837",
+          "title": "Collage 11",
+          "image": "/images/design/collage/IMG_1837.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1837.jpg",
+          "alt": "Collage 11"
+        },
+        {
+          "id": "img1838",
+          "title": "Collage 12",
+          "image": "/images/design/collage/IMG_1838.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1838.jpg",
+          "alt": "Collage 12"
+        },
+        {
+          "id": "img1839",
+          "title": "Collage 13",
+          "image": "/images/design/collage/IMG_1839.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1839.jpg",
+          "alt": "Collage 13"
+        },
+        {
+          "id": "img1840",
+          "title": "Collage 14",
+          "image": "/images/design/collage/IMG_1840.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1840.jpg",
+          "alt": "Collage 14"
+        },
+        {
+          "id": "img1841",
+          "title": "Collage 15",
+          "image": "/images/design/collage/IMG_1841.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1841.jpg",
+          "alt": "Collage 15"
+        },
+        {
+          "id": "img1842",
+          "title": "Collage 16",
+          "image": "/images/design/collage/IMG_1842.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1842.jpg",
+          "alt": "Collage 16"
+        },
+        {
+          "id": "img1843",
+          "title": "Collage 17",
+          "image": "/images/design/collage/IMG_1843.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1843.jpg",
+          "alt": "Collage 17"
+        },
+        {
+          "id": "img9332",
+          "title": "Collage 18",
+          "image": "/images/design/collage/IMG_9332.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_9332.jpg",
+          "alt": "Collage 18"
+        },
+        {
+          "id": "aboutolivia",
+          "title": "About Olivia",
+          "image": "/images/design/collage/aboutOlivia.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/aboutOlivia.jpg",
+          "alt": "About Olivia"
+        },
+        {
+          "id": "bodiesbodies",
+          "title": "Bodies Bodies",
+          "image": "/images/design/collage/bodiesbodies.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/bodiesbodies.jpg",
+          "alt": "Bodies Bodies"
+        },
+        {
+          "id": "elevate",
+          "title": "Elevate",
+          "image": "/images/design/collage/elevate.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/elevate.jpg",
+          "alt": "Elevate"
+        },
+        {
+          "id": "perspective",
+          "title": "Perspective",
+          "image": "/images/design/collage/perspective.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/perspective.jpg",
+          "alt": "Perspective"
+        },
+        {
+          "id": "untitled",
+          "title": "Untitled",
+          "image": "/images/design/collage/untitled.jpg",
+          "thumbnail": "/images/design/collage/thumbnails/untitled.jpg",
+          "alt": "Untitled"
+        },
+        {
+          "id": "voyeur",
+          "title": "Voyeur",
+          "image": "/images/design/collage/voyeur.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/voyeur.jpg",
+          "alt": "Voyeur"
+        }
+      ]
+    },
+    {
+      "id": "installation",
+      "title": "Installation",
+      "hasIndividualPages": true,
+      "items": [
+        {
+          "id": "girltime",
+          "title": "Girl Time",
+          "slug": "girltime",
+          "route": "/works/installation/girltime",
+          "image": "/images/installation/GirlTime/girltime1.JPG",
+          "extraImages": [
+            "/images/installation/GirlTime/girltime2.JPG",
+            "/images/installation/GirlTime/girltime3.JPG"
+          ],
+          "alt": "Installation: Girl Time",
+          "year": 2024,
+          "description": "Installation photography.",
+          "tags": ["installation", "photography"]
+        },
+        {
+          "id": "tinydesk",
+          "title": "Tiny Desk",
+          "slug": "tinydesk",
+          "route": "/works/installation/tinydesk",
+          "image": "/images/installation/TDVJ/tinydesk1.JPEG",
+          "extraImages": [
+            "/images/installation/TDVJ/tinydesk2.JPEG",
+            "/images/installation/TDVJ/tinydesk3.JPEG"
+          ],
+          "alt": "Installation: Tiny Desk",
+          "year": 2023,
+          "description": "Installation photography.",
+          "tags": ["installation", "photography"]
+        }
+      ]
+    }
+  ]
+}

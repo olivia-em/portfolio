@@ -1,0 +1,126 @@
+/* ==================================================================
+   DEPRECATED CANVAS & 3D SHELF STYLES
+   These styles were used with the old WallCanvas/CarouselShelf setup
+   Kept for reference if you need to restore the 3D carousel view
+   ================================================================== */
+
+.canvas-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-fullscreen {
+  width: 100%;
+  height: 100%;
+}
+
+.dom-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 24px 0;
+}
+
+/* When the WebGL wall is active, hide the DOM gallery entirely to avoid double-rendering */
+.has-wall-canvas .dom-gallery {
+  display: none !important;
+}
+
+.shelf {
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 12px 24px;
+  overflow: visible; /* allow shadows/glow to extend outside the shelf box */
+}
+
+.shelf-title {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.shelf-items {
+  display: flex;
+  gap: 20px; /* consistent margins between images */
+  overflow-x: auto;
+  padding-bottom: 8px; /* room for shadows/glow so they aren't clipped */
+  align-items: flex-start; /* anchor images to the top so shadows fall into padding */
+}
+
+.dom-shelf-item {
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.dom-shelf-item img {
+  height: 192px; /* reduced by 40% from 320px */
+  width: auto; /* preserve aspect ratio */
+  display: block;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .dom-shelf-item img {
+    height: 180px;
+  }
+}
+
+/* hide native horizontal scrollbar but keep scrolling functionality */
+.shelf-items {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow-y: visible; /* allow visual glows to extend outside */
+}
+.shelf-items::-webkit-scrollbar {
+  /* WebKit */
+  height: 0;
+  display: none;
+}
+
+/* 3D shelf card styling */
+.shelf-frame {
+  position: relative;
+  perspective: 1100px;
+  overflow: visible; /* ensure perspective container doesn't clip child glows */
+}
+
+.shelf-card {
+  transform-style: preserve-3d;
+  transform-origin: center bottom;
+  transition: box-shadow 220ms ease, filter 220ms ease;
+  will-change: box-shadow, filter;
+}
+
+.shelf-card img {
+  display: block;
+  height: 192px;
+  width: auto;
+  /* slight tilt to appear hung on the wall */
+  transform: rotateX(4deg) translateZ(0);
+  /* tightened shadow so most of it fits inside the scroller padding */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  /* square corners */
+  border-radius: 0;
+}
+
+/* glow on hover without moving layout */
+.shelf-card:hover img {
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(255, 255, 255, 0.06);
+  filter: saturate(1.02) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
+  z-index: 10; /* keep hovered item above neighbors */
+}
+
+@media (max-width: 768px) {
+  .shelf-card img {
+    height: 108px; /* reduced by 40% from 180px */
+  }
+}
+
+/* Responsive layout: switch to horizontal carousel below 1000px */
+@media (max-width: 999px) {
+  .canvas-fullscreen {
+    position: relative !important;
+    height: 200vh !important;
+  }
+}

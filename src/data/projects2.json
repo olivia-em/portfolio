@@ -1,0 +1,394 @@
+{
+  "shelves": [
+    {
+      "id": "frontend",
+      "title": "Frontend Development",
+      "items": [
+        {
+          "id": "lip",
+          "title": "Lessons in Perspective",
+          "slug": "inpersp",
+          "route": "/posts/inpersp",
+          "image": "/assets/LIP.png",
+          "extraImages": [],
+          "alt": "Lessons in Perspective - Interactive 3D Poetry",
+          "year": 2025,
+          "date": "2025-04-21",
+          "description": "Lessons in Perspective is an interactive, web-based poetry collection that explores how every relationship is shaped by the ones that came before it. Built with React and Three.js, this collection makes the browser a space for 3D concrete poetry. Clicking, rotating, and exploring the 3D environment reveals how meaning changes with perspective; your interaction with the present can unravel the past, illustrating connections that are invisible but felt. Lessons in Perspective offers a poetic meditation on love, memory, and the invisible architectures of life.",
+          "tags": ["webdev", "code", "all"],
+          "skills": ["React", "Three.js", "Creative Writing"],
+          "placeholder": false,
+          "url": {
+            "repository": "https://github.com/olivia-em/inperspective",
+            "website": "https://lessons-inperspective.netlify.app/",
+            "documentation": ""
+          }
+        },
+        {
+          "id": "newvoices",
+          "title": "New Voices",
+          "slug": "newvoices",
+          "route": "/posts/newvoices",
+          "image": "/assets/newvoices.png",
+          "extraImages": [
+            "/assets/new-home.png",
+            "/assets/new-archive.png",
+            "/assets/new-article.png",
+            "/assets/old-home2.PNG",
+            "/assets/old-article.png"
+          ],
+          "alt": "New Voices Website Redesign",
+          "year": 2025,
+          "date": "2025-09-23",
+          "description": "I redesigned the New Voices website. They wanted something more modern and accessible, with less scrolling and a new color way. I reorganized the back-end structure of their website, created custom styling, added a newsletter pop-up, and made the website more mobile friendly. The images below are the after & before, and you can visit the website at newvoices.org.",
+          "tags": ["webdev", "all"],
+          "skills": ["Wordpress", "HTML", "CSS"],
+          "placeholder": false,
+          "url": {
+            "repository": "",
+            "website": "https://newvoices.org",
+            "documentation": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "webart",
+      "title": "Web Art / Creative Code",
+      "items": [
+        {
+          "id": "encode",
+          "title": "Encode",
+          "slug": "encode",
+          "route": "/posts/encode",
+          "image": "/assets/encode1.png",
+          "extraImages": [
+            "/assets/encode2.png",
+            "/assets/encode3.png",
+            "/assets/encode4.png"
+          ],
+          "animation": null,
+          "alt": "Encode series - Generative sketches",
+          "year": 2023,
+          "date": "2023-12-07",
+          "description": "Encoding is a learning / experimentation process where you look at a sketch and attempt to recreate it in pseudocode. Then, you take some time to rewrite the code into something of your own creation. This helps me breakdown an output into smaller components that can be described by and then train myself to use those to recreate it. This can also help you recreate non-coded art into Javascript. This is a selection of Javascript sketches I made using this process, and all are either interactive or animated. In the repository link above, each .js file has the original code commented out at the bottom.",
+          "tags": ["code", "all"],
+          "skills": ["p5.js", "WEBGL"],
+          "placeholder": false,
+          "sites": [
+            {
+              "title": "Encode 1",
+              "link": "https://olivia-em.github.io/codeyourway/encode/encode1/index.html",
+              "image": "/assets/encode1.png"
+            },
+            {
+              "title": "Encode 2",
+              "link": "https://olivia-em.github.io/codeyourway/encode/encode2/index.html",
+              "image": "/assets/encode2.png"
+            },
+            {
+              "title": "Encode 3",
+              "link": "https://olivia-em.github.io/codeyourway/encode/encode3/index.html",
+              "image": "/assets/encode3.png"
+            },
+            {
+              "title": "Encode 4",
+              "link": "https://olivia-em.github.io/codeyourway/encode/encode4/index.html",
+              "image": "/assets/encode4.png"
+            },
+            {
+              "title": "Encode 7",
+              "link": "https://olivia-em.github.io/codeyourway/encode/encode7/index.html",
+              "image": "/assets/encode7.jpg"
+            }
+          ],
+          "url": {
+            "repository": "https://github.com/olivia-em/codeyourway",
+            "website": "",
+            "documentation": "https://olivia-em.github.io/docblog/cyw/week1/"
+          }
+        },
+        {
+          "id": "decode",
+          "title": "Decode",
+          "slug": "decode",
+          "route": "/posts/decode",
+          "image": null,
+          "extraImages": null,
+          "alt": "Decode series - Code analysis sketches",
+          "year": 2023,
+          "date": "2023-12-07",
+          "description": "Decoding is a learning / experimentation process where you predict a sketch just based on reading the code. Then, you take some time to rewrite the code into something of your own creation. This helps me understand and therefore predict the functionality of various code conventions and then train myself to use those conventions in my own style. This is a selection of Javascript sketches I made using this process, and all are either interactive or animated. In the repository link above, each .js file has the original code commented out at the bottom.",
+          "tags": ["code", "all"],
+          "skills": ["p5.js", "WEBGL"],
+          "placeholder": false,
+          "sites": [
+            {
+              "title": "Decode 8",
+              "link": "https://olivia-em.github.io/codeyourway/decode/decode8/index.html",
+              "animation": "/assets/rects.mp4"
+            },
+            {
+              "title": "Decode 10",
+              "link": "https://olivia-em.github.io/codeyourway/decode/decode10/index.html",
+              "image": "/assets/decode10.png"
+            },
+            {
+              "title": "Decode 11",
+              "link": "https://olivia-em.github.io/codeyourway/decode/decode11/index.html",
+              "image": "/assets/decode11.png"
+            },
+            {
+              "title": "Decode 1",
+              "link": "https://olivia-em.github.io/codeyourway/decode/decode1/index.html",
+              "image": "/assets/decode1-min.png"
+            },
+            {
+              "title": "Decode 3",
+              "link": "https://olivia-em.github.io/codeyourway/decode/decode3/index.html",
+              "animation": "/assets/decode3.mp4"
+            },
+            {
+              "title": "Decode 4",
+              "link": "https://olivia-em.github.io/codeyourway/decode/decode4/index.html",
+              "image": "/assets/decode4-min.png"
+            }
+          ],
+          "url": {
+            "repository": "https://github.com/olivia-em/codeyourway",
+            "website": "",
+            "documentation": "https://olivia-em.github.io/docblog/cyw/week2/"
+          }
+        },
+        {
+          "id": "parametrics",
+          "title": "Parametrics",
+          "slug": "parametrics",
+          "route": "/posts/parametrics",
+          "image": null,
+          "extraImages": [],
+          "animation": null,
+          "alt": "Parametric generative art sketches",
+          "year": 2024,
+          "date": "2024-12-04",
+          "description": "A collection of parametric sketches exploring generative design and interactive animations. These p5.js experiments focus on mathematical patterns, organic forms, and dynamic visual systems that respond to user input or evolve over time.",
+          "tags": ["code", "all"],
+          "skills": ["p5.js", "WEBGL"],
+          "placeholder": false,
+          "sites": [
+            {
+              "title": "Screensaver",
+              "link": "https://olivia-em.github.io/codeyourway/recode/screensaver/index.html",
+              "animation": "/assets/flower.mp4"
+            },
+            {
+              "title": "Explore 2",
+              "link": "https://olivia-em.github.io/codeyourway/explore/explore2/index.html",
+              "animation": "/assets/ball.mp4"
+            },
+            {
+              "title": "Explore 3",
+              "link": "https://olivia-em.github.io/codeyourway/explore/explore3/index.html",
+              "animation": "/assets/para1.mp4"
+            },
+            {
+              "title": "Explore 4",
+              "link": "https://olivia-em.github.io/codeyourway/explore/explore4/index.html",
+              "animation": "/assets/lights.mp4"
+            },
+            {
+              "title": "Explore 5",
+              "link": "https://olivia-em.github.io/codeyourway/explore/explore5/index.html",
+              "animation": "/assets/para2.mp4"
+            },
+            {
+              "title": "preLoader",
+              "link": "https://olivia-em.github.io/codeyourway/recode/preLoader/index.html",
+              "image": "/assets/preloader.png"
+            }
+          ],
+          "url": {
+            "repository": "https://github.com/olivia-em/codeyourway",
+            "website": "",
+            "documentation": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "installations",
+      "title": "Installations",
+      "items": [
+        {
+          "id": "girltime",
+          "title": "Girl Time",
+          "slug": "girltime",
+          "route": "/posts/girltime",
+          "image": null,
+          "extraImages": null,
+          "videos": null,
+          "alt": "Girl Time Installation",
+          "year": 2024,
+          "date": "2025-11-14",
+          "description": "Girl Time is an immersive installation, created in collaboration with Prisha Jain and dedicated to sharing femme stories. This installation draws inspiration from the deeply personal conversations that unfold in women's restrooms\u2014spaces of vulnerability, camaraderie, and unfiltered expression. Through interactive and generative elements, Girl Time invites users to step into the experience of being female-identifying, capturing its beauty and struggle. No two users will have the same experience, the same way no two women do. Girl Time comes together using Arduino, p5.js, and Tone.js. The removable objects are magnetized, and the magnets are detected by hall effect sensors. Through serial communication, the sensors send messages to p5, which initiates sound and video corresponding to the object, with added randomness.",
+          "tags": ["code", "vidart", "all"],
+          "skills": [
+            "Arduino IDE",
+            "p5.js",
+            "tone.js",
+            "Adobe Creative Suite",
+            "CAD & Design for Fabrication"
+          ],
+          "placeholder": false,
+          "url": {
+            "repository": "https://github.com/olivia-em/GirlTime",
+            "website": "",
+            "documentation": "https://prishajain.notion.site/girltime"
+          }
+        },
+        {
+          "id": "tinydesk",
+          "title": "TinyDesk VJ",
+          "slug": "tinydesk",
+          "route": "/posts/tinydesk",
+          "image": null,
+          "extraImages": null,
+          "alt": "TinyDesk VJ Interactive Installation",
+          "year": 2022,
+          "date": "2022-12-22",
+          "description": "TinyDesk VJ brings live performance to life through a tactile interface. Powered by p5.js and ML5 body segmentation, it integrates live video with surreal digital effects that you can dynamically control. The interface features rotary encoders, faders, potentiometers, and buttons, allowing you to layer effects like rain, ripples, lasers, and lightning in real-time. Whether you're performing alongside music or exploring interactive art, this tool offers endless possibilities for creativity. Experiment with the controls, combine elements in unique ways, and watch as your inputs transform into exciting, ever-changing visuals.",
+          "tags": ["code", "all"],
+          "skills": ["p5.js", "Arduino IDE", "ML5 Body Segmentation"],
+          "placeholder": false,
+          "url": {
+            "repository": "",
+            "website": "",
+            "documentation": "https://olivia-em.github.io/docblog/projects/tinydeskVJ/"
+          }
+        }
+      ]
+    },
+    {
+      "id": "videoart",
+      "title": "Video Art",
+      "items": [
+        {
+          "id": "qatsi",
+          "title": "Qatsi (2025)",
+          "slug": "qatsi",
+          "route": "/posts/qatsi",
+          "image": null,
+          "extraImages": [],
+          "alt": "Qatsi - AI Film",
+          "year": 2025,
+          "date": "2025-02-14",
+          "description": "Qatsi (2025) - An homage to the 1982 film Koyaanisqatsi, 'Qatsi' is a visual exploration of motion as the axiom of life\u2014spanning the vastness of the cosmos, the rhythms of nature, and the intimacy of human connection. Created for the MIT AI Filmmaking Hackathon, Quatsi was recognized as a Finalist and received the Best Sound Award, along with an Honorable Mention for Best Visual. Credits: Olivia Lee (AI Artist & Visual Designer), Prisha Jain (AI Artist & Composer), Omi Bahuguna (AI Artist & Art Direction), Mark Chan (Editor), Yidi Zhou (Producer)",
+          "tags": ["vidart", "all"],
+          "skills": [
+            "Adobe After Effects",
+            "Adobe Premiere Pro",
+            "MidJourney",
+            "OpenArt",
+            "Ableton"
+          ],
+          "placeholder": false,
+          "youtube": ["Qy7D2O2zytc?si=By_Q7OhpB2Yb-SRM"],
+          "url": {
+            "repository": "",
+            "website": "",
+            "documentation": ""
+          }
+        },
+        {
+          "id": "alteregos",
+          "title": "Alter Egos",
+          "slug": "alteregos",
+          "route": "/posts/alteregos",
+          "image": null,
+          "extraImages": [],
+          "alt": "Alter Egos Performance Video",
+          "year": 2025,
+          "date": "2025-03-22",
+          "description": "As the Graduate Teaching Assistant for 'Alter Egos: Assuming New Identities Through Costume and Performance', I was responsible for preparing promotional materials for the end of semester performance. I edited this video in Premiere from footage of previous performances. I wanted the class/performance to seem like an eclectic party, and I played with blending modes to layer performances (especially in pairs) to connect to the concept of duality.",
+          "tags": ["vidart", "all"],
+          "skills": ["Adobe Premiere Pro"],
+          "placeholder": false,
+          "youtube": ["T4Bfi2lBTCE?si=HIMZwi1unTYMNuOh"],
+          "url": {
+            "repository": "",
+            "website": "",
+            "documentation": ""
+          }
+        },
+        {
+          "id": "areyoufree",
+          "title": "Are You Free Tomorrow?",
+          "slug": "specfut",
+          "route": "/posts/specfut",
+          "image": null,
+          "extraImages": [],
+          "alt": "Are You Free Tomorrow - Experimental Video",
+          "year": 2022,
+          "date": "2022-10-14",
+          "description": "This project explores the feeling of being overwhelmed by too many possibilities. What started as an idea to compare people's lives in the same time frame shifted into an emotional journey, taking a simple walk home and turning it into a reflection on choice. My collaborator Devan and I combined contrasting visuals like high-tech vs. nature and simple vs. grand moments to express the tension between these paths. The final edit mixes jump cuts, flashes, and stills, set to a soundtrack that shapes the narrative. The voiceover, recorded by my partner, Devan, ties together two perspectives: a girl on a personal journey and someone trying to connect. The process was messy but fun, with a focus on creating something that feels raw and emotional. We filmed separately, then brought everything into After Effects for editing. The pacing was driven by audio, which we first cut in Ableton, and then synced to the visuals. After some rounds of edits and a few challenges along the way (always triple-check your backups), we ended up with a piece that combines abstract storytelling and emotional depth.",
+          "tags": ["vidart", "all"],
+          "skills": ["Adobe After Effects"],
+          "placeholder": false,
+          "youtube": ["L0l2DRwhbiM?si=cDGScgRPlJtVO6_a"],
+          "url": {
+            "repository": "",
+            "website": "",
+            "documentation": "https://olivia-em.github.io/docblog/projects/specfut/"
+          }
+        },
+        {
+          "id": "thenudes",
+          "title": "theNudes",
+          "slug": "nudes",
+          "route": "/posts/nudes",
+          "image": "/assets/nudes.jpeg",
+          "extraImages": [],
+          "alt": "theNudes - AI Generated Video",
+          "year": 2023,
+          "date": "2023-11-14",
+          "description": "Tasked with using AI for a short video assignment, I decided to go in a more understated direction. I used excerpts from Anne Carson's Glass, Irony, and God as prompts for image generation in Adobe Firefly. The excerpts I chose are visions that come to the protagonist. Considering the discourse around AI and its relationship to the arts, which frames it as hallucinatory rather than realistic, I thought using these visions as prompts would be fitting.",
+          "tags": ["vidart", "all"],
+          "skills": ["Adobe After Effects", "Adobe Firefly"],
+          "placeholder": false,
+          "youtube": ["1ZA07QSfYww?si=mABb2hq63fY35epE"],
+          "url": {
+            "repository": "",
+            "website": "",
+            "documentation": "https://olivia-em.github.io/docblog/projects/generativevid/"
+          }
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "title": "Design / Collage",
+      "items": [
+        {
+          "id": "staticdesign",
+          "title": "Static Art & Design",
+          "slug": "design",
+          "route": "/posts/design",
+          "image": null,
+          "extraImages": null,
+          "alt": "Collection of static design and collage work",
+          "year": 2024,
+          "date": "2024-06-10",
+          "description": "A curated collection of static art and design pieces including posters, collages, digital illustrations, and graphic design work created using Figma, Adobe Suite, and traditional collage techniques.",
+          "tags": ["static", "all"],
+          "skills": ["Figma", "Adobe Suite", "Collage"],
+          "placeholder": false,
+          "url": {
+            "repository": "",
+            "website": "",
+            "documentation": ""
+          }
+        }
+      ]
+    }
+  ]
+}
