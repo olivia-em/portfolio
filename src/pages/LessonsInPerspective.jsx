@@ -99,7 +99,7 @@ export default function LessonsInPerspective() {
       <section className="project-detail-right">
         <div className="project-detail-images">
           <img
-            src={lipData.image}
+            src={`${import.meta.env.BASE_URL}${lipData.image}`}
             alt={lipData.alt}
             onMouseMove={(e) => handleMouseMove(e, lipData.imageLabel)}
             onMouseLeave={handleMouseLeave}
@@ -108,7 +108,7 @@ export default function LessonsInPerspective() {
             lipData.extraImages.map((img, index) => (
               <img
                 key={index}
-                src={img}
+                src={`${import.meta.env.BASE_URL}${img}`}
                 alt={`${lipData.title} ${index + 2}`}
                 onMouseMove={(e) =>
                   handleMouseMove(e, lipData.extraImageLabels?.[index])

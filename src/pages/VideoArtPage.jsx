@@ -68,7 +68,10 @@ const VideoArtPage = () => {
             onMouseEnter={() => setHoveredItem(item.id)}
             onMouseLeave={() => setHoveredItem(null)}
           >
-            <img src={item.image} alt={item.alt} />
+            <img
+              src={`${import.meta.env.BASE_URL}${item.image}`}
+              alt={item.alt}
+            />
 
             {/* Tags in top right corner */}
             {item.tags && item.tags.length > 0 && (

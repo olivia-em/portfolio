@@ -42,7 +42,10 @@ const WebArtPage = () => {
             onClick={() => handleImageClick(item.url)}
             style={{ cursor: item.url ? "pointer" : "default" }}
           >
-            <img src={item.image} alt={item.alt} />
+            <img
+              src={`${import.meta.env.BASE_URL}${item.image}`}
+              alt={item.alt}
+            />
           </div>
         ))}
       </div>

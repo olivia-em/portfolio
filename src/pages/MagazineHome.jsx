@@ -420,7 +420,7 @@ export default function MagazineHome() {
               images.map((src, i) => (
                 <img
                   key={src}
-                  src={src}
+                  src={`${import.meta.env.BASE_URL}${src}`}
                   className={`c-img c-img-${i + 1}`}
                   alt={`Olivia collage ${i + 1}`}
                   loading="lazy"
@@ -437,7 +437,9 @@ export default function MagazineHome() {
                   {[0, 1].map((index) => (
                     <img
                       key={index}
-                      src={previewData.images[index]}
+                      src={`${import.meta.env.BASE_URL}${
+                        previewData.images[index]
+                      }`}
                       alt={`Preview ${index + 1}`}
                       className={`preview-image preview-image-${index + 1}`}
                     />

@@ -101,7 +101,7 @@ export default function NewVoicesPage() {
       <section className="project-detail-right">
         <div className="project-detail-images">
           <img
-            src={newVoicesData.image}
+            src={`${import.meta.env.BASE_URL}${newVoicesData.image}`}
             alt={newVoicesData.alt}
             onMouseMove={(e) => handleMouseMove(e, newVoicesData.imageLabel)}
             onMouseLeave={handleMouseLeave}
@@ -110,7 +110,7 @@ export default function NewVoicesPage() {
             newVoicesData.extraImages.map((img, index) => (
               <img
                 key={index}
-                src={img}
+                src={`${import.meta.env.BASE_URL}${img}`}
                 alt={`${newVoicesData.title} ${index + 2}`}
                 onMouseMove={(e) =>
                   handleMouseMove(e, newVoicesData.extraImageLabels?.[index])

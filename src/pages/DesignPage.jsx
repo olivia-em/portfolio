@@ -36,7 +36,11 @@ const DesignPage = () => {
       <div className="category-grid">
         {designShelf.items.map((item) => (
           <div key={item.id} className="category-item">
-            <img src={item.image} alt={item.alt} className="category-image" />
+            <img
+              src={`${import.meta.env.BASE_URL}${item.image}`}
+              alt={item.alt}
+              className="category-image"
+            />
             <h3 className="item-title">{item.title}</h3>
           </div>
         ))}

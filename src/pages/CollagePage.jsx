@@ -169,7 +169,11 @@ export default function CollagePage() {
             className="collage-grid-item"
             onClick={() => openLightbox(index)}
           >
-            <img src={img.thumb} alt={`Collage ${index + 1}`} loading="lazy" />
+            <img
+              src={`${import.meta.env.BASE_URL}${img.thumb}`}
+              alt={`Collage ${index + 1}`}
+              loading="lazy"
+            />
           </div>
         ))}
       </div>
@@ -195,7 +199,9 @@ export default function CollagePage() {
           <div className="lightbox-carousel">
             <div className="lightbox-center-image">
               <img
-                src={collageImages[selectedImageIndex].full}
+                src={`${import.meta.env.BASE_URL}${
+                  collageImages[selectedImageIndex].full
+                }`}
                 alt={`Collage ${selectedImageIndex + 1}`}
               />
             </div>

@@ -4,7 +4,7 @@
       "id": "frontend",
       "title": "Frontend Development",
       "hasIndividualPages": true,
-      "heroImage": "/images/frontend/LIP/LIP1.png",
+      "heroImage": "images/frontend/LIP/LIP1.png",
       "blurb": "Lessons in Perspective is an interactive, web-based poetry collection that explores how every relationship is shaped by the ones that came before it. Built with React and Three.js, this collection makes the browser a space for 3D concrete poetry. Your interaction with the present can unravel the past, illustrating connections that are invisible but felt. Lessons in Perspective offers a poetic meditation on love, memory, and the invisible architectures of life.",
       "items": [
         {
@@ -12,8 +12,8 @@
           "title": "Lessons in Perspective",
           "slug": "lip",
           "route": "/works/frontend/lip",
-          "image": "/images/frontend/LIP/LIP1.png",
-          "extraImages": ["/images/frontend/LIP/LIP2.png"],
+          "image": "images/frontend/LIP/LIP1.png",
+          "extraImages": ["images/frontend/LIP/LIP2.png"],
           "alt": "LIP thumbnail",
           "year": null,
           "description": "Lessons in Perspective is an interactive, web-based poetry collection that explores how every relationship is shaped by the ones that came before it. Built with React and Three.js, this collection makes the browser a space for 3D concrete poetry. Clicking, rotating, and exploring the 3D environment reveals how meaning changes with perspective; your interaction with the present can unravel the past, illustrating connections that are invisible but felt. Lessons in Perspective offers a poetic meditation on love, memory, and the invisible architectures of life.",
@@ -23,7 +23,7 @@
             "website": "https://lessons-inperspective.netlify.app/",
             "documentation": ""
           },
-          "heroImage": "/images/frontend/LIP/LIP1.png",
+          "heroImage": "images/frontend/LIP/LIP1.png",
           "blurb": "Lessons in Perspective is an interactive, web-based poetry collection built with React and Three.js."
         },
         {
@@ -31,9 +31,9 @@
           "title": "New Voices",
           "slug": "newvoices",
           "route": "/works/frontend/newvoices",
-          "image": "/images/frontend/NewVoices/NewVoices1.png",
+          "image": "images/frontend/NewVoices/NewVoices1.png",
           "imageLabel": "After Redesign",
-          "extraImages": ["/images/frontend/NewVoices/old-home2.PNG"],
+          "extraImages": ["images/frontend/NewVoices/old-home2.PNG"],
           "extraImageLabels": ["Before Redesign"],
           "alt": "New Voices thumbnail",
           "year": null,
@@ -44,7 +44,7 @@
             "website": "https://newvoices.org/",
             "documentation": ""
           },
-          "heroImage": "/images/frontend/NewVoices/NewVoices1.png",
+          "heroImage": "images/frontend/NewVoices/NewVoices1.png",
           "blurb": "Website re-design for a literary magazine showcasing emerging writers."
         },
         {
@@ -52,10 +52,10 @@
           "title": "Old Portfolio",
           "slug": "oldportfolio",
           "route": "/works/frontend/oldportfolio",
-          "image": "/images/frontend/OldPortfolio/port1.png",
+          "image": "images/frontend/OldPortfolio/port1.png",
           "extraImages": [
-            "/images/frontend/OldPortfolio/port2.png",
-            "/images/frontend/OldPortfolio/port3.png"
+            "images/frontend/OldPortfolio/port2.png",
+            "images/frontend/OldPortfolio/port3.png"
           ],
           "alt": "Old Portfolio thumbnail",
           "year": null,
@@ -71,71 +71,71 @@
       "hasIndividualPages": false,
       "route": "/works/webart",
       "heroImages": [
-        "/images/webart/screensaver.png",
-        "/images/webart/kaleid.jpg"
+        "images/webart/screensaver.png",
+        "images/webart/kaleid.jpg"
       ],
       "blurb": "Creative coding experiments exploring generative design and interactive art.",
       "items": [
         {
           "id": "3dgrid",
           "title": "3D Grid",
-          "image": "/images/webart/3Dgrid.png",
+          "image": "images/webart/3Dgrid.png",
           "alt": "3D Grid",
           "url": "https://olivia-em.github.io/codeyourway/decode/decode8/index.html"
         },
         {
           "id": "circles",
           "title": "Circles",
-          "image": "/images/webart/circles.png",
+          "image": "images/webart/circles.png",
           "alt": "Circles",
           "url": "https://olivia-em.github.io/codeyourway/decode/decode1/index.html"
         },
         {
           "id": "cssassemblage",
           "title": "CSS Assemblage",
-          "image": "/images/webart/cssassemblage.png",
+          "image": "images/webart/cssassemblage.png",
           "alt": "CSS Assemblage",
           "url": "https://codepen.io/olee0114/full/zYbXJqq"
         },
         {
           "id": "encode1",
           "title": "Encode 1",
-          "image": "/images/webart/encode1.png",
+          "image": "images/webart/encode1.png",
           "alt": "Encode 1",
           "url": "https://olivia-em.github.io/codeyourway/encode/encode1/index.html"
         },
         {
           "id": "encode2",
           "title": "Encode 2",
-          "image": "/images/webart/encode2.png",
+          "image": "images/webart/encode2.png",
           "alt": "Encode 2",
           "url": "https://olivia-em.github.io/codeyourway/encode/encode2/index.html"
         },
         {
           "id": "encode3",
           "title": "Encode 3",
-          "image": "/images/webart/encode3.png",
+          "image": "images/webart/encode3.png",
           "alt": "Encode 3",
           "url": "https://olivia-em.github.io/codeyourway/encode/encode3/index.html"
         },
         {
           "id": "encode4",
           "title": "Encode 4",
-          "image": "/images/webart/encode4.png",
+          "image": "images/webart/encode4.png",
           "alt": "Encode 4",
           "url": "https://olivia-em.github.io/codeyourway/encode/encode4/index.html"
         },
         {
           "id": "kaleid",
           "title": "Kaleid",
-          "image": "/images/webart/kaleid.jpg",
+          "image": "images/webart/kaleid.jpg",
           "alt": "Kaleid",
           "url": "https://olivia-em.github.io/codeyourway/decode/decode3/index.html"
         },
         {
           "id": "layeredshapes",
           "title": "Layered Shapes",
-          "image": "/images/webart/layeredshapes.png",
+          "image": "images/webart/layeredshapes.png",
           "alt": "Layered Shapes",
           "url": "https://olivia-em.github.io/codeyourway/decode/decode2/index.html"
         },
