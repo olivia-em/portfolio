@@ -358,7 +358,7 @@ export default function MagazineHome() {
           <li>
             <span className="cite-num">1</span>
             <a
-              href="/images/aboutolivia/Lee.Olivia_Resume_Dev.pdf"
+              href="/portfolio/images/aboutolivia/Lee.Olivia_Resume_Dev.pdf"
               target="_blank"
               rel="noopener noreferrer"
               // open as a direct file link to avoid SPA routing
