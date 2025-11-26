@@ -10,7 +10,7 @@
   border: 1px solid var(--text-color, #fff);
   color: var(--text-color, #fff);
   padding: 0.5rem 1rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   cursor: pointer;
   margin-bottom: 2rem;
   transition: all 0.3s ease;
@@ -22,7 +22,7 @@
 }
 
 .category-title {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   margin-bottom: 3rem;
   text-align: center;
 }
@@ -56,7 +56,7 @@
 }
 
 .item-title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
   margin: 0;
 }

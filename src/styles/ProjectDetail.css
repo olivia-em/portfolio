@@ -18,7 +18,7 @@
 
 .project-detail-title {
   margin: 0;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   letter-spacing: -0.02em;
   font-weight: 700;
 }
@@ -35,13 +35,13 @@
   color: #111111;
   padding: 0.4rem 0.8rem;
   border-radius: 4px;
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   font-weight: 500;
   border: 1px solid rgba(0, 200, 255, 0.3);
 }
 
 .project-detail-description {
-  font-size: 1.05rem;
+  font-size: 0.85rem;
   line-height: 1.15;
   /* margin: 1.6rem 0; */
 }
