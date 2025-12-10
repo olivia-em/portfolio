@@ -415,158 +415,116 @@
       "hasIndividualPages": false,
       "route": "/works/collage",
       "heroImages": [
-        "/images/design/collage/thumbnails/IMG_0908.jpg",
+        "/images/design/IMG_0908.JPG",
         "/images/design/collage/thumbnails/perspective.jpg",
         "/images/design/collage/thumbnails/voyeur.jpg"
       ],
       "blurb": "Layered compositions blending photography, typography, and mixed media.",
       "items": [
         {
-          "id": "img0908",
+          "id": "IMG_0908",
           "title": "Collage 1",
           "image": "/images/design/collage/IMG_0908.JPG",
           "thumbnail": "/images/design/collage/thumbnails/IMG_0908.jpg",
           "alt": "Collage 1"
         },
         {
-          "id": "img1825",
+          "id": "AlterEgosPoster",
+          "title": "Alter Egos Poster",
+          "image": "/images/design/collage/AlterEgosPoster.jpg",
+          "thumbnail": "/images/design/collage/thumbnails/AlterEgosPoster.jpg",
+          "alt": "Alter Egos Poster"
+        },
+        {
+          "id": "IMG_1827",
           "title": "Collage 2",
-          "image": "/images/design/collage/IMG_1825.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1825.jpg",
+          "image": "/images/design/collage/IMG_1827.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1827.jpg",
           "alt": "Collage 2"
         },
         {
-          "id": "img1827",
+          "id": "IMG_1828",
           "title": "Collage 3",
-          "image": "/images/design/collage/IMG_1827.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1827.jpg",
+          "image": "/images/design/collage/IMG_1828.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1828.jpg",
           "alt": "Collage 3"
         },
         {
-          "id": "img1828",
+          "id": "IMG_1829",
           "title": "Collage 4",
-          "image": "/images/design/collage/IMG_1828.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1828.jpg",
+          "image": "/images/design/collage/IMG_1829.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1829.jpg",
           "alt": "Collage 4"
         },
         {
-          "id": "img1829",
+          "id": "IMG_1830",
           "title": "Collage 5",
-          "image": "/images/design/collage/IMG_1829.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1829.jpg",
+          "image": "/images/design/collage/IMG_1830.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1830.jpg",
           "alt": "Collage 5"
         },
         {
-          "id": "img1830",
+          "id": "IMG_1831",
           "title": "Collage 6",
-          "image": "/images/design/collage/IMG_1830.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1830.jpg",
+          "image": "/images/design/collage/IMG_1831.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1831.jpg",
           "alt": "Collage 6"
         },
         {
-          "id": "img1831",
+          "id": "IMG_1836",
           "title": "Collage 7",
-          "image": "/images/design/collage/IMG_1831.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1831.jpg",
+          "image": "/images/design/collage/IMG_1836.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1836.jpg",
           "alt": "Collage 7"
         },
         {
-          "id": "img1832",
+          "id": "IMG_1840",
           "title": "Collage 8",
-          "image": "/images/design/collage/IMG_1832.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1832.jpg",
+          "image": "/images/design/collage/IMG_1840.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1840.jpg",
           "alt": "Collage 8"
         },
         {
-          "id": "img1833",
+          "id": "IMG_1842",
           "title": "Collage 9",
-          "image": "/images/design/collage/IMG_1833.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1833.jpg",
+          "image": "/images/design/collage/IMG_1842.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_1842.jpg",
           "alt": "Collage 9"
         },
         {
-          "id": "img1836",
+          "id": "IMG_9332",
           "title": "Collage 10",
-          "image": "/images/design/collage/IMG_1836.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1836.jpg",
+          "image": "/images/design/collage/IMG_9332.JPG",
+          "thumbnail": "/images/design/collage/thumbnails/IMG_9332.jpg",
           "alt": "Collage 10"
         },
         {
-          "id": "img1837",
-          "title": "Collage 11",
-          "image": "/images/design/collage/IMG_1837.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1837.jpg",
-          "alt": "Collage 11"
-        },
-        {
-          "id": "img1838",
-          "title": "Collage 12",
-          "image": "/images/design/collage/IMG_1838.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1838.jpg",
-          "alt": "Collage 12"
-        },
-        {
-          "id": "img1839",
-          "title": "Collage 13",
-          "image": "/images/design/collage/IMG_1839.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1839.jpg",
-          "alt": "Collage 13"
-        },
-        {
-          "id": "img1840",
-          "title": "Collage 14",
-          "image": "/images/design/collage/IMG_1840.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1840.jpg",
-          "alt": "Collage 14"
-        },
-        {
-          "id": "img1841",
-          "title": "Collage 15",
-          "image": "/images/design/collage/IMG_1841.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1841.jpg",
-          "alt": "Collage 15"
-        },
-        {
-          "id": "img1842",
-          "title": "Collage 16",
-          "image": "/images/design/collage/IMG_1842.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1842.jpg",
-          "alt": "Collage 16"
-        },
-        {
-          "id": "img1843",
-          "title": "Collage 17",
-          "image": "/images/design/collage/IMG_1843.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1843.jpg",
-          "alt": "Collage 17"
-        },
-        {
-          "id": "img9332",
-          "title": "Collage 18",
-          "image": "/images/design/collage/IMG_9332.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_9332.jpg",
-          "alt": "Collage 18"
-        },
-        {
-          "id": "aboutolivia",
+          "id": "aboutOlivia",
           "title": "About Olivia",
-          "image": "/images/design/collage/aboutOlivia.JPG",
+          "image": "/images/design/collage/aboutOlivia.jpg",
           "thumbnail": "/images/design/collage/thumbnails/aboutOlivia.jpg",
           "alt": "About Olivia"
         },
         {
           "id": "bodiesbodies",
           "title": "Bodies Bodies",
-          "image": "/images/design/collage/bodiesbodies.JPG",
+          "image": "/images/design/collage/bodiesbodies.jpg",
           "thumbnail": "/images/design/collage/thumbnails/bodiesbodies.jpg",
           "alt": "Bodies Bodies"
         },
         {
           "id": "elevate",
           "title": "Elevate",
-          "image": "/images/design/collage/elevate.JPG",
+          "image": "/images/design/collage/elevate.jpg",
           "thumbnail": "/images/design/collage/thumbnails/elevate.jpg",
           "alt": "Elevate"
+        },
+        {
+          "id": "mindsettings",
+          "title": "Mind Settings",
+          "image": "/images/design/collage/mindsettings.jpg",
+          "thumbnail": "/images/design/collage/thumbnails/mindsettings.jpg",
+          "alt": "Mind Settings"
         },
         {
           "id": "perspective",
@@ -585,9 +543,16 @@
         {
           "id": "voyeur",
           "title": "Voyeur",
-          "image": "/images/design/collage/voyeur.JPG",
+          "image": "/images/design/collage/voyeur.jpg",
           "thumbnail": "/images/design/collage/thumbnails/voyeur.jpg",
           "alt": "Voyeur"
+        },
+        {
+          "id": "wildflower",
+          "title": "Wildflower",
+          "image": "/images/design/collage/wildflower.jpg",
+          "thumbnail": "/images/design/collage/thumbnails/wildflower.jpg",
+          "alt": "Wildflower"
         }
       ]
     },

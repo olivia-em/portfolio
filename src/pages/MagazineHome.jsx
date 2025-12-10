@@ -226,9 +226,9 @@ export default function MagazineHome() {
           <i>
             <SubtitleTypewriter
               tokens={[
-                { type: "text", content: "Frontend Developer" },
+                { type: "text", content: "Multimedia" },
                 { type: "sup", content: "2" },
-                { type: "text", content: "\u00A0& Multimedia Designer" },
+                { type: "text", content: "\u00A0Designer" },
                 { type: "sup", content: "3" },
               ]}
               start={step === 1 || typedOnce}
@@ -240,14 +240,14 @@ export default function MagazineHome() {
         <nav className="magazine-toc">
           <ul>
             <li>
-              <div className="toc-category">
+              {/* <div className="toc-category">
                 <Typewriter
                   text="Frontend"
                   start={step === 2 || typedOnce}
                   onComplete={next}
                   instant={typedOnce}
                 />
-              </div>
+              </div> */}
 
               <ul className={`toc-dropdown`}>
                 <li>
@@ -284,15 +284,6 @@ export default function MagazineHome() {
             </li>
 
             <li>
-              <div className="toc-category">
-                <Typewriter
-                  text="Design"
-                  start={step === 5 || typedOnce}
-                  onComplete={next}
-                  instant={typedOnce}
-                />
-              </div>
-
               <ul className={`toc-dropdown`}>
                 <li>
                   <Link
@@ -302,7 +293,7 @@ export default function MagazineHome() {
                   >
                     <TocLineTyped
                       title="Video Art"
-                      page={3}
+                      page={"3"}
                       start={step === 6 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
@@ -316,7 +307,7 @@ export default function MagazineHome() {
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <TocLineTyped
-                      title="Web Art"
+                      title="Creative Coding"
                       page={4}
                       start={step === 7 || typedOnce}
                       onComplete={next}
@@ -331,7 +322,7 @@ export default function MagazineHome() {
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <TocLineTyped
-                      title="Collage"
+                      title="Static Art & Collage"
                       page={5}
                       start={step === 8 || typedOnce}
                       onComplete={next}
@@ -347,7 +338,7 @@ export default function MagazineHome() {
         <div className="magazine-about">
           <p>
             <Typewriter
-              text={`Olivia is a developer and multimedia designer interested in poetics, audio/visual technology, and interactive web art. Her skillset includes HTML, CSS, and Javascript frameworks, such as React & Three.js, as well as audio/visual softwares like Resolume Arena, Ableton, TouchDesigner, and Adobe Suite.`}
+              text={`I'm a multimedia designer and creative technologist based in Brooklyn, and I'm interested in poetics, audio/visual technology, production design, and interactive web art. My skillset includes HTML, CSS, and Javascript frameworks, such as React & Three.js, as well as audio/visual softwares like Resolume Arena, Ableton, TouchDesigner, GrandMA Lighting Consoles, and Adobe Suite. I have experience designing and developing websites, interactive media installations, live visuals for performance, and video art pieces.`}
               start={step === 9 || typedOnce}
               instant={typedOnce}
               onComplete={next}
@@ -434,19 +425,20 @@ export default function MagazineHome() {
             <div className="preview-overlay">
               <div className="preview-images-center">
                 <div className="preview-images-stack">
-                  {[0, 1].map((index) => (
-                    <img
-                      key={index}
-                      src={`${import.meta.env.BASE_URL}${
-                        previewData.images[index]
-                      }`}
-                      alt={`Preview ${index + 1}`}
-                      className={`preview-image preview-image-${index + 1}`}
-                    />
-                  ))}
+                  {previewData.images[0] && (
+                    <>
+                      <img
+                        src={`${import.meta.env.BASE_URL}${
+                          previewData.images[0]
+                        }`}
+                        alt="Preview"
+                        className="preview-image preview-image-1"
+                      />
+                      <span className="preview-blurb">{previewData.blurb}</span>
+                    </>
+                  )}
                 </div>
               </div>
-              <p className="preview-blurb">{previewData.blurb}</p>
             </div>
           )}
 

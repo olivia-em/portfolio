@@ -3,104 +3,19 @@ import { useNavigate } from "react-router-dom";
 import BackToHomeButton from "../components/BackToHomeButton";
 import "../styles/CollagePage.css";
 
-const collageImages = [
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_0908.jpg",
-    full: "images/design/collage/IMG_0908.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1825.jpg",
-    full: "images/design/collage/IMG_1825.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1827.jpg",
-    full: "images/design/collage/IMG_1827.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1828.jpg",
-    full: "images/design/collage/IMG_1828.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1829.jpg",
-    full: "images/design/collage/IMG_1829.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1830.jpg",
-    full: "images/design/collage/IMG_1830.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1831.jpg",
-    full: "images/design/collage/IMG_1831.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1832.jpg",
-    full: "images/design/collage/IMG_1832.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1833.jpg",
-    full: "images/design/collage/IMG_1833.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1836.jpg",
-    full: "images/design/collage/IMG_1836.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1837.jpg",
-    full: "images/design/collage/IMG_1837.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1838.jpg",
-    full: "images/design/collage/IMG_1838.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1839.jpg",
-    full: "images/design/collage/IMG_1839.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1840.jpg",
-    full: "images/design/collage/IMG_1840.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1841.jpg",
-    full: "images/design/collage/IMG_1841.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1842.jpg",
-    full: "images/design/collage/IMG_1842.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_1843.jpg",
-    full: "images/design/collage/IMG_1843.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/IMG_9332.jpg",
-    full: "images/design/collage/IMG_9332.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/aboutOlivia.jpg",
-    full: "images/design/collage/aboutOlivia.png",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/bodiesbodies.jpg",
-    full: "images/design/collage/bodiesbodies.png",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/elevate.jpg",
-    full: "images/design/collage/elevate.png",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/perspective.jpg",
-    full: "images/design/collage/perspective.JPG",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/untitled.jpg",
-    full: "images/design/collage/untitled.jpg",
-  },
-  {
-    thumb: "/images/design/collage/thumbnails/voyeur.jpg",
-    full: "images/design/collage/voyeur.png",
-  },
-];
+import projectsData from "../data/projects.json";
+
+// Find the collage shelf and get its items
+const collageShelf = projectsData.shelves.find(
+  (shelf) => shelf.id === "collage"
+);
+const collageImages = collageShelf
+  ? collageShelf.items.map((item) => ({
+      thumb: item.thumbnail,
+      full: item.image,
+      alt: item.alt || item.title || "Collage",
+    }))
+  : [];
 
 export default function CollagePage() {
   const navigate = useNavigate();
