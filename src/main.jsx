@@ -8,6 +8,12 @@ import "./index.css";
 if (window.location.pathname === "/portfolio") {
   window.location.replace("/portfolio/");
 } else {
+  // Handle redirect from 404.html for GitHub Pages client-side routing
+  const redirectPath = sessionStorage.getItem("redirectPath");
+  if (redirectPath) {
+    sessionStorage.removeItem("redirectPath");
+    window.history.replaceState(null, "", redirectPath);
+  }
   const container = document.getElementById("app");
   const root = createRoot(container);
 
