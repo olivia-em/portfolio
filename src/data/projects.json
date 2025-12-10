@@ -195,10 +195,7 @@
       "title": "Video Art",
       "hasIndividualPages": false,
       "route": "/works/videoart",
-      "heroImages": [
-        "/images/videoart/qatsi.jpg",
-        "/images/videoart/silhouettes.png"
-      ],
+      "heroImages": ["/images/videoart/silhouettes.png"],
       "blurb": "Video art & short film projects, including Qatsi, which was nominated for Best Visual and awarded Best Sound at the 2024 MIT AI Film Hackathon.",
       "items": [
         {
