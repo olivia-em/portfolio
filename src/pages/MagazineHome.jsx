@@ -93,7 +93,13 @@ export default function MagazineHome() {
     }
   }, [loadedCount, images.length, setHomeReady]);
 
-  const onImageLoad = React.useCallback(() => setLoadedCount((c) => c + 1), []);
+  const onImageLoad = React.useCallback(() => {
+    setLoadedCount((c) => {
+      const newCount = c + 1;
+      console.log(`[MAGAZINE] onImageLoad called: loadedCount now ${newCount}`);
+      return newCount;
+    });
+  }, []);
 
   // when images finish loading, if we were waiting to reveal, trigger it
   React.useEffect(() => {
@@ -114,6 +120,19 @@ export default function MagazineHome() {
       }, 16);
     }
   }, [pendingReveal, loadedCount, images.length]);
+
+  // Fallback: always reveal after 5 seconds if not already revealed
+  React.useEffect(() => {
+    if (!revealed && introActive) {
+      const timeout = setTimeout(() => {
+        if (!revealed) {
+          console.log("[MAGAZINE] Fallback timeout: forcing reveal");
+          setRevealed(true);
+        }
+      }, 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [revealed, introActive]);
 
   // Trigger the collage-cover reveal right after the TOC 'Collage' item finishes
   // (i.e. when step advances past 8 to 9). This happens only on the initial
@@ -232,7 +251,7 @@ export default function MagazineHome() {
                 { type: "sup", content: "3" },
               ]}
               start={step === 1 || typedOnce}
-              onComplete={next}
+              onComplete={() => setStep(2)}
               instant={typedOnce}
             />
           </i>
@@ -259,7 +278,7 @@ export default function MagazineHome() {
                     <TocLineTyped
                       title="Lessons in Perspective"
                       page={1}
-                      start={step === 3 || typedOnce}
+                      start={step === 2 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -274,7 +293,7 @@ export default function MagazineHome() {
                     <TocLineTyped
                       title="New Voices"
                       page={2}
-                      start={step === 4 || typedOnce}
+                      start={step === 3 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -294,7 +313,7 @@ export default function MagazineHome() {
                     <TocLineTyped
                       title="Video Art"
                       page={"3"}
-                      start={step === 6 || typedOnce}
+                      start={step === 4 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -309,7 +328,7 @@ export default function MagazineHome() {
                     <TocLineTyped
                       title="Creative Coding"
                       page={4}
-                      start={step === 7 || typedOnce}
+                      start={step === 5 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -324,7 +343,7 @@ export default function MagazineHome() {
                     <TocLineTyped
                       title="Static Art & Collage"
                       page={5}
-                      start={step === 8 || typedOnce}
+                      start={step === 6 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -339,7 +358,7 @@ export default function MagazineHome() {
           <p>
             <Typewriter
               text={`I'm a multimedia designer and creative technologist based in Brooklyn, and I'm interested in poetics, audio/visual technology, production design, and interactive web art. My skillset includes HTML, CSS, and Javascript frameworks, such as React & Three.js, as well as audio/visual softwares like Resolume Arena, Ableton, TouchDesigner, GrandMA Lighting Consoles, and Adobe Suite. I have experience designing and developing websites, interactive media installations, live visuals for performance, and video art pieces.`}
-              start={step === 9 || typedOnce}
+              start={step === 7 || typedOnce}
               instant={typedOnce}
               onComplete={next}
             />
@@ -357,7 +376,7 @@ export default function MagazineHome() {
               <em>
                 <Typewriter
                   text="Resume"
-                  start={step === 10 || typedOnce}
+                  start={step === 8 || typedOnce}
                   onComplete={next}
                   instant={typedOnce}
                 />
@@ -374,7 +393,7 @@ export default function MagazineHome() {
               <em>
                 <Typewriter
                   text="Github"
-                  start={step === 11 || typedOnce}
+                  start={step === 9 || typedOnce}
                   onComplete={next}
                   instant={typedOnce}
                 />
@@ -391,7 +410,7 @@ export default function MagazineHome() {
               <em>
                 <Typewriter
                   text="Instagram"
-                  start={step === 12 || typedOnce}
+                  start={step === 10 || typedOnce}
                   onComplete={finish}
                   instant={typedOnce}
                 />

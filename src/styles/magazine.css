@@ -105,6 +105,9 @@
 .magazine-toc a .toc-title {
   white-space: nowrap;
   z-index: 2;
+  /* border: 1px solid red !important;
+  background: #ffeedd !important;
+  color: #111 !important; */
 }
 .magazine-toc a .toc-leader {
   flex: 1 1 auto;

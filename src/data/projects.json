@@ -142,49 +142,49 @@
         {
           "id": "parametrica",
           "title": "Parametric A",
-          "image": "/images/webart/parametrica.png",
+          "image": "images/webart/parametrica.png",
           "alt": "Parametric A",
           "url": "https://olivia-em.github.io/codeyourway/explore/explore3/index.html"
         },
         {
           "id": "parametricb",
           "title": "Parametric B",
-          "image": "/images/webart/parametricb.png",
+          "image": "images/webart/parametricb.png",
           "alt": "Parametric B",
           "url": "https://olivia-em.github.io/codeyourway/explore/explore5/index.html"
         },
         {
           "id": "parametricc",
           "title": "Parametric C",
-          "image": "/images/webart/parametricc.png",
+          "image": "images/webart/parametricc.png",
           "alt": "Parametric C",
           "url": "https://olivia-em.github.io/codeyourway/explore/explore4/index.html"
         },
         {
           "id": "preloader",
           "title": "Preloader",
-          "image": "/images/webart/preloader.png",
+          "image": "images/webart/preloader.png",
           "alt": "Preloader",
           "url": "https://olivia-em.github.io/codeyourway/recode/preLoader/index.html"
         },
         {
           "id": "recode",
           "title": "Recode",
-          "image": "/images/webart/recode.png",
+          "image": "images/webart/recode.png",
           "alt": "Recode",
           "url": "https://olivia-em.github.io/codeyourway/recode/recode1/index.html"
         },
         {
           "id": "screensaver",
           "title": "Screensaver",
-          "image": "/images/webart/screensaver.png",
+          "image": "images/webart/screensaver.png",
           "alt": "Screensaver",
           "url": "https://olivia-em.github.io/codeyourway/recode/screensaver/index.html"
         },
         {
           "id": "spheres",
           "title": "Spheres",
-          "image": "/images/webart/spheres.jpg",
+          "image": "images/webart/spheres.jpg",
           "alt": "Spheres",
           "url": "https://olivia-em.github.io/codeyourway/recode/recode4/index.html"
         }
@@ -195,13 +195,13 @@
       "title": "Video Art",
       "hasIndividualPages": false,
       "route": "/works/videoart",
-      "heroImages": ["/images/videoart/silhouettes.png"],
+      "heroImages": ["images/videoart/silhouettes.png"],
       "blurb": "Video art & short film projects, including Qatsi, which was nominated for Best Visual and awarded Best Sound at the 2024 MIT AI Film Hackathon.",
       "items": [
         {
           "id": "qatsi",
           "title": "Qatsi",
-          "image": "/images/videoart/qatsi.jpg",
+          "image": "images/videoart/qatsi.jpg",
           "youtubeUrl": "https://youtu.be/Qy7D2O2zytc",
           "alt": "Qatsi",
           "tags": [
@@ -214,7 +214,7 @@
         {
           "id": "alteregos",
           "title": "Alter Egos",
-          "image": "/images/videoart/alteregos.png",
+          "image": "images/videoart/alteregos.png",
           "youtubeUrl": "https://youtu.be/T4Bfi2lBTCE",
           "alt": "Alter Egos",
           "tags": ["Promotion", "Performance", "Montage"],
@@ -223,7 +223,7 @@
         {
           "id": "areyoufree",
           "title": "Are You Free Tomorrow?",
-          "image": "/images/videoart/areyoufree.png",
+          "image": "images/videoart/areyoufree.png",
           "youtubeUrl": "https://youtu.be/L0l2DRwhbiM",
           "alt": "Are You Free Tomorrow?",
           "tags": ["Short Film", "Visual Poetry", "Montage"],
@@ -232,7 +232,7 @@
         {
           "id": "silhouettes",
           "title": "Silhouettes",
-          "image": "/images/videoart/silhouettes.png",
+          "image": "images/videoart/silhouettes.png",
           "youtubeUrl": "https://youtu.be/tZa94F7IT3w",
           "alt": "Silhouettes",
           "tags": ["Short Film", "Visual Poetry", "Montage"],
@@ -245,163 +245,163 @@
       "title": "Design / Collage",
       "hasIndividualPages": false,
       "route": "/works/design",
-      "heroImage": "/images/design/collage/IMG_0908.JPG",
+      "heroImage": "images/design/collage/IMG_0908.JPG",
       "blurb": "Digital and physical collages blending photography, typography, and mixed media.",
       "items": [
         {
           "id": "alteregosposter",
           "title": "Alter Egos Poster",
-          "image": "/images/design/AlterEgosPoster.png",
+          "image": "images/design/AlterEgosPoster.png",
           "alt": "Alter Egos Poster"
         },
         {
           "id": "img0908",
           "title": "Collage 1",
-          "image": "/images/design/IMG_0908.JPG",
+          "image": "images/design/IMG_0908.JPG",
           "alt": "Collage 1"
         },
         {
           "id": "img1825",
           "title": "Collage 2",
-          "image": "/images/design/IMG_1825.JPG",
+          "image": "images/design/IMG_1825.JPG",
           "alt": "Collage 2"
         },
         {
           "id": "img1827",
           "title": "Collage 3",
-          "image": "/images/design/IMG_1827.JPG",
+          "image": "images/design/IMG_1827.JPG",
           "alt": "Collage 3"
         },
         {
           "id": "img1828",
           "title": "Collage 4",
-          "image": "/images/design/IMG_1828.JPG",
+          "image": "images/design/IMG_1828.JPG",
           "alt": "Collage 4"
         },
         {
           "id": "img1829",
           "title": "Collage 5",
-          "image": "/images/design/IMG_1829.JPG",
+          "image": "images/design/IMG_1829.JPG",
           "alt": "Collage 5"
         },
         {
           "id": "img1830",
           "title": "Collage 6",
-          "image": "/images/design/IMG_1830.JPG",
+          "image": "images/design/IMG_1830.JPG",
           "alt": "Collage 6"
         },
         {
           "id": "img1831",
           "title": "Collage 7",
-          "image": "/images/design/IMG_1831.JPG",
+          "image": "images/design/IMG_1831.JPG",
           "alt": "Collage 7"
         },
         {
           "id": "img1836",
           "title": "Collage 8",
-          "image": "/images/design/IMG_1836.JPG",
+          "image": "images/design/IMG_1836.JPG",
           "alt": "Collage 8"
         },
         {
           "id": "img1837",
           "title": "Collage 9",
-          "image": "/images/design/IMG_1837.JPG",
+          "image": "images/design/IMG_1837.JPG",
           "alt": "Collage 9"
         },
         {
           "id": "img1838",
           "title": "Collage 10",
-          "image": "/images/design/IMG_1838.JPG",
+          "image": "images/design/IMG_1838.JPG",
           "alt": "Collage 10"
         },
         {
           "id": "img1839",
           "title": "Collage 11",
-          "image": "/images/design/IMG_1839.JPG",
+          "image": "images/design/IMG_1839.JPG",
           "alt": "Collage 11"
         },
         {
           "id": "img1840",
           "title": "Collage 12",
-          "image": "/images/design/IMG_1840.JPG",
+          "image": "images/design/IMG_1840.JPG",
           "alt": "Collage 12"
         },
         {
           "id": "img1841",
           "title": "Collage 13",
-          "image": "/images/design/IMG_1841.JPG",
+          "image": "images/design/IMG_1841.JPG",
           "alt": "Collage 13"
         },
         {
           "id": "img1842",
           "title": "Collage 14",
-          "image": "/images/design/IMG_1842.JPG",
+          "image": "images/design/IMG_1842.JPG",
           "alt": "Collage 14"
         },
         {
           "id": "img1843",
           "title": "Collage 15",
-          "image": "/images/design/IMG_1843.JPG",
+          "image": "images/design/IMG_1843.JPG",
           "alt": "Collage 15"
         },
         {
           "id": "img9332",
           "title": "Collage 16",
-          "image": "/images/design/IMG_9332.JPG",
+          "image": "images/design/IMG_9332.JPG",
           "alt": "Collage 16"
         },
         {
           "id": "recordingfinal",
           "title": "Recording Final",
-          "image": "/images/design/Lee-Olivia-RecordingFinal.png",
+          "image": "images/design/Lee-Olivia-RecordingFinal.png",
           "alt": "Recording Final"
         },
         {
           "id": "fbc",
           "title": "FBC",
-          "image": "/images/design/Olivia-Lee_FBC.png",
+          "image": "images/design/Olivia-Lee_FBC.png",
           "alt": "FBC"
         },
         {
           "id": "bodiesbodies",
           "title": "Bodies Bodies",
-          "image": "/images/design/bodiesbodies.JPG",
+          "image": "images/design/bodiesbodies.JPG",
           "alt": "Bodies Bodies"
         },
         {
           "id": "elevate",
           "title": "Elevate",
-          "image": "/images/design/elevate.JPG",
+          "image": "images/design/elevate.JPG",
           "alt": "Elevate"
         },
         {
           "id": "mindsettings",
           "title": "Mind Settings",
-          "image": "/images/design/mindsettings.png",
+          "image": "images/design/mindsettings.png",
           "alt": "Mind Settings"
         },
         {
           "id": "perspective",
           "title": "Perspective",
-          "image": "/images/design/perspective.JPG",
+          "image": "images/design/perspective.JPG",
           "alt": "Perspective"
         },
         {
           "id": "untitled",
           "title": "Untitled",
-          "image": "/images/design/untitled.jpg",
+          "image": "images/design/untitled.jpg",
           "alt": "Untitled"
         },
         {
           "id": "voyeur",
           "title": "Voyeur",
-          "image": "/images/design/voyeur.JPG",
+          "image": "images/design/voyeur.JPG",
           "alt": "Voyeur"
         },
         {
           "id": "wildflower",
           "title": "Wildflower",
-          "image": "/images/design/wildflower.png",
+          "image": "images/design/wildflower.png",
           "alt": "Wildflower"
         }
       ]
@@ -412,143 +412,143 @@
       "hasIndividualPages": false,
       "route": "/works/collage",
       "heroImages": [
-        "/images/design/IMG_0908.JPG",
-        "/images/design/collage/thumbnails/perspective.jpg",
-        "/images/design/collage/thumbnails/voyeur.jpg"
+        "images/design/IMG_0908.JPG",
+        "images/design/collage/thumbnails/perspective.jpg",
+        "images/design/collage/thumbnails/voyeur.jpg"
       ],
       "blurb": "Layered compositions blending photography, typography, and mixed media.",
       "items": [
         {
           "id": "IMG_0908",
           "title": "Collage 1",
-          "image": "/images/design/collage/IMG_0908.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_0908.jpg",
+          "image": "images/design/collage/IMG_0908.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_0908.jpg",
           "alt": "Collage 1"
         },
         {
           "id": "AlterEgosPoster",
           "title": "Alter Egos Poster",
-          "image": "/images/design/collage/AlterEgosPoster.jpg",
-          "thumbnail": "/images/design/collage/thumbnails/AlterEgosPoster.jpg",
+          "image": "images/design/collage/AlterEgosPoster.jpg",
+          "thumbnail": "images/design/collage/thumbnails/AlterEgosPoster.jpg",
           "alt": "Alter Egos Poster"
         },
         {
           "id": "IMG_1827",
           "title": "Collage 2",
-          "image": "/images/design/collage/IMG_1827.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1827.jpg",
+          "image": "images/design/collage/IMG_1827.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_1827.jpg",
           "alt": "Collage 2"
         },
         {
           "id": "IMG_1828",
           "title": "Collage 3",
-          "image": "/images/design/collage/IMG_1828.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1828.jpg",
+          "image": "images/design/collage/IMG_1828.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_1828.jpg",
           "alt": "Collage 3"
         },
         {
           "id": "IMG_1829",
           "title": "Collage 4",
-          "image": "/images/design/collage/IMG_1829.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1829.jpg",
+          "image": "images/design/collage/IMG_1829.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_1829.jpg",
           "alt": "Collage 4"
         },
         {
           "id": "IMG_1830",
           "title": "Collage 5",
-          "image": "/images/design/collage/IMG_1830.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1830.jpg",
+          "image": "images/design/collage/IMG_1830.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_1830.jpg",
           "alt": "Collage 5"
         },
         {
           "id": "IMG_1831",
           "title": "Collage 6",
-          "image": "/images/design/collage/IMG_1831.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1831.jpg",
+          "image": "images/design/collage/IMG_1831.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_1831.jpg",
           "alt": "Collage 6"
         },
         {
           "id": "IMG_1836",
           "title": "Collage 7",
-          "image": "/images/design/collage/IMG_1836.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1836.jpg",
+          "image": "images/design/collage/IMG_1836.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_1836.jpg",
           "alt": "Collage 7"
         },
         {
           "id": "IMG_1840",
           "title": "Collage 8",
-          "image": "/images/design/collage/IMG_1840.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1840.jpg",
+          "image": "images/design/collage/IMG_1840.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_1840.jpg",
           "alt": "Collage 8"
         },
         {
           "id": "IMG_1842",
           "title": "Collage 9",
-          "image": "/images/design/collage/IMG_1842.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_1842.jpg",
+          "image": "images/design/collage/IMG_1842.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_1842.jpg",
           "alt": "Collage 9"
         },
         {
           "id": "IMG_9332",
           "title": "Collage 10",
-          "image": "/images/design/collage/IMG_9332.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/IMG_9332.jpg",
+          "image": "images/design/collage/IMG_9332.JPG",
+          "thumbnail": "images/design/collage/thumbnails/IMG_9332.jpg",
           "alt": "Collage 10"
         },
         {
           "id": "aboutOlivia",
           "title": "About Olivia",
-          "image": "/images/design/collage/aboutOlivia.jpg",
-          "thumbnail": "/images/design/collage/thumbnails/aboutOlivia.jpg",
+          "image": "images/design/collage/aboutOlivia.jpg",
+          "thumbnail": "images/design/collage/thumbnails/aboutOlivia.jpg",
           "alt": "About Olivia"
         },
         {
           "id": "bodiesbodies",
           "title": "Bodies Bodies",
-          "image": "/images/design/collage/bodiesbodies.jpg",
-          "thumbnail": "/images/design/collage/thumbnails/bodiesbodies.jpg",
+          "image": "images/design/collage/bodiesbodies.jpg",
+          "thumbnail": "images/design/collage/thumbnails/bodiesbodies.jpg",
           "alt": "Bodies Bodies"
         },
         {
           "id": "elevate",
           "title": "Elevate",
-          "image": "/images/design/collage/elevate.jpg",
-          "thumbnail": "/images/design/collage/thumbnails/elevate.jpg",
+          "image": "images/design/collage/elevate.jpg",
+          "thumbnail": "images/design/collage/thumbnails/elevate.jpg",
           "alt": "Elevate"
         },
         {
           "id": "mindsettings",
           "title": "Mind Settings",
-          "image": "/images/design/collage/mindsettings.jpg",
-          "thumbnail": "/images/design/collage/thumbnails/mindsettings.jpg",
+          "image": "images/design/collage/mindsettings.jpg",
+          "thumbnail": "images/design/collage/thumbnails/mindsettings.jpg",
           "alt": "Mind Settings"
         },
         {
           "id": "perspective",
           "title": "Perspective",
-          "image": "/images/design/collage/perspective.JPG",
-          "thumbnail": "/images/design/collage/thumbnails/perspective.jpg",
+          "image": "images/design/collage/perspective.JPG",
+          "thumbnail": "images/design/collage/thumbnails/perspective.jpg",
           "alt": "Perspective"
         },
         {
           "id": "untitled",
           "title": "Untitled",
-          "image": "/images/design/collage/untitled.jpg",
-          "thumbnail": "/images/design/collage/thumbnails/untitled.jpg",
+          "image": "images/design/collage/untitled.jpg",
+          "thumbnail": "images/design/collage/thumbnails/untitled.jpg",
           "alt": "Untitled"
         },
         {
           "id": "voyeur",
           "title": "Voyeur",
-          "image": "/images/design/collage/voyeur.jpg",
-          "thumbnail": "/images/design/collage/thumbnails/voyeur.jpg",
+          "image": "images/design/collage/voyeur.jpg",
+          "thumbnail": "images/design/collage/thumbnails/voyeur.jpg",
           "alt": "Voyeur"
         },
         {
           "id": "wildflower",
           "title": "Wildflower",
-          "image": "/images/design/collage/wildflower.jpg",
-          "thumbnail": "/images/design/collage/thumbnails/wildflower.jpg",
+          "image": "images/design/collage/wildflower.jpg",
+          "thumbnail": "images/design/collage/thumbnails/wildflower.jpg",
           "alt": "Wildflower"
         }
       ]
@@ -563,10 +563,10 @@
           "title": "Girl Time",
           "slug": "girltime",
           "route": "/works/installation/girltime",
-          "image": "/images/installation/GirlTime/girltime1.JPG",
+          "image": "images/installation/GirlTime/girltime1.JPG",
           "extraImages": [
-            "/images/installation/GirlTime/girltime2.JPG",
-            "/images/installation/GirlTime/girltime3.JPG"
+            "images/installation/GirlTime/girltime2.JPG",
+            "images/installation/GirlTime/girltime3.JPG"
           ],
           "alt": "Installation: Girl Time",
           "year": 2024,
@@ -578,10 +578,10 @@
           "title": "Tiny Desk",
           "slug": "tinydesk",
           "route": "/works/installation/tinydesk",
-          "image": "/images/installation/TDVJ/tinydesk1.JPEG",
+          "image": "images/installation/TDVJ/tinydesk1.JPEG",
           "extraImages": [
-            "/images/installation/TDVJ/tinydesk2.JPEG",
-            "/images/installation/TDVJ/tinydesk3.JPEG"
+            "images/installation/TDVJ/tinydesk2.JPEG",
+            "images/installation/TDVJ/tinydesk3.JPEG"
           ],
           "alt": "Installation: Tiny Desk",
           "year": 2023,

@@ -15,6 +15,14 @@ export default function TocLineTyped({
   className = "",
   onComplete,
 }) {
+  React.useEffect(() => {
+    console.log("[TOC DEBUG] TocLineTyped props:", {
+      title,
+      start,
+      instant,
+      page,
+    });
+  }, [title, start, instant, page]);
   const [showLeader, setShowLeader] = React.useState(false);
 
   const handleComplete = React.useCallback(() => {
