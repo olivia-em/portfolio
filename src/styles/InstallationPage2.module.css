@@ -1,13 +1,13 @@
-.project-detail-images img {
-  /* max-width: 400px !important; */
-  /* padding: 0.5rem !important; */
-  /* margin: -5rem !important; */
-  /* width: 100%;
+/* .project-detail-images img { */
+/* max-width: 400px !important; */
+/* padding: 0.5rem !important; */
+/* margin: -5rem !important; */
+/* width: 100%;
   height: auto;
   margin: 0.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); */
-}
+/* } */
 
 .project-detail-images img:hover {
   transform: scale(1.15) !important;

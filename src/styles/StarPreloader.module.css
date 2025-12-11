@@ -9,7 +9,8 @@
   align-items: center;
   justify-content: center;
   z-index: 100;
-  transition: opacity 2s ease;
+  will-change: opacity;
+  transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 1;
   pointer-events: all;
 }
