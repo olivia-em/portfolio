@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/ProjectDetail.css";
 import styles from "../styles/InstallationPage2.module.css";
+import StarPreloader from "../components/StarPreloader";
 import projectsData from "../data/projects.json";
 import BackToHomeButton from "../components/BackToHomeButton";
 
@@ -20,6 +21,14 @@ export default function TinyDeskPage() {
     x: 0,
     y: 0,
   });
+
+  // Preloader state
+  const imageCount =
+    1 + (Array.isArray(project.extraImages) ? project.extraImages.length : 0);
+  const [loadedImages, setLoadedImages] = React.useState(
+    Array(imageCount).fill(false)
+  );
+  const [fadeOut, setFadeOut] = React.useState(false);
 
   if (!project) {
     return <div>Project not found</div>;
@@ -52,8 +61,24 @@ export default function TinyDeskPage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [navigate]);
 
+  // Preloader fade out when all images loaded
+  React.useEffect(() => {
+    if (loadedImages.every(Boolean)) {
+      setTimeout(() => setFadeOut(true), 200); // short delay before fade
+    }
+  }, [loadedImages]);
+
+  // Image onLoad handler
+  const handleImageLoad = (idx) => {
+    setLoadedImages((prev) => {
+      const next = [...prev];
+      next[idx] = true;
+      return next;
+    });
+  };
+
   return (
-    <div className="project-detail-root">
+    <div className="project-detail-root" style={{ position: "relative" }}>
       <aside className="project-detail-left">
         <h1 className="project-detail-title">{project.title}</h1>
 
@@ -117,6 +142,7 @@ export default function TinyDeskPage() {
             alt={project.alt}
             onMouseMove={(e) => handleMouseMove(e, project.imageLabel)}
             onMouseLeave={handleMouseLeave}
+            onLoad={() => handleImageLoad(0)}
           />
           {project.extraImages &&
             project.extraImages.map((img, index) => (
@@ -128,9 +154,12 @@ export default function TinyDeskPage() {
                   handleMouseMove(e, project.extraImageLabels?.[index])
                 }
                 onMouseLeave={handleMouseLeave}
+                onLoad={() => handleImageLoad(index + 1)}
               />
             ))}
         </div>
+        {/* Preloader overlay */}
+        {!fadeOut && <StarPreloader fadingOut={loadedImages.every(Boolean)} />}
       </section>
 
       {tooltip.show && (

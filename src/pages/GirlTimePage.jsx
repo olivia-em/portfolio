@@ -4,6 +4,7 @@ import "../styles/ProjectDetail.css";
 import styles from "../styles/InstallationPage.module.css";
 import projectsData from "../data/projects.json";
 import BackToHomeButton from "../components/BackToHomeButton";
+import StarPreloader from "../components/StarPreloader";
 
 const installationShelf = projectsData.shelves.find(
   (shelf) => shelf.id === "installation"
@@ -20,6 +21,13 @@ export default function GirlTimePage() {
     x: 0,
     y: 0,
   });
+
+  const imageCount =
+    1 + (Array.isArray(project.extraImages) ? project.extraImages.length : 0);
+  const [loadedImages, setLoadedImages] = React.useState(
+    Array(imageCount).fill(false)
+  );
+  const [fadeOut, setFadeOut] = React.useState(false);
 
   if (!project) return <div>Project not found</div>;
 
@@ -48,8 +56,24 @@ export default function GirlTimePage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [navigate]);
 
+  // Preloader fade out when all images loaded
+  React.useEffect(() => {
+    if (loadedImages.every(Boolean)) {
+      setTimeout(() => setFadeOut(true), 200); // short delay before fade
+    }
+  }, [loadedImages]);
+
+  // Image onLoad handler
+  const handleImageLoad = (idx) => {
+    setLoadedImages((prev) => {
+      const next = [...prev];
+      next[idx] = true;
+      return next;
+    });
+  };
+
   return (
-    <div className="project-detail-root">
+    <div className="project-detail-root" style={{ position: "relative" }}>
       <aside className="project-detail-left">
         <h1 className="project-detail-title">{project.title}</h1>
 
@@ -113,6 +137,7 @@ export default function GirlTimePage() {
             alt={project.alt}
             onMouseMove={(e) => handleMouseMove(e, project.imageLabel)}
             onMouseLeave={handleMouseLeave}
+            onLoad={() => handleImageLoad(0)}
           />
           {project.extraImages &&
             project.extraImages.map((img, index) => (
@@ -124,8 +149,13 @@ export default function GirlTimePage() {
                   handleMouseMove(e, project.extraImageLabels?.[index])
                 }
                 onMouseLeave={handleMouseLeave}
+                onLoad={() => handleImageLoad(index + 1)}
               />
             ))}
+          {/* Preloader overlay */}
+          {!fadeOut && (
+            <StarPreloader fadingOut={loadedImages.every(Boolean)} />
+          )}
         </div>
       </section>
 
