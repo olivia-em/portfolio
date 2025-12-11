@@ -1,0 +1,39 @@
+.project-detail-images img {
+  /* max-width: 400px !important; */
+  /* padding: 0.5rem !important; */
+  /* margin: -5rem !important; */
+  /* width: 100%;
+  height: auto;
+  margin: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); */
+}
+
+.project-detail-images img:hover {
+  transform: scale(1.15) !important;
+  /* box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25); */
+  z-index: 100 !important;
+}
+
+/* Image positioning variations */
+.project-detail-images img:nth-child(1) {
+  left: 5%;
+  top: 5%;
+  z-index: 3;
+  max-width: 50%;
+}
+
+.project-detail-images img:nth-child(2) {
+  right: 5%;
+  top: 10%;
+  z-index: 2;
+  max-width: 40%;
+}
+
+.project-detail-images img:nth-child(3) {
+  left: 15%;
+  top: 53%;
+  /* transform: translateY(-50%); */
+  z-index: 1;
+  max-width: 40%;
+}

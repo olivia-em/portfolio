@@ -259,15 +259,6 @@ export default function MagazineHome() {
         <nav className="magazine-toc">
           <ul>
             <li>
-              {/* <div className="toc-category">
-                <Typewriter
-                  text="Frontend"
-                  start={step === 2 || typedOnce}
-                  onComplete={next}
-                  instant={typedOnce}
-                />
-              </div> */}
-
               <ul className={`toc-dropdown`}>
                 <li>
                   <Link
@@ -299,9 +290,38 @@ export default function MagazineHome() {
                     />
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    to="/works/installation/girltime"
+                    onMouseEnter={() => setHoveredItem("girltime")}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <TocLineTyped
+                      title="Girl Time"
+                      page={3}
+                      start={step === 4 || typedOnce}
+                      onComplete={next}
+                      instant={typedOnce}
+                    />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/works/installation/tinydesk"
+                    onMouseEnter={() => setHoveredItem("tinydesk")}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <TocLineTyped
+                      title="Tiny Desk VJ"
+                      page={4}
+                      start={step === 5 || typedOnce}
+                      onComplete={next}
+                      instant={typedOnce}
+                    />
+                  </Link>
+                </li>
               </ul>
             </li>
-
             <li>
               <ul className={`toc-dropdown`}>
                 <li>
@@ -312,8 +332,8 @@ export default function MagazineHome() {
                   >
                     <TocLineTyped
                       title="Video Art"
-                      page={"3"}
-                      start={step === 4 || typedOnce}
+                      page={5}
+                      start={step === 6 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -327,8 +347,8 @@ export default function MagazineHome() {
                   >
                     <TocLineTyped
                       title="Creative Coding"
-                      page={4}
-                      start={step === 5 || typedOnce}
+                      page={6}
+                      start={step === 7 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -342,8 +362,8 @@ export default function MagazineHome() {
                   >
                     <TocLineTyped
                       title="Static Art & Collage"
-                      page={5}
-                      start={step === 6 || typedOnce}
+                      page={7}
+                      start={step === 8 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -358,7 +378,7 @@ export default function MagazineHome() {
           <p>
             <Typewriter
               text={`I'm a multimedia designer and creative technologist based in Brooklyn, and I'm interested in poetics, audio/visual technology, production design, and interactive web art. My skillset includes HTML, CSS, and Javascript frameworks, such as React & Three.js, as well as audio/visual softwares like Resolume Arena, Ableton, TouchDesigner, GrandMA Lighting Consoles, and Adobe Suite. I have experience designing and developing websites, interactive media installations, live visuals for performance, and video art pieces.`}
-              start={step === 7 || typedOnce}
+              start={step === 9 || typedOnce}
               instant={typedOnce}
               onComplete={next}
             />
@@ -376,7 +396,7 @@ export default function MagazineHome() {
               <em>
                 <Typewriter
                   text="Resume"
-                  start={step === 8 || typedOnce}
+                  start={step === 10 || typedOnce}
                   onComplete={next}
                   instant={typedOnce}
                 />
@@ -393,7 +413,7 @@ export default function MagazineHome() {
               <em>
                 <Typewriter
                   text="Github"
-                  start={step === 9 || typedOnce}
+                  start={step === 11 || typedOnce}
                   onComplete={next}
                   instant={typedOnce}
                 />
@@ -410,7 +430,7 @@ export default function MagazineHome() {
               <em>
                 <Typewriter
                   text="Instagram"
-                  start={step === 10 || typedOnce}
+                  start={step === 12 || typedOnce}
                   onComplete={finish}
                   instant={typedOnce}
                 />

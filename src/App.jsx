@@ -11,6 +11,8 @@ import MagazineHome from "./pages/MagazineHome";
 import LessonsInPerspective from "./pages/LessonsInPerspective";
 import NewVoicesPage from "./pages/NewVoicesPage";
 import CollagePage from "./pages/CollagePage";
+import GirlTimePage from "./pages/GirlTimePage";
+import TinyDeskPage from "./pages/TinyDeskPage";
 import data from "./data/projects.json";
 import { HomeProvider, useHome } from "./contexts/HomeContext";
 
@@ -117,6 +119,14 @@ function AppContent() {
             <Route path="/works/lessons" element={<LessonsInPerspective />} />
             <Route path="/works/newvoices" element={<NewVoicesPage />} />
             <Route path="/works/collage" element={<CollagePage />} />
+            <Route
+              path="/works/installation/girltime"
+              element={<GirlTimePage />}
+            />
+            <Route
+              path="/works/installation/tinydesk"
+              element={<TinyDeskPage />}
+            />
             <Route path="/works/:category/:slug" element={<ProjectPage />} />
           </Routes>
         </motion.div>

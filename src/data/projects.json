@@ -568,14 +568,21 @@
             "images/installation/GirlTime/girltime2.JPG",
             "images/installation/GirlTime/girltime3.JPG"
           ],
-          "alt": "Installation: Girl Time",
+          "alt": "Girl Time installation thumbnail",
           "year": 2024,
-          "description": "Installation photography.",
-          "tags": ["installation", "photography"]
+          "description": "Girl Time is an immersive installation, created in collaboration with Prisha Jain and dedicated to sharing femme stories. This installation draws inspiration from the deeply personal conversations that unfold in women's restrooms—spaces of vulnerability, camaraderie, and unfiltered expression. Through interactive and generative elements, Girl Time invites users to step into the experience of being female-identifying, capturing its beauty and struggle. No two users will have the same experience, the same way no two women do. Girl Time comes together using Arduino, p5.js, and Tone.js. The removable objects are magnetized, and the magnets are detected by hall effect sensors. Through serial communication, the sensors send messages to p5, which initiates sound and video corresponding to the object, with added randomness.",
+          "tags": ["Installation", "Arduino", "JavaScript", "Video Art"],
+          "url": {
+            "repository": "https://github.com/olivia-em/GirlTime",
+            "website": "",
+            "documentation": "https://prishajain.notion.site/girltime"
+          },
+          "heroImage": "images/installation/GirlTime/girltime1.JPG",
+          "blurb": "Audio/Visual installation exploring femme stories."
         },
         {
           "id": "tinydesk",
-          "title": "Tiny Desk",
+          "title": "Tiny Desk VJ",
           "slug": "tinydesk",
           "route": "/works/installation/tinydesk",
           "image": "images/installation/TDVJ/tinydesk1.JPEG",
@@ -583,10 +590,17 @@
             "images/installation/TDVJ/tinydesk2.JPEG",
             "images/installation/TDVJ/tinydesk3.JPEG"
           ],
-          "alt": "Installation: Tiny Desk",
+          "alt": "Tiny Desk VJ installation thumbnail",
           "year": 2023,
-          "description": "Installation photography.",
-          "tags": ["installation", "photography"]
+          "description": "TinyDesk VJ brings live performance to life through a tactile interface. Powered by p5.js and ML5 body segmentation, it integrates live video with surreal digital effects that you can dynamically control. The interface features rotary encoders, faders, potentiometers, and buttons, allowing you to layer effects like rain, ripples, lasers, and lightning in real-time. Whether you’re performing alongside music or exploring interactive art, this tool offers endless possibilities for creativity. Experiment with the controls, combine elements in unique ways, and watch as your inputs transform into exciting, ever-changing visuals.",
+          "tags": ["Installation", "Creative Coding", "Arduino", "ML5"],
+          "url": {
+            "repository": "https://editor.p5js.org/oliviaemlee/sketches/e5eQotsBQ",
+            "website": "",
+            "documentation": "https://olivia-em.github.io/docblog/projects/tinydeskVJ/"
+          },
+          "heroImage": "images/installation/TDVJ/tinydesk1.JPEG",
+          "blurb": "Live video installation using p5.js and ML5 body segmentation."
         }
       ]
     }
