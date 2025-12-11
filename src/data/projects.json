@@ -563,10 +563,10 @@
           "title": "Girl Time",
           "slug": "girltime",
           "route": "/works/installation/girltime",
-          "image": "images/installation/GirlTime/girltime1.JPG",
+          "image": "images/installation/GirlTime/small/girltime1.JPG",
           "extraImages": [
-            "images/installation/GirlTime/girltime2.JPG",
-            "images/installation/GirlTime/girltime3.JPG"
+            "images/installation/GirlTime/small/girltime2.JPG",
+            "images/installation/GirlTime/small/girltime3.JPG"
           ],
           "alt": "Girl Time installation thumbnail",
           "year": 2024,
@@ -577,7 +577,7 @@
             "website": "",
             "documentation": "https://prishajain.notion.site/girltime"
           },
-          "heroImage": "images/installation/GirlTime/girltime1.JPG",
+          "heroImage": "images/installation/GirlTime/small/girltime3.JPG",
           "blurb": "Audio/Visual installation exploring femme stories."
         },
         {
@@ -585,10 +585,10 @@
           "title": "Tiny Desk VJ",
           "slug": "tinydesk",
           "route": "/works/installation/tinydesk",
-          "image": "images/installation/TDVJ/tinydesk1.JPEG",
+          "image": "images/installation/TDVJ/small/tinydesk1.JPEG",
           "extraImages": [
-            "images/installation/TDVJ/tinydesk2.JPEG",
-            "images/installation/TDVJ/tinydesk3.JPEG"
+            "images/installation/TDVJ/small/tinydesk2.JPEG",
+            "images/installation/TDVJ/small/tinydesk3.JPEG"
           ],
           "alt": "Tiny Desk VJ installation thumbnail",
           "year": 2023,
@@ -599,7 +599,7 @@
             "website": "",
             "documentation": "https://olivia-em.github.io/docblog/projects/tinydeskVJ/"
           },
-          "heroImage": "images/installation/TDVJ/tinydesk1.JPEG",
+          "heroImage": "images/installation/TDVJ/small/tinydesk1.JPEG",
           "blurb": "Live video installation using p5.js and ML5 body segmentation."
         }
       ]

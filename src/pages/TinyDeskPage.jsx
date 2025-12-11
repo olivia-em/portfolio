@@ -159,7 +159,7 @@ export default function TinyDeskPage() {
             ))}
         </div>
         {/* Preloader overlay */}
-        {!fadeOut && <StarPreloader fadingOut={loadedImages.every(Boolean)} />}
+        {/* {!fadeOut && <StarPreloader fadingOut={loadedImages.every(Boolean)} />} */}
       </section>
 
       {tooltip.show && (

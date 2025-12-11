@@ -153,9 +153,9 @@ export default function GirlTimePage() {
               />
             ))}
           {/* Preloader overlay */}
-          {!fadeOut && (
+          {/* {!fadeOut && (
             <StarPreloader fadingOut={loadedImages.every(Boolean)} />
-          )}
+          )} */}
         </div>
       </section>
 
