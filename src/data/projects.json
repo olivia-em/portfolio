@@ -77,6 +77,13 @@
       "blurb": "Creative coding experiments exploring generative design and interactive art.",
       "items": [
         {
+          "id": "Light",
+          "title": "Light",
+          "image": "images/webart/light.jpeg",
+          "alt": "Light",
+          "url": "https://olivia-em.github.io/Canvas4Coders/"
+        },
+        {
           "id": "3dgrid",
           "title": "3D Grid",
           "image": "images/webart/3Dgrid.png",
