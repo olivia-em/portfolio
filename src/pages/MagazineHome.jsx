@@ -35,8 +35,8 @@ export default function MagazineHome() {
   // sequence steps (indexes)
   // 0: name
   // 1: subtitle
-  // 2: Frontend
-  // 3: Lessons in Perspective
+  // 2: Lessons in Perspective
+  // 3: Saint Break
   // 4: New Voices
   // 5: Design
   // 6: Video Art
@@ -156,7 +156,7 @@ export default function MagazineHome() {
       if (e.propertyName !== "transform") return;
       console.log(
         "[MAGAZINE] Cover transition ended, introActive:",
-        introActive
+        introActive,
       );
       if (introActive) {
         // clear the intro flag after the cover transition
@@ -166,7 +166,7 @@ export default function MagazineHome() {
         }, 30);
       }
     },
-    [introActive]
+    [introActive],
   );
 
   // Get preview data for hovered item
@@ -277,14 +277,29 @@ export default function MagazineHome() {
                 </li>
                 <li>
                   <Link
+                    to="/works/installation/saintbreak"
+                    onMouseEnter={() => setHoveredItem("saintbreak")}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <TocLineTyped
+                      title="Saint Break"
+                      page={2}
+                      start={step === 3 || typedOnce}
+                      onComplete={next}
+                      instant={typedOnce}
+                    />
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     to="/works/newvoices"
                     onMouseEnter={() => setHoveredItem("newvoices")}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <TocLineTyped
                       title="New Voices"
-                      page={2}
-                      start={step === 3 || typedOnce}
+                      page={3}
+                      start={step === 4 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -298,8 +313,8 @@ export default function MagazineHome() {
                   >
                     <TocLineTyped
                       title="Girl Time"
-                      page={3}
-                      start={step === 4 || typedOnce}
+                      page={4}
+                      start={step === 5 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -313,8 +328,8 @@ export default function MagazineHome() {
                   >
                     <TocLineTyped
                       title="Tiny Desk VJ"
-                      page={4}
-                      start={step === 5 || typedOnce}
+                      page={5}
+                      start={step === 6 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -332,8 +347,8 @@ export default function MagazineHome() {
                   >
                     <TocLineTyped
                       title="Video Art"
-                      page={5}
-                      start={step === 6 || typedOnce}
+                      page={6}
+                      start={step === 7 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -347,8 +362,8 @@ export default function MagazineHome() {
                   >
                     <TocLineTyped
                       title="Creative Coding"
-                      page={6}
-                      start={step === 7 || typedOnce}
+                      page={7}
+                      start={step === 8 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />
@@ -362,8 +377,8 @@ export default function MagazineHome() {
                   >
                     <TocLineTyped
                       title="Static Art & Collage"
-                      page={7}
-                      start={step === 8 || typedOnce}
+                      page={8}
+                      start={step === 9 || typedOnce}
                       onComplete={next}
                       instant={typedOnce}
                     />

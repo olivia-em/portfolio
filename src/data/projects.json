@@ -608,6 +608,40 @@
           },
           "heroImage": "images/installation/TDVJ/small/tinydesk1.JPEG",
           "blurb": "Live video installation using p5.js and ML5 body segmentation."
+        },
+        {
+          "id": "saintbreak",
+          "title": "SAINT BREAK: Confessions",
+          "slug": "saintbreak",
+          "route": "/works/installation/saintbreak",
+          "image": "images/installation/SaintBreak/SB1.JPG",
+          "extraImages": [
+            "images/installation/SaintBreak/SB2.png",
+            "images/installation/SaintBreak/SB3.png",
+            "images/installation/SaintBreak/SB4.png",
+            "images/installation/SaintBreak/SB5.jpg",
+            "images/installation/SaintBreak/SB6.png",
+            "images/installation/SaintBreak/SB7.png",
+            "images/installation/SaintBreak/SB8.png",
+            "images/installation/SaintBreak/SB9.JPG",
+            "images/installation/SaintBreak/SB10.JPG",
+            "images/installation/SaintBreak/SB11.JPG",
+            "images/installation/SaintBreak/SB12.png",
+            "images/installation/SaintBreak/SB13.JPG",
+            "images/installation/SaintBreak/plans1.JPG",
+            "images/installation/SaintBreak/plans2.JPG",
+            "images/installation/SaintBreak/plans3.png"
+          ],
+          "youtubeUrls": [
+            "https://youtu.be/5rIim-uwgeM",
+            "https://youtu.be/d8VJhrygj7o"
+          ],
+          "alt": "Saint Break installation thumbnail",
+          "year": 2025,
+          "description": "Confessions was an entirely self-produced performance by SAINT BREAK, with original music, visuals, lighting, set, & costume design. Join SAINT BREAK in her devotions as she wonders… Where’s the line between love and worship?",
+          "tags": ["Performance", "Video Art", "Music Production"],
+          "heroImage": "images/installation/SaintBreak/SB1.JPG",
+          "blurb": "SAINT BREAK's entirely self-produced performance of Confessions at NYU's 370J Garage."
         }
       ]
     }

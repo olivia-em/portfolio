@@ -13,6 +13,7 @@ import NewVoicesPage from "./pages/NewVoicesPage";
 import CollagePage from "./pages/CollagePage";
 import GirlTimePage from "./pages/GirlTimePage";
 import TinyDeskPage from "./pages/TinyDeskPage";
+import SaintBreakPage from "./pages/SaintBreakPage";
 import data from "./data/projects.json";
 import { HomeProvider, useHome } from "./contexts/HomeContext";
 
@@ -23,7 +24,7 @@ function AppContent() {
   // overlayLoc holds the last non-root location while returning to root we keep
   // the overlay mounted until homeReady becomes true so the slide-down reveals home.
   const [overlayLoc, setOverlayLoc] = React.useState(
-    location.pathname === "/" ? null : location
+    location.pathname === "/" ? null : location,
   );
   const [isClosing, setIsClosing] = React.useState(false);
   const [animatingOut, setAnimatingOut] = React.useState(false);
@@ -57,7 +58,7 @@ function AppContent() {
       // will run the exit animation.
       exitStartRef.current = performance.now();
       console.log(
-        "overlay: begin exit — homeReady true, starting controlled exit"
+        "overlay: begin exit — homeReady true, starting controlled exit",
       );
       setAnimatingOut(true);
     }
@@ -74,7 +75,7 @@ function AppContent() {
           exit animation so we can control when it's removed. */}
       {(overlayLoc || animatingOut) && (
         <motion.div
-          key={overlayLoc ? overlayLoc.key ?? overlayLoc.pathname : "overlay"}
+          key={overlayLoc ? (overlayLoc.key ?? overlayLoc.pathname) : "overlay"}
           initial={{ y: "100vh" }}
           animate={{ y: animatingOut ? "100vh" : 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -95,7 +96,7 @@ function AppContent() {
                 : null;
               console.log(
                 "overlay: controlled exit complete",
-                dur ? dur + "ms" : "(no start)"
+                dur ? dur + "ms" : "(no start)",
               );
               // now fully unmount overlay and clear flags
               setAnimatingOut(false);
@@ -122,6 +123,10 @@ function AppContent() {
             <Route
               path="/works/installation/girltime"
               element={<GirlTimePage />}
+            />
+            <Route
+              path="/works/installation/saintbreak"
+              element={<SaintBreakPage />}
             />
             <Route
               path="/works/installation/tinydesk"
