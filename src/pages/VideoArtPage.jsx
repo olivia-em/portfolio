@@ -9,7 +9,7 @@ const VideoArtPage = () => {
   const [selectedVideo, setSelectedVideo] = React.useState(null);
   const [hoveredItem, setHoveredItem] = React.useState(null);
   const videoArtShelf = projectsData.shelves.find(
-    (shelf) => shelf.id === "videoart"
+    (shelf) => shelf.id === "videoart",
   );
 
   if (!videoArtShelf) {
@@ -30,7 +30,7 @@ const VideoArtPage = () => {
 
     // Extract video ID from various YouTube URL formats
     const videoIdMatch = url.match(
-      /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/
+      /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/,
     );
     if (videoIdMatch && videoIdMatch[1]) {
       return `https://www.youtube.com/embed/${videoIdMatch[1]}`;
@@ -58,12 +58,37 @@ const VideoArtPage = () => {
   }, [selectedVideo, navigate]);
 
   return (
-    <div className="videoart-page">
-      <div className="videoart-grid">
+    <div
+      className="videoart-page"
+      style={{
+        background: "#f8f6f3",
+        color: "#222",
+        minHeight: "100vh",
+        overflowY: "auto",
+        width: "100%",
+      }}
+    >
+      <h1
+        className="section-title"
+        style={{ textAlign: "left", margin: "2rem 0 0rem 0" }}
+      >
+        Video Art
+      </h1>
+      <div className="videoart-column">
         {videoArtShelf.items.map((item) => (
           <div
             key={item.id}
             className="videoart-grid-item"
+            style={{
+              width: "100%",
+              aspectRatio: "16/9",
+              position: "relative",
+              marginBottom: "1.2rem", // match Saint Break
+              cursor: "pointer",
+              background: "#111",
+              borderRadius: 8, // match Saint Break
+              overflow: "hidden",
+            }}
             onClick={() => openLightbox(item)}
             onMouseEnter={() => setHoveredItem(item.id)}
             onMouseLeave={() => setHoveredItem(null)}
@@ -71,27 +96,55 @@ const VideoArtPage = () => {
             <img
               src={`${import.meta.env.BASE_URL}${item.image}`}
               alt={item.alt}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+                borderRadius: 8, // match Saint Break
+                background: "#111",
+              }}
             />
-
-            {/* Tags in top right corner */}
             {item.tags && item.tags.length > 0 && (
               <div className="videoart-tags">
-                {item.tags.map((tag, index) => (
-                  <span key={index} className="videoart-tag">
+                {item.tags.map((tag, idx) => (
+                  <span key={idx} className="videoart-tag">
                     {tag}
                   </span>
                 ))}
               </div>
             )}
-
-            {/* Hover blurb overlay */}
-            {hoveredItem === item.id && item.blurb && (
-              <div className="videoart-hover-blurb">
+            {item.blurb && (
+              <div
+                className="videoart-hover-blurb"
+                style={{
+                  opacity: hoveredItem === item.id ? 1 : 0,
+                  pointerEvents: hoveredItem === item.id ? "auto" : "none",
+                  transition: "opacity 0.2s",
+                }}
+              >
                 <p>{item.blurb}</p>
               </div>
             )}
-
-            <h3 className="videoart-title">{item.title}</h3>
+            <div
+              className="videoart-title"
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                color: "white",
+                fontSize: 18,
+                padding: 12,
+                background:
+                  "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
+                textAlign: "left",
+                fontWeight: 600,
+                margin: 0,
+              }}
+            >
+              {item.title}
+            </div>
           </div>
         ))}
       </div>
@@ -99,7 +152,6 @@ const VideoArtPage = () => {
       {selectedVideo && (
         <div className="lightbox" onClick={closeLightbox}>
           <div className="lightbox-backdrop"></div>
-
           <div
             className="lightbox-video-container"
             onClick={(e) => e.stopPropagation()}
@@ -119,7 +171,7 @@ const VideoArtPage = () => {
         </div>
       )}
 
-      {!selectedVideo && <BackToHomeButton />}
+      {!selectedVideo}
     </div>
   );
 };

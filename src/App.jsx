@@ -1,125 +1,284 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
-// Header (sidebar) removed — homepage and other pages no longer render it.
+
 import WallCanvas from "./components/WallCanvas";
 import ProjectPage from "./pages/ProjectPage";
+import { HomeProvider } from "./contexts/HomeContext";
+import MagazineHome from "./pages/MagazineHome";
 import WebArtPage from "./pages/WebArtPage";
 import DesignPage from "./pages/DesignPage";
 import VideoArtPage from "./pages/VideoArtPage";
-import MagazineHome from "./pages/MagazineHome";
 import LessonsInPerspective from "./pages/LessonsInPerspective";
 import NewVoicesPage from "./pages/NewVoicesPage";
 import CollagePage from "./pages/CollagePage";
 import GirlTimePage from "./pages/GirlTimePage";
-import TinyDeskPage from "./pages/TinyDeskPage";
 import SaintBreakPage from "./pages/SaintBreakPage";
+import TinyDeskPage from "./pages/TinyDeskPage";
+import CollexPage from "./pages/CollexPage";
+import BackToHomeButton from "./components/BackToHomeButton";
 import data from "./data/projects.json";
-import { HomeProvider, useHome } from "./contexts/HomeContext";
 
-function AppContent() {
-  const location = useLocation();
-  const { homeReady } = useHome();
+export const TagGlowContext = React.createContext([]);
 
-  // overlayLoc holds the last non-root location while returning to root we keep
-  // the overlay mounted until homeReady becomes true so the slide-down reveals home.
-  const [overlayLoc, setOverlayLoc] = React.useState(
-    location.pathname === "/" ? null : location,
-  );
-  const [isClosing, setIsClosing] = React.useState(false);
-  const [animatingOut, setAnimatingOut] = React.useState(false);
-  const enterStartRef = React.useRef(null);
-  const exitStartRef = React.useRef(null);
+// Build nav item -> tags map from projects.json
+const navTags = (() => {
+  const s = data.shelves;
+  const find = (shelfId, itemId) =>
+    s.find((sh) => sh.id === shelfId)?.items?.find((i) => i.id === itemId)
+      ?.tags || [];
+  return {
+    "#project-collex": find("designprojects", "collex"),
+    "#project-lessons": find("frontend", "lip"),
+    "#project-saintbreak": find("installation", "saintbreak"),
+    "#project-newvoices": find("frontend", "newvoices"),
+    "#project-girltime": find("installation", "girltime"),
+    "#project-tinydesk": find("installation", "tinydesk"),
+    "#project-videoart": [],
+    "#project-webart": [],
+    "#project-design": [],
+  };
+})();
 
-  // Manage overlay location and closing lifecycle
-  React.useEffect(() => {
-    if (location.pathname === "/") {
-      // Only begin closing if we actually have an overlay mounted (i.e. the
-      // user is navigating back from a non-root route). On initial load
-      // overlayLoc will be null and we should not begin a closing sequence.
-      if (overlayLoc) {
-        setIsClosing(true);
+export default function App() {
+  const [glowingTags, setGlowingTags] = React.useState([]);
+  const [hoveredItem, setHoveredItem] = React.useState(null);
+
+  const allTags = React.useMemo(() => {
+    const tagSet = new Set();
+    data.shelves.forEach((shelf) => {
+      if (shelf.tags) shelf.tags.forEach((t) => tagSet.add(t));
+      if (Array.isArray(shelf.items)) {
+        shelf.items.forEach((item) => {
+          if (item.tags) item.tags.forEach((t) => tagSet.add(t));
+        });
       }
-    } else {
-      // navigating to a non-root route: render overlay for the new location
-      enterStartRef.current = performance.now();
-      console.log("overlay: start enter for", location.pathname);
-      setOverlayLoc(location);
-      setIsClosing(false);
-    }
+    });
+    return Array.from(tagSet).sort();
+  }, []);
+
+  const location = useLocation();
+
+  React.useEffect(() => {
+    console.debug(
+      "[ROUTER] location changed:",
+      location.pathname,
+      location.key,
+    );
   }, [location]);
 
-  // When closing intent is set and the home reports ready, remove the overlay
-  // to start the exit animation (AnimatePresence will play the exit). We
-  // then clear `isClosing` in onExitComplete.
-  React.useEffect(() => {
-    if (isClosing && homeReady) {
-      // begin exit: record start time then remove overlay so AnimatePresence
-      // will run the exit animation.
-      exitStartRef.current = performance.now();
-      console.log(
-        "overlay: begin exit — homeReady true, starting controlled exit",
-      );
-      setAnimatingOut(true);
-    }
-  }, [isClosing, homeReady]);
+  const navItems = [
+    { href: "#project-collex", label: "Collected Exorcisms" },
+    { href: "#project-lessons", label: "Lessons in Perspective" },
+    { href: "#project-saintbreak", label: "Saint Break" },
+    { href: "#project-newvoices", label: "New Voices" },
+    { href: "#project-girltime", label: "Girl Time" },
+    { href: "#project-tinydesk", label: "Tiny Desk VJ" },
+    { href: "#project-videoart", label: "Video Art" },
+    { href: "#project-webart", label: "Creative Coding" },
+    { href: "#project-design", label: "Static Design" },
+  ];
 
   return (
-    <div className="app-root">
-      {/* MagazineHome stays mounted beneath overlays so it won't re-run on return */}
-      <MagazineHome />
+    <HomeProvider>
+      <TagGlowContext.Provider value={glowingTags}>
+        <div
+          className="app-root"
+          style={{ display: "flex", height: "100vh", overflow: "hidden" }}
+        >
+          <div className="magazine-root">
+            <aside className="magazine-left">
+              <h1 className="magazine-name">
+                Olivia Lee
+                <span className="cite-sup" aria-hidden>
+                  1
+                </span>
+              </h1>
+              <h2 className="magazine-name">
+                <i>
+                  <a
+                    href="#about"
+                    className="magazine-toc-link"
+                    style={{ color: "inherit", textDecoration: "none" }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.classList.add("hovered");
+                      e.currentTarget.style.color = "#00c8ff";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.classList.remove("hovered");
+                      e.currentTarget.style.color = "inherit";
+                    }}
+                  >
+                    {(() => {
+                      const text = "Multimedia Designer";
+                      const dots = ".".repeat(Math.max(2, 32 - text.length));
+                      return (
+                        <>
+                          Multimedia<sup style={{ color: "#00c8ff" }}>2</sup>
+                          &nbsp;Designer
+                          <sup style={{ color: "#00c8ff" }}>3</sup>
+                          <span className="toc-dots">{dots}</span>0
+                        </>
+                      );
+                    })()}
+                  </a>
+                </i>
+              </h2>
+              <nav className="magazine-toc">
+                <ul>
+                  <li>
+                    <ul className="toc-dropdown">
+                      {navItems.map((item, idx, arr) => {
+                        const text = item.label;
+                        const dots = ".".repeat(Math.max(2, 30 - text.length));
+                        const sectionId = item.href.startsWith("#")
+                          ? item.href.slice(1)
+                          : item.href;
+                        return (
+                          <li key={item.href}>
+                            <a
+                              href={item.href}
+                              className="toc-index-link"
+                              onMouseEnter={() => {
+                                console.log("Nav hover:", sectionId);
+                                setHoveredItem(sectionId);
+                              }}
+                              onMouseLeave={() => setHoveredItem(null)}
+                            >
+                              {text}
+                              <span className="toc-dots">{dots}</span>
+                              {idx + 1}
+                            </a>
+                            {/* Add line break after Tiny Desk VJ and after Static Design */}
+                            {(item.label === "Tiny Desk VJ" ||
+                              item.label === "Static Design") && <br />}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+              <ul className="magazine-citations">
+                <li>
+                  <span className="cite-num">1</span>
+                  <a
+                    href="/portfolio/images/aboutolivia/Lee.Olivia_Resume_Dev.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <em>Resume</em>
+                  </a>
+                </li>
+                <li>
+                  <span className="cite-num">2</span>
+                  <a
+                    href="https://github.com/olivia-em"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <em>Github</em>
+                  </a>
+                </li>
+                <li>
+                  <span className="cite-num">3</span>
+                  <a
+                    href="https://www.instagram.com/oli.via.online/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <em>Instagram</em>
+                  </a>
+                </li>
+              </ul>
+              <div className="magazine-tag-cloud">
+                {allTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className={
+                      "project-tag-cloud" +
+                      (glowingTags.includes(tag) ? " tag-glow" : "")
+                    }
+                    style={{ margin: "0 0.4em 0.4em 0", cursor: "pointer" }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </aside>
+          </div>
+          <div
+            className="app-right"
+            style={{
+              flex: 1,
+              height: "100vh",
+              overflowY: "auto",
+              position: "relative",
+              zIndex: 20,
+            }}
+          >
+            <MagazineHome
+              setGlowingTags={setGlowingTags}
+              hoveredItem={hoveredItem}
+              setHoveredItem={setHoveredItem}
+            />
+          </div>
+        </div>
+      </TagGlowContext.Provider>
+    </HomeProvider>
+  );
+}
 
-      {/* overlays for non-root routes (controlled animation) */}
-      {/* We render the overlay while we have an `overlayLoc` OR while
-          we're animating out; this keeps the overlay mounted during its
-          exit animation so we can control when it's removed. */}
-      {(overlayLoc || animatingOut) && (
-        <motion.div
-          key={overlayLoc ? (overlayLoc.key ?? overlayLoc.pathname) : "overlay"}
-          initial={{ y: "100vh" }}
-          animate={{ y: animatingOut ? "100vh" : 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="overlay-route"
-          style={{ position: "fixed", inset: 0, zIndex: 40 }}
-          onAnimationComplete={() => {
-            // Called when either animate (enter) or animate (exit) completes.
-            if (!animatingOut && enterStartRef.current) {
-              const dur = Math.round(performance.now() - enterStartRef.current);
-              console.log("overlay: enter complete", dur + "ms");
-              enterStartRef.current = null;
-              return;
-            }
+function MainRoutes() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
-            if (animatingOut) {
-              const dur = exitStartRef.current
-                ? Math.round(performance.now() - exitStartRef.current)
-                : null;
-              console.log(
-                "overlay: controlled exit complete",
-                dur ? dur + "ms" : "(no start)",
-              );
-              // now fully unmount overlay and clear flags
-              setAnimatingOut(false);
-              setOverlayLoc(null);
-              setIsClosing(false);
-            }
+  React.useEffect(() => {
+    console.debug(
+      "[ROUTER] location changed:",
+      location.pathname,
+      location.key,
+    );
+  }, [location]);
+
+  return (
+    <div
+      className="app-right"
+      style={{
+        flex: 1,
+        height: "100vh",
+        overflowY: "auto",
+        position: "relative",
+        zIndex: 20,
+      }}
+    >
+      <MagazineHome onlyCollage />
+      {!isHome && (
+        <div
+          key={location.key}
+          style={{
+            height: "100%",
+            background: "#fff",
+            boxShadow: "0 0 24px 0 rgba(0,0,0,0.04)",
+            zIndex: 30,
+            mixBlendMode: "normal",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
           }}
         >
-          <Routes location={overlayLoc}>
+          <Routes location={location} key={location.key}>
             <Route
               path="/canvas"
-              element={
-                <div className="canvas-wrap">
-                  <WallCanvas shelves={data.shelves} />
-                </div>
-              }
+              element={<WallCanvas shelves={data.shelves} />}
             />
             <Route path="/works/webart" element={<WebArtPage />} />
             <Route path="/works/design" element={<DesignPage />} />
             <Route path="/works/videoart" element={<VideoArtPage />} />
             <Route path="/works/lessons" element={<LessonsInPerspective />} />
             <Route path="/works/newvoices" element={<NewVoicesPage />} />
-            <Route path="/works/collage" element={<CollagePage />} />
+            <Route path="/works/staticdesign" element={<CollagePage />} />
             <Route
               path="/works/installation/girltime"
               element={<GirlTimePage />}
@@ -132,18 +291,309 @@ function AppContent() {
               path="/works/installation/tinydesk"
               element={<TinyDeskPage />}
             />
+            <Route
+              path="/works/designprojects/collex"
+              element={<CollexPage />}
+            />
             <Route path="/works/:category/:slug" element={<ProjectPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
-        </motion.div>
+          <BackToHomeButton />
+        </div>
       )}
     </div>
   );
 }
 
-export default function App() {
-  return (
-    <HomeProvider>
-      <AppContent />
-    </HomeProvider>
-  );
-}
+// import React from "react";
+// import { Routes, Route, useLocation } from "react-router-dom";
+// import { motion, AnimatePresence } from "framer-motion";
+
+// // import Styles from "./styles/magazine.css";
+
+// import WallCanvas from "./components/WallCanvas";
+// import ProjectPage from "./pages/ProjectPage";
+// import { HomeProvider } from "./contexts/HomeContext";
+// import MagazineHome from "./pages/MagazineHome";
+// import WebArtPage from "./pages/WebArtPage";
+// import DesignPage from "./pages/DesignPage";
+// import VideoArtPage from "./pages/VideoArtPage";
+// import LessonsInPerspective from "./pages/LessonsInPerspective";
+// import NewVoicesPage from "./pages/NewVoicesPage";
+// import CollagePage from "./pages/CollagePage";
+// import GirlTimePage from "./pages/GirlTimePage";
+// import SaintBreakPage from "./pages/SaintBreakPage";
+// import TinyDeskPage from "./pages/TinyDeskPage";
+// import CollexPage from "./pages/CollexPage";
+// import BackToHomeButton from "./components/BackToHomeButton";
+// import data from "./data/projects.json";
+
+// // Context for glowing tags
+// export const TagGlowContext = React.createContext([]);
+
+// export default function App() {
+//   // State for glowing tags
+//   const [glowingTags, setGlowingTags] = React.useState([]);
+
+//   // --- Tag Cloud Logic ---
+//   // Collect all unique tags from all projects
+//   const allTags = React.useMemo(() => {
+//     const tagSet = new Set();
+//     data.shelves.forEach((shelf) => {
+//       if (shelf.tags) shelf.tags.forEach((t) => tagSet.add(t));
+//       if (Array.isArray(shelf.items)) {
+//         shelf.items.forEach((item) => {
+//           if (item.tags) item.tags.forEach((t) => tagSet.add(t));
+//         });
+//       }
+//     });
+//     return Array.from(tagSet).sort();
+//   }, []);
+
+//   const location = useLocation();
+//   const isHome = location.pathname === "/";
+//   React.useEffect(() => {
+//     // Debug location changes
+//     // eslint-disable-next-line no-console
+//     console.debug(
+//       "[ROUTER] location changed:",
+//       location.pathname,
+//       location.key,
+//     );
+//   }, [location]);
+
+//   return (
+//     <HomeProvider>
+//       <TagGlowContext.Provider value={glowingTags}>
+//         <div
+//           className="app-root"
+//           style={{ display: "flex", height: "100vh", overflow: "hidden" }}
+//         >
+//           {/* Left column: Fixed nav bar */}
+//           <div className="magazine-root">
+//             <aside className="magazine-left">
+//               <h1 className="magazine-name">
+//                 Olivia Lee
+//                 <span className="cite-sup" aria-hidden>
+//                   1
+//                 </span>
+//               </h1>
+//               <h2 className="magazine-name">
+//                 <a
+//                   href="#about"
+//                   className="magazine-toc-link"
+//                   style={{
+//                     color: "inherit",
+//                     textDecoration: "none",
+//                     transition: "color 0.18s",
+//                   }}
+//                   onMouseEnter={(e) =>
+//                     (e.currentTarget.style.color = "#00c8ff")
+//                   }
+//                   onMouseLeave={(e) =>
+//                     (e.currentTarget.style.color = "inherit")
+//                   }
+//                 >
+//                   <i>
+//                     {(() => {
+//                       const text = "Multimedia Designer";
+//                       const dots = ".".repeat(Math.max(2, 33 - text.length));
+//                       return (
+//                         <>
+//                           {text}
+//                           <span className="toc-dots">{dots}</span>0
+//                         </>
+//                       );
+//                     })()}
+//                   </i>
+//                 </a>
+//               </h2>
+//               <nav className="magazine-toc">
+//                 <ul>
+//                   <li>
+//                     <ul className="toc-dropdown">
+//                       {[
+//                         {
+//                           href: "#project-collex",
+//                           label: "Collected Exorcisms",
+//                         },
+//                         {
+//                           href: "#project-lessons",
+//                           label: "Lessons in Perspective",
+//                         },
+//                         { href: "#project-saintbreak", label: "Saint Break" },
+//                         { href: "#project-newvoices", label: "New Voices" },
+//                         { href: "#project-girltime", label: "Girl Time" },
+//                         { href: "#project-tinydesk", label: "Tiny Desk VJ" },
+//                         { href: "#project-videoart", label: "Video Art" },
+//                         { href: "#project-webart", label: "Creative Coding" },
+//                         { href: "#project-design", label: "Static Design" },
+//                       ].map((item, idx, arr) => {
+//                         const text = item.label;
+//                         const dots = ".".repeat(Math.max(2, 30 - text.length));
+//                         return (
+//                           <li key={item.href}>
+//                             <a href={item.href} className="toc-index-link">
+//                               {text}
+//                               <span className="toc-dots">{dots}</span>
+//                               {idx + 1}
+//                             </a>
+//                             {/* Add line break after Tiny Desk VJ and after Static Design */}
+//                             {(item.label === "Tiny Desk VJ" ||
+//                               item.label === "Static Design") && <br />}
+//                           </li>
+//                         );
+//                       })}
+//                     </ul>
+//                   </li>
+//                 </ul>
+//               </nav>
+//               <ul className="magazine-citations">
+//                 <li>
+//                   <span className="cite-num">1</span>
+//                   <a
+//                     href="/portfolio/images/aboutolivia/Lee.Olivia_Resume_Dev.pdf"
+//                     target="_blank"
+//                     rel="noopener noreferrer"
+//                   >
+//                     <em>Resume</em>
+//                   </a>
+//                 </li>
+//                 <li>
+//                   <span className="cite-num">2</span>
+//                   <a
+//                     href="https://github.com/olivia-em"
+//                     target="_blank"
+//                     rel="noopener noreferrer"
+//                   >
+//                     <em>Github</em>
+//                   </a>
+//                 </li>
+//                 <li>
+//                   <span className="cite-num">3</span>
+//                   <a
+//                     href="https://www.instagram.com/oli.via.online/"
+//                     target="_blank"
+//                     rel="noopener noreferrer"
+//                   >
+//                     <em>Instagram</em>
+//                   </a>
+//                 </li>
+//               </ul>
+//               {/* Tag cloud at bottom of nav */}
+//               <div className="magazine-tag-cloud">
+//                 {allTags.map((tag) => (
+//                   <span
+//                     key={tag}
+//                     className={
+//                       "project-tag-cloud" +
+//                       (glowingTags.includes(tag) ? " tag-glow" : "")
+//                     }
+//                     style={{ margin: "0 0.4em 0.4em 0", cursor: "pointer" }}
+//                   >
+//                     {tag}
+//                   </span>
+//                 ))}
+//               </div>
+//             </aside>
+//           </div>
+//           {/* Right/content area: MagazineHome scrollable content */}
+//           <div
+//             className="app-right"
+//             style={{
+//               flex: 1,
+//               height: "100vh",
+//               overflowY: "auto",
+//               position: "relative",
+//               zIndex: 20,
+//             }}
+//           >
+//             <MagazineHome setGlowingTags={setGlowingTags} />
+//           </div>
+//         </div>
+//       </TagGlowContext.Provider>
+//     </HomeProvider>
+//   );
+// }
+
+// // MainRoutes handles all routing and transitions inside the right column
+
+// function MainRoutes() {
+//   const location = useLocation();
+//   const isHome = location.pathname === "/";
+//   React.useEffect(() => {
+//     // Debug location changes
+//     // eslint-disable-next-line no-console
+//     console.debug(
+//       "[ROUTER] location changed:",
+//       location.pathname,
+//       location.key,
+//     );
+//   }, [location]);
+//   return (
+//     <div
+//       className="app-right"
+//       style={{
+//         flex: 1,
+//         height: "100vh",
+//         overflowY: "auto",
+//         position: "relative",
+//         zIndex: 20,
+//       }}
+//     >
+//       {/* Home collage is always rendered at the base */}
+//       <MagazineHome onlyCollage />
+//       {/* Overlay for routed pages, animates in/out above the collage */}
+//       {/* Overlay for routed pages, no animation */}
+//       {!isHome && (
+//         <div
+//           key={location.key}
+//           style={{
+//             height: "100%",
+//             background: "#fff",
+//             boxShadow: "0 0 24px 0 rgba(0,0,0,0.04)",
+//             zIndex: 30,
+//             mixBlendMode: "normal",
+//             position: "absolute",
+//             top: 0,
+//             left: 0,
+//             right: 0,
+//             bottom: 0,
+//           }}
+//         >
+//           <Routes location={location} key={location.key}>
+//             <Route
+//               path="/canvas"
+//               element={<WallCanvas shelves={data.shelves} />}
+//             />
+//             <Route path="/works/webart" element={<WebArtPage />} />
+//             <Route path="/works/design" element={<DesignPage />} />
+//             <Route path="/works/videoart" element={<VideoArtPage />} />
+//             <Route path="/works/lessons" element={<LessonsInPerspective />} />
+//             <Route path="/works/newvoices" element={<NewVoicesPage />} />
+//             <Route path="/works/staticdesign" element={<CollagePage />} />
+//             <Route
+//               path="/works/installation/girltime"
+//               element={<GirlTimePage />}
+//             />
+//             <Route
+//               path="/works/installation/saintbreak"
+//               element={<SaintBreakPage />}
+//             />
+//             <Route
+//               path="/works/installation/tinydesk"
+//               element={<TinyDeskPage />}
+//             />
+//             <Route
+//               path="/works/designprojects/collex"
+//               element={<CollexPage />}
+//             />
+//             <Route path="/works/:category/:slug" element={<ProjectPage />} />
+//             <Route path="/about" element={<AboutPage />} />
+//           </Routes>
+//           <BackToHomeButton />
+//         </div>
+//       )}
+//     </div>
+//   );
+// }

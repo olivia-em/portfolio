@@ -1,16 +1,20 @@
 .webart-page {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw; */
+  min-height: 100vh;
   overflow-y: auto;
-  background-color: #0f0f0f;
+  background: #f8f6f3;
+  color: #222;
 }
 
 .webart-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
+  gap: 18px;
   width: 100%;
-  min-height: 100vh;
+  /* padding: 2rem 1rem 3rem 1rem; */
+  box-sizing: border-box;
+  overflow-y: auto;
+  /* max-height: calc(100vh - 60px); */
 }
 
 .webart-grid-item {
@@ -18,11 +22,20 @@
   aspect-ratio: 1;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  background: #f8f6f3;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .webart-grid-item:hover {
   transform: scale(1.02);
+}
+.webart-grid-item:hover .webart-hover-blurb {
+  opacity: 1 !important;
+  pointer-events: auto;
 }
 
 .webart-grid-item img {
@@ -30,6 +43,38 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 0;
+  background: #f8f6f3;
+}
+/* Tags and blurb */
+.webart-tags {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  gap: 4px;
+  z-index: 2;
+}
+.webart-tag {
+  background: rgba(0, 0, 0, 0.08);
+  color: #00c8ff;
+  border-radius: 0;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+.webart-hover-blurb {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.92);
+  color: #222;
+  font-size: 13px;
+  padding: 8px 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 2;
 }
 
 /* Responsive adjustments */

@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/ProjectDetail.css";
 import projectsData from "../data/projects.json";
-import BackToHomeButton from "../components/BackToHomeButton";
+import ProjectLayout from "../components/ProjectLayout";
 
 export default function NewVoicesPage() {
   const navigate = useNavigate();
@@ -15,10 +15,10 @@ export default function NewVoicesPage() {
 
   // Get New Voices data from projects.json
   const frontendShelf = projectsData.shelves.find(
-    (shelf) => shelf.id === "frontend"
+    (shelf) => shelf.id === "frontend",
   );
   const newVoicesData = frontendShelf?.items?.find(
-    (item) => item.id === "newvoices"
+    (item) => item.id === "newvoices",
   );
 
   if (!newVoicesData) {
@@ -54,73 +54,51 @@ export default function NewVoicesPage() {
   }, [navigate]);
 
   return (
-    <div className="project-detail-root">
-      <aside className="project-detail-left">
-        <h1 className="project-detail-title">{newVoicesData.title}</h1>
-
-        {newVoicesData.tags && newVoicesData.tags.length > 0 && (
-          <div className="project-detail-tags">
-            {newVoicesData.tags.map((tag, index) => (
-              <span key={index} className="project-detail-tag">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-
-        <div className="project-detail-description">
-          <p>{newVoicesData.description}</p>
-        </div>
-
-        <div className="project-detail-links">
-          {newVoicesData.url?.website && (
-            <a
-              href={newVoicesData.url.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-detail-link"
-            >
-              <span className="project-detail-link-label">Website</span>
-              <span>→</span>
-            </a>
-          )}
-          {newVoicesData.url?.repository && (
-            <a
-              href={newVoicesData.url.repository}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-detail-link"
-            >
-              <span className="project-detail-link-label">Repository</span>
-              <span>→</span>
-            </a>
-          )}
-        </div>
-      </aside>
-
-      <section className="project-detail-right">
-        <div className="project-detail-images">
-          <img
-            src={`${import.meta.env.BASE_URL}${newVoicesData.image}`}
-            alt={newVoicesData.alt}
-            onMouseMove={(e) => handleMouseMove(e, newVoicesData.imageLabel)}
-            onMouseLeave={handleMouseLeave}
-          />
-          {newVoicesData.extraImages &&
-            newVoicesData.extraImages.map((img, index) => (
+    <div className="project-single-column">
+      <h1 className="project-title">{newVoicesData.title}</h1>
+      <div className="project-tags">
+        {newVoicesData.tags &&
+          newVoicesData.tags.map((tag, idx) => (
+            <span key={idx} className="project-tag">
+              {tag}
+            </span>
+          ))}
+      </div>
+      <div className="project-description">
+        <p>{newVoicesData.description}</p>
+      </div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "2rem",
+          margin: "2rem 0",
+          width: "100%",
+        }}
+      >
+        {[newVoicesData.image, ...(newVoicesData.extraImages || [])].map(
+          (imgSrc, idx) => {
+            const label = idx === 0 ? "After Redesign" : "Before Redesign";
+            return (
               <img
-                key={index}
-                src={`${import.meta.env.BASE_URL}${img}`}
-                alt={`${newVoicesData.title} ${index + 2}`}
-                onMouseMove={(e) =>
-                  handleMouseMove(e, newVoicesData.extraImageLabels?.[index])
-                }
+                key={imgSrc}
+                src={`${import.meta.env.BASE_URL}${imgSrc}`}
+                alt={label}
+                loading="lazy"
+                style={{
+                  width: "100%",
+                  borderRadius: "8px",
+                  transition: "transform 0.3s cubic-bezier(.22,1,.36,1)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                  cursor: "pointer",
+                }}
+                onMouseMove={(e) => handleMouseMove(e, label)}
                 onMouseLeave={handleMouseLeave}
               />
-            ))}
-        </div>
-      </section>
-
+            );
+          },
+        )}
+      </div>
       {tooltip.show && (
         <div
           className="image-tooltip"
@@ -132,8 +110,6 @@ export default function NewVoicesPage() {
           {tooltip.text}
         </div>
       )}
-
-      <BackToHomeButton />
     </div>
   );
 }

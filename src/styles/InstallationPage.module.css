@@ -1,3 +1,28 @@
+@media (max-width: 920px) {
+  .project-detail-images {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 1.5rem !important;
+    padding: 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .project-detail-images :global(img) {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    transition: none !important;
+    display: block !important;
+  }
+}
 /* Use :global to target images inside CSS modules */
 /* .project-detail-images :global(img) { */
 /* max-width: 400px !important; */
@@ -18,13 +43,25 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    z-index 0s;
 }
 
-.project-detail-images :global(img):hover {
-  transform: scale(1.15) !important;
-  /* box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25); */
-  z-index: 100 !important;
+@media (hover: hover) and (pointer: fine) {
+  .project-detail-images :global(img):hover {
+    transform: scale(1.15) !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+    z-index: 100 !important;
+  }
+}
+@media (hover: none), (pointer: coarse), (max-width: 920px) {
+  .project-detail-images :global(img):hover {
+    transform: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    z-index: auto !important;
+  }
 }
 
 /* Image positioning variations */

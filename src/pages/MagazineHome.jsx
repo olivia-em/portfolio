@@ -1,510 +1,287 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/magazine.css";
-import Typewriter from "../components/Typewriter";
-import SubtitleTypewriter from "../components/SubtitleTypewriter";
 import TocLine from "../components/TocLine";
-import TocLineTyped from "../components/TocLineTyped";
 import { useHome } from "../contexts/HomeContext";
 import projectsData from "../data/projects.json";
 
-export default function MagazineHome() {
-  const { homeReady, setHomeReady, typedOnce, setTypedOnce } = useHome();
-  const [step, setStep] = React.useState(0);
-  const [showCollage, setShowCollage] = React.useState(true); // collage shows immediately
-  const [loadedCount, setLoadedCount] = React.useState(0);
-  // introActive = true when the initial fullscreen left column + cover should be shown
-  const [introActive, setIntroActive] = React.useState(() => !typedOnce);
-  // revealed controls whether the white cover has slid away; initialized true when typedOnce
-  const [revealed, setRevealed] = React.useState(() => typedOnce);
-  // pendingReveal used to wait for images to load before revealing
-  const [pendingReveal, setPendingReveal] = React.useState(false);
-  // hover state for preview overlay
-  const [hoveredItem, setHoveredItem] = React.useState(null);
+import CollexPage from "./CollexPage";
+import LessonsInPerspective from "./LessonsInPerspective";
+import SaintBreakPage from "./SaintBreakPage";
+import NewVoicesPage from "./NewVoicesPage";
+import GirlTimePage from "./GirlTimePage";
+import TinyDeskPage from "./TinyDeskPage";
+import VideoArtPage from "./VideoArtPage";
+import WebArtPage from "./WebArtPage";
+import CollagePage from "./CollagePage";
+import AboutPage from "./AboutPage";
+import HomeCollage from "../components/HomeCollage";
+import BackToHomeButton from "../components/BackToHomeButton";
 
-  const images = [
-    "/images/aboutolivia/IMG_1298.JPG",
-    "/images/aboutolivia/IMG_1377.jpg",
-    "/images/aboutolivia/IMG_9088.JPG",
-    "/images/aboutolivia/IMG_9115.jpg",
-    "/images/aboutolivia/olivia-alterego.png",
-    "/images/aboutolivia/oliviaMOM.PNG",
-    "/images/aboutolivia/LIP2.png",
+const getScrollContainer = () => document.querySelector(".app-right");
+
+// Map section IDs to their tags from projects.json
+const buildSectionTags = () => {
+  const s = projectsData.shelves;
+  const find = (shelfId, itemId) =>
+    s.find((sh) => sh.id === shelfId)?.items?.find((i) => i.id === itemId)
+      ?.tags || [];
+  return {
+    home: [],
+    "project-collex": find("designprojects", "collex"),
+    "project-lessons": find("frontend", "lip"),
+    "project-saintbreak": find("installation", "saintbreak"),
+    "project-newvoices": find("frontend", "newvoices"),
+    "project-girltime": find("installation", "girltime"),
+    "project-tinydesk": find("installation", "tinydesk"),
+    "project-videoart": [],
+    "project-webart": [],
+    "project-design": [],
+    about: [],
+  };
+};
+
+const sectionTags = buildSectionTags();
+
+export default function MagazineHome({
+  onlyCollage = false,
+  setGlowingTags = () => {},
+  hoveredItem,
+  setHoveredItem,
+}) {
+  const sectionIds = [
+    "home",
+    "project-collex",
+    "project-lessons",
+    "project-saintbreak",
+    "project-newvoices",
+    "project-girltime",
+    "project-tinydesk",
+    "project-videoart",
+    "project-webart",
+    "project-design",
+    "about",
   ];
 
-  // sequence steps (indexes)
-  // 0: name
-  // 1: subtitle
-  // 2: Lessons in Perspective
-  // 3: Saint Break
-  // 4: New Voices
-  // 5: Design
-  // 6: Video Art
-  // 7: Web Art
-  // 8: Collage
-  // 9: byline
-  // 10: citation 1 (Resume)
-  // 11: citation 2 (Github)
-  // 12: citation 3 (Instagram) / done
-
-  const next = React.useCallback(() => setStep((s) => s + 1), []);
-
-  const finish = React.useCallback(() => {
-    console.log("[MAGAZINE] finish() called");
-    setTypedOnce(true);
-    setHomeReady(true);
-    // Set pendingReveal to trigger the reveal once images are loaded
-    setPendingReveal(true);
-  }, [setTypedOnce, setHomeReady]);
-
-  // if we've already typed once (from sessionStorage), jump to the end
+  // URL hash tracking + tag glowing via scroll
   React.useEffect(() => {
-    if (typedOnce) {
-      setStep(12);
-      // Also trigger reveal immediately if already typed once before
-      setRevealed(true);
+    const container = getScrollContainer();
+    if (!container) {
+      console.log("[MAGAZINE] No scroll container found");
+      return;
     }
-  }, [typedOnce]);
 
-  // subtitle typing is handled by a dedicated component now; remove the
-  // older auto-advance behavior so the subtitle isn't interrupted.
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
 
-  // debug: log step changes and typedOnce changes to trace sequencing
-  React.useEffect(() => {
-    console.log(`[MAGAZINE] step -> ${step}`);
-  }, [step]);
+    console.log(
+      "[MAGAZINE] Sections found:",
+      sections.map((s) => s.id),
+    );
+    if (sections.length === 0) return;
 
-  React.useEffect(() => {
-    console.log(`[MAGAZINE] typedOnce -> ${typedOnce}`);
-  }, [typedOnce]);
+    const handleScroll = (() => {
+      let ticking = false;
+      return () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          if (container.scrollTop < 50) {
+            window.history.replaceState(null, "", window.location.pathname);
+            setGlowingTags([]);
+            ticking = false;
+            return;
+          }
 
-  React.useEffect(() => {
-    console.log(`[MAGAZINE] revealed -> ${revealed}`);
-  }, [revealed]);
+          let closestSection = null;
+          let minDistance = Infinity;
+          const containerTop = container.getBoundingClientRect().top;
 
-  React.useEffect(() => {
-    console.log(`[MAGAZINE] introActive -> ${introActive}`);
-  }, [introActive]);
+          sections.forEach((el) => {
+            const distance = Math.abs(
+              el.getBoundingClientRect().top - containerTop,
+            );
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestSection = el.id;
+            }
+          });
 
-  // when all collage images have loaded, mark home as ready
-  React.useEffect(() => {
-    if (loadedCount > 0 && loadedCount >= images.length) {
-      setHomeReady(true);
+          if (closestSection) {
+            window.history.replaceState(null, "", "#" + closestSection);
+            setGlowingTags(sectionTags[closestSection] || []);
+          }
+          ticking = false;
+        });
+      };
+    })();
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [setGlowingTags]);
+
+  // Scroll to section
+  const scrollToSection = (id) => {
+    const container = getScrollContainer();
+    const el = document.getElementById(id);
+    if (container && el) {
+      const containerTop = container.getBoundingClientRect().top;
+      const top =
+        el.getBoundingClientRect().top - containerTop + container.scrollTop;
+      container.scrollTo({ top, behavior: "smooth" });
+      window.history.replaceState(null, "", "#" + id);
     }
-  }, [loadedCount, images.length, setHomeReady]);
+  };
+
+  // Back to home
+  const handleBackToHome = () => {
+    const container = getScrollContainer();
+    if (container) {
+      container.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => {
+        window.history.replaceState(null, "", window.location.pathname);
+        setGlowingTags([]);
+      }, 400);
+    }
+  };
 
   const onImageLoad = React.useCallback(() => {
-    setLoadedCount((c) => {
-      const newCount = c + 1;
-      console.log(`[MAGAZINE] onImageLoad called: loadedCount now ${newCount}`);
-      return newCount;
-    });
+    setLoadedCount((c) => c + 1);
   }, []);
 
-  // when images finish loading, if we were waiting to reveal, trigger it
-  React.useEffect(() => {
-    console.log("[MAGAZINE] Image load check:", {
-      pendingReveal,
-      loadedCount,
-      totalImages: images.length,
-      allLoaded: loadedCount >= images.length,
-    });
+  const { homeReady, setHomeReady, typedOnce, setTypedOnce } = useHome();
+  const [step, setStep] = React.useState(0);
+  const [showCollage, setShowCollage] = React.useState(true);
+  const [loadedCount, setLoadedCount] = React.useState(0);
+  const [introActive, setIntroActive] = React.useState(false);
+  const [revealed, setRevealed] = React.useState(true);
+  // If hoveredItem is passed as a prop, use it; otherwise, manage local state
+  const [localHoveredItem, setLocalHoveredItem] = React.useState(null);
+  const effectiveHoveredItem =
+    hoveredItem !== undefined ? hoveredItem : localHoveredItem;
+  const [activeSection, setActiveSection] = React.useState(null);
 
-    if (pendingReveal && loadedCount >= images.length) {
-      console.log("[MAGAZINE] All images loaded, triggering reveal");
-      setPendingReveal(false);
-      // small timeout so layout has painted
-      setTimeout(() => {
-        console.log("[MAGAZINE] Setting revealed to true");
-        setRevealed(true);
-      }, 16);
+  // Map sectionId to shelfId/itemId for preview lookup
+  const sectionPreviewMap = {
+    "project-collex": { shelfId: "designprojects", itemId: "collex" },
+    "project-lessons": { shelfId: "frontend", itemId: "lip" },
+    "project-saintbreak": { shelfId: "installation", itemId: "saintbreak" },
+    "project-newvoices": { shelfId: "frontend", itemId: "newvoices" },
+    "project-girltime": { shelfId: "installation", itemId: "girltime" },
+    "project-tinydesk": { shelfId: "installation", itemId: "tinydesk" },
+    "project-videoart": { shelfId: "videoart" },
+    "project-webart": { shelfId: "webart" },
+    "project-design": { shelfId: "staticdesign" },
+  };
+
+  // Preview logic: get preview image/blurb/tags for hovered item
+  function getPreviewData(sectionId) {
+    if (!sectionId) return null;
+    const map = sectionPreviewMap[sectionId];
+    if (!map) {
+      console.log("[getPreviewData] no mapping for", sectionId);
+      return null;
     }
-  }, [pendingReveal, loadedCount, images.length]);
-
-  // Fallback: always reveal after 5 seconds if not already revealed
-  React.useEffect(() => {
-    if (!revealed && introActive) {
-      const timeout = setTimeout(() => {
-        if (!revealed) {
-          console.log("[MAGAZINE] Fallback timeout: forcing reveal");
-          setRevealed(true);
-        }
-      }, 5000);
-      return () => clearTimeout(timeout);
-    }
-  }, [revealed, introActive]);
-
-  // Trigger the collage-cover reveal right after the TOC 'Collage' item finishes
-  // (i.e. when step advances past 8 to 9). This happens only on the initial
-  // intro run (when introActive) and if we haven't already revealed.
-  React.useEffect(() => {
-    if (!introActive) return;
-    if (typedOnce) return;
-    // step 9 means we just finished step 8 (Collage) and moved on
-    if (step === 9 && !revealed) {
-      if (loadedCount >= images.length) {
-        setRevealed(true);
-      } else {
-        setPendingReveal(true);
-      }
-    }
-  }, [step, introActive, revealed, loadedCount, images.length, typedOnce]);
-
-  const onCoverTransitionEnd = React.useCallback(
-    (e) => {
-      // wait for the transform transition to finish and then remove the intro overlay
-      if (e.propertyName !== "transform") return;
-      console.log(
-        "[MAGAZINE] Cover transition ended, introActive:",
-        introActive,
-      );
-      if (introActive) {
-        // clear the intro flag after the cover transition
-        setTimeout(() => {
-          console.log("[MAGAZINE] Setting introActive to false");
-          setIntroActive(false);
-        }, 30);
-      }
-    },
-    [introActive],
-  );
-
-  // Get preview data for hovered item
-  const getPreviewData = (itemId) => {
-    // Check if it's a shelf (section)
-    const shelf = projectsData.shelves.find((s) => s.id === itemId);
-    if (shelf) {
-      let images = [];
-
-      // If shelf has heroImages array (hand-picked images), use those
-      if (shelf.heroImages && Array.isArray(shelf.heroImages)) {
-        images = [...shelf.heroImages];
-      }
-      // Otherwise, build from heroImage + items
-      else {
-        // If shelf has a heroImage, use it first
-        if (shelf.heroImage) {
-          images.push(shelf.heroImage);
-        }
-
-        // Add items from the shelf (up to 3 total)
-        if (shelf.items && shelf.items.length > 0) {
-          const itemsToAdd = shelf.heroImage ? 2 : 3; // If we already have hero, only add 2 more
-          shelf.items.slice(0, itemsToAdd).forEach((item) => {
-            // Use thumbnail if available, otherwise use regular image
-            const imgSrc = item.thumbnail || item.image;
-            if (imgSrc) images.push(imgSrc);
-          });
-        }
-      }
-
-      if (images.length > 0) {
-        return {
-          images: images.slice(0, 3),
-          blurb: shelf.blurb,
-        };
-      }
-    }
-
-    // Check if it's an individual project
-    for (const shelf of projectsData.shelves) {
-      const item = shelf.items?.find((i) => i.id === itemId);
-      if (item && item.heroImage) {
-        // For individual items, use main image + extra images
-        const images = [item.image];
+    // If both shelfId and itemId, show item preview
+    if (map.shelfId && map.itemId) {
+      const shelf = projectsData.shelves.find((s) => s.id === map.shelfId);
+      const item = shelf?.items?.find((i) => i.id === map.itemId);
+      if (item && (item.heroImage || item.image)) {
+        const images = [item.heroImage || item.image];
         if (item.extraImages && item.extraImages.length > 0) {
           images.push(...item.extraImages.slice(0, 2));
         }
-        return {
+        const result = {
           images: images.slice(0, 3),
           blurb: item.blurb,
+          tags: item.tags || [],
         };
+        console.log("[getPreviewData] mapped item", sectionId, result);
+        return result;
       }
     }
-
+    // If only shelfId, show shelf preview
+    if (map.shelfId && !map.itemId) {
+      const shelf = projectsData.shelves.find((s) => s.id === map.shelfId);
+      if (shelf) {
+        let images = [];
+        if (Array.isArray(shelf.heroImages) && shelf.heroImages.length > 0) {
+          images = [...shelf.heroImages];
+        } else if (shelf.heroImage) {
+          images.push(shelf.heroImage);
+        }
+        if (shelf.items && shelf.items.length > 0) {
+          const itemsToAdd = 3 - images.length;
+          if (itemsToAdd > 0) {
+            shelf.items.slice(0, itemsToAdd).forEach((item) => {
+              const imgSrc = item.thumbnail || item.image;
+              if (imgSrc) images.push(imgSrc);
+            });
+          }
+        }
+        if (images.length > 0) {
+          const result = {
+            images: images.slice(0, 3),
+            blurb: shelf.blurb,
+            tags: shelf.tags || [],
+          };
+          console.log("[getPreviewData] mapped shelf", sectionId, result);
+          return result;
+        }
+      }
+    }
+    console.log("[getPreviewData] no preview for", sectionId);
     return null;
-  };
+  }
 
-  const previewData = hoveredItem ? getPreviewData(hoveredItem) : null;
+  const previewData = effectiveHoveredItem
+    ? getPreviewData(effectiveHoveredItem)
+    : null;
 
   return (
-    <div className={`magazine-root ${introActive ? "intro" : ""}`}>
-      <aside className="magazine-left">
-        <h1 className="magazine-name">
-          <Typewriter
-            text="Olivia Lee"
-            start={step === 0 || typedOnce}
-            onComplete={next}
-            instant={typedOnce}
-          />
-          <span className="cite-sup" aria-hidden>
-            1
-          </span>
-        </h1>
-        <h2 className="magazine-name">
-          <i>
-            <SubtitleTypewriter
-              tokens={[
-                { type: "text", content: "Multimedia" },
-                { type: "sup", content: "2" },
-                { type: "text", content: "\u00A0Designer" },
-                { type: "sup", content: "3" },
-              ]}
-              start={step === 1 || typedOnce}
-              onComplete={() => setStep(2)}
-              instant={typedOnce}
-            />
-          </i>
-        </h2>
-        <nav className="magazine-toc">
-          <ul>
-            <li>
-              <ul className={`toc-dropdown`}>
-                <li>
-                  <Link
-                    to="/works/lessons"
-                    onMouseEnter={() => setHoveredItem("lip")}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <TocLineTyped
-                      title="Lessons in Perspective"
-                      page={1}
-                      start={step === 2 || typedOnce}
-                      onComplete={next}
-                      instant={typedOnce}
-                    />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/works/installation/saintbreak"
-                    onMouseEnter={() => setHoveredItem("saintbreak")}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <TocLineTyped
-                      title="Saint Break"
-                      page={2}
-                      start={step === 3 || typedOnce}
-                      onComplete={next}
-                      instant={typedOnce}
-                    />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/works/newvoices"
-                    onMouseEnter={() => setHoveredItem("newvoices")}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <TocLineTyped
-                      title="New Voices"
-                      page={3}
-                      start={step === 4 || typedOnce}
-                      onComplete={next}
-                      instant={typedOnce}
-                    />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/works/installation/girltime"
-                    onMouseEnter={() => setHoveredItem("girltime")}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <TocLineTyped
-                      title="Girl Time"
-                      page={4}
-                      start={step === 5 || typedOnce}
-                      onComplete={next}
-                      instant={typedOnce}
-                    />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/works/installation/tinydesk"
-                    onMouseEnter={() => setHoveredItem("tinydesk")}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <TocLineTyped
-                      title="Tiny Desk VJ"
-                      page={5}
-                      start={step === 6 || typedOnce}
-                      onComplete={next}
-                      instant={typedOnce}
-                    />
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <ul className={`toc-dropdown`}>
-                <li>
-                  <Link
-                    to="/works/videoart"
-                    onMouseEnter={() => setHoveredItem("videoart")}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <TocLineTyped
-                      title="Video Art"
-                      page={6}
-                      start={step === 7 || typedOnce}
-                      onComplete={next}
-                      instant={typedOnce}
-                    />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/works/webart"
-                    onMouseEnter={() => setHoveredItem("webart")}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <TocLineTyped
-                      title="Creative Coding"
-                      page={7}
-                      start={step === 8 || typedOnce}
-                      onComplete={next}
-                      instant={typedOnce}
-                    />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/works/collage"
-                    onMouseEnter={() => setHoveredItem("collage")}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    <TocLineTyped
-                      title="Static Art & Collage"
-                      page={8}
-                      start={step === 9 || typedOnce}
-                      onComplete={next}
-                      instant={typedOnce}
-                    />
-                  </Link>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="magazine-about">
-          <p>
-            <Typewriter
-              text={`I'm a multimedia designer and creative technologist based in Brooklyn, and I'm interested in poetics, audio/visual technology, production design, and interactive web art. My skillset includes HTML, CSS, and Javascript frameworks, such as React & Three.js, as well as audio/visual softwares like Resolume Arena, Ableton, TouchDesigner, GrandMA Lighting Consoles, and Adobe Suite. I have experience designing and developing websites, interactive media installations, live visuals for performance, and video art pieces.`}
-              start={step === 9 || typedOnce}
-              instant={typedOnce}
-              onComplete={next}
-            />
-          </p>
-        </div>
-        <ul className="magazine-citations">
-          <li>
-            <span className="cite-num">1</span>
-            <a
-              href="/portfolio/images/aboutolivia/Lee.Olivia_Resume_Dev.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              // open as a direct file link to avoid SPA routing
-            >
-              <em>
-                <Typewriter
-                  text="Resume"
-                  start={step === 10 || typedOnce}
-                  onComplete={next}
-                  instant={typedOnce}
-                />
-              </em>
-            </a>
-          </li>
-          <li>
-            <span className="cite-num">2</span>
-            <a
-              href="https://github.com/olivia-em"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <em>
-                <Typewriter
-                  text="Github"
-                  start={step === 11 || typedOnce}
-                  onComplete={next}
-                  instant={typedOnce}
-                />
-              </em>
-            </a>
-          </li>
-          <li>
-            <span className="cite-num">3</span>
-            <a
-              href="https://www.instagram.com/oli.via.online/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <em>
-                <Typewriter
-                  text="Instagram"
-                  start={step === 12 || typedOnce}
-                  onComplete={finish}
-                  instant={typedOnce}
-                />
-              </em>
-            </a>
-          </li>
-        </ul>
-      </aside>
-
-      <section className="magazine-right">
-        <div className="collage-wrap">
-          <div
-            className={`collage ${previewData ? "blurred" : ""}`}
-            aria-hidden={!showCollage}
-          >
-            {showCollage &&
-              images.map((src, i) => (
-                <img
-                  key={src}
-                  src={`${import.meta.env.BASE_URL}${src}`}
-                  className={`c-img c-img-${i + 1}`}
-                  alt={`Olivia collage ${i + 1}`}
-                  loading="lazy"
-                  onLoad={onImageLoad}
-                />
-              ))}
-          </div>
-
-          {/* Preview overlay on hover */}
-          {previewData && (
-            <div className="preview-overlay">
-              <div className="preview-images-center">
-                <div className="preview-images-stack">
-                  {previewData.images[0] && (
-                    <>
-                      <img
-                        src={`${import.meta.env.BASE_URL}${
-                          previewData.images[0]
-                        }`}
-                        alt="Preview"
-                        className="preview-image preview-image-1"
-                      />
-                      <span className="preview-blurb">{previewData.blurb}</span>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* white cover that slides left on first-run reveal */}
-          {introActive && (
-            <div
-              className={`collage-cover ${revealed ? "reveal" : ""}`}
-              onTransitionEnd={onCoverTransitionEnd}
-            />
-          )}
-        </div>
+    <div className="magazine-scroll">
+      <div id="home">
+        <HomeCollage
+          showCollage={showCollage}
+          onImageLoad={onImageLoad}
+          previewData={previewData}
+          introActive={introActive}
+          revealed={revealed}
+          onBackToHome={handleBackToHome}
+        />
+      </div>
+      <section id="project-collex" className="magazine-section">
+        <CollexPage />
       </section>
+      <section id="project-lessons" className="magazine-section">
+        <LessonsInPerspective />
+      </section>
+      <section id="project-saintbreak" className="magazine-section">
+        <SaintBreakPage />
+      </section>
+      <section id="project-newvoices" className="magazine-section">
+        <NewVoicesPage />
+      </section>
+      <section id="project-girltime" className="magazine-section">
+        <GirlTimePage />
+      </section>
+      <section id="project-tinydesk" className="magazine-section">
+        <TinyDeskPage />
+      </section>
+      <section id="project-videoart" className="magazine-section">
+        <VideoArtPage />
+      </section>
+      <section id="project-webart" className="magazine-section">
+        <WebArtPage />
+      </section>
+      <section id="project-design" className="magazine-section">
+        <CollagePage />
+      </section>
+      <section id="about" className="magazine-section">
+        <AboutPage />
+      </section>
+      <BackToHomeButton onClick={handleBackToHome} />
     </div>
   );
 }

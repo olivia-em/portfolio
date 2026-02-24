@@ -248,182 +248,84 @@
       ]
     },
     {
-      "id": "design",
-      "title": "Design / Collage",
-      "hasIndividualPages": false,
-      "route": "/works/design",
-      "heroImage": "images/design/collage/IMG_0908.JPG",
-      "blurb": "Digital and physical collages blending photography, typography, and mixed media.",
+      "id": "designprojects",
+      "title": "Design Projects",
+      "hasIndividualPages": true,
       "items": [
         {
-          "id": "alteregosposter",
-          "title": "Alter Egos Poster",
-          "image": "images/design/AlterEgosPoster.png",
-          "alt": "Alter Egos Poster"
-        },
-        {
-          "id": "img0908",
-          "title": "Collage 1",
-          "image": "images/design/IMG_0908.JPG",
-          "alt": "Collage 1"
-        },
-        {
-          "id": "img1825",
-          "title": "Collage 2",
-          "image": "images/design/IMG_1825.JPG",
-          "alt": "Collage 2"
-        },
-        {
-          "id": "img1827",
-          "title": "Collage 3",
-          "image": "images/design/IMG_1827.JPG",
-          "alt": "Collage 3"
-        },
-        {
-          "id": "img1828",
-          "title": "Collage 4",
-          "image": "images/design/IMG_1828.JPG",
-          "alt": "Collage 4"
-        },
-        {
-          "id": "img1829",
-          "title": "Collage 5",
-          "image": "images/design/IMG_1829.JPG",
-          "alt": "Collage 5"
-        },
-        {
-          "id": "img1830",
-          "title": "Collage 6",
-          "image": "images/design/IMG_1830.JPG",
-          "alt": "Collage 6"
-        },
-        {
-          "id": "img1831",
-          "title": "Collage 7",
-          "image": "images/design/IMG_1831.JPG",
-          "alt": "Collage 7"
-        },
-        {
-          "id": "img1836",
-          "title": "Collage 8",
-          "image": "images/design/IMG_1836.JPG",
-          "alt": "Collage 8"
-        },
-        {
-          "id": "img1837",
-          "title": "Collage 9",
-          "image": "images/design/IMG_1837.JPG",
-          "alt": "Collage 9"
-        },
-        {
-          "id": "img1838",
-          "title": "Collage 10",
-          "image": "images/design/IMG_1838.JPG",
-          "alt": "Collage 10"
-        },
-        {
-          "id": "img1839",
-          "title": "Collage 11",
-          "image": "images/design/IMG_1839.JPG",
-          "alt": "Collage 11"
-        },
-        {
-          "id": "img1840",
-          "title": "Collage 12",
-          "image": "images/design/IMG_1840.JPG",
-          "alt": "Collage 12"
-        },
-        {
-          "id": "img1841",
-          "title": "Collage 13",
-          "image": "images/design/IMG_1841.JPG",
-          "alt": "Collage 13"
-        },
-        {
-          "id": "img1842",
-          "title": "Collage 14",
-          "image": "images/design/IMG_1842.JPG",
-          "alt": "Collage 14"
-        },
-        {
-          "id": "img1843",
-          "title": "Collage 15",
-          "image": "images/design/IMG_1843.JPG",
-          "alt": "Collage 15"
-        },
-        {
-          "id": "img9332",
-          "title": "Collage 16",
-          "image": "images/design/IMG_9332.JPG",
-          "alt": "Collage 16"
-        },
-        {
-          "id": "recordingfinal",
-          "title": "Recording Final",
-          "image": "images/design/Lee-Olivia-RecordingFinal.png",
-          "alt": "Recording Final"
-        },
-        {
-          "id": "fbc",
-          "title": "FBC",
-          "image": "images/design/Olivia-Lee_FBC.png",
-          "alt": "FBC"
-        },
-        {
-          "id": "bodiesbodies",
-          "title": "Bodies Bodies",
-          "image": "images/design/bodiesbodies.JPG",
-          "alt": "Bodies Bodies"
-        },
-        {
-          "id": "elevate",
-          "title": "Elevate",
-          "image": "images/design/elevate.JPG",
-          "alt": "Elevate"
-        },
-        {
-          "id": "mindsettings",
-          "title": "Mind Settings",
-          "image": "images/design/mindsettings.png",
-          "alt": "Mind Settings"
-        },
-        {
-          "id": "perspective",
-          "title": "Perspective",
-          "image": "images/design/perspective.JPG",
-          "alt": "Perspective"
-        },
-        {
-          "id": "untitled",
-          "title": "Untitled",
-          "image": "images/design/untitled.jpg",
-          "alt": "Untitled"
-        },
-        {
-          "id": "voyeur",
-          "title": "Voyeur",
-          "image": "images/design/voyeur.JPG",
-          "alt": "Voyeur"
-        },
-        {
-          "id": "wildflower",
-          "title": "Wildflower",
-          "image": "images/design/wildflower.png",
-          "alt": "Wildflower"
+          "id": "collex",
+          "title": "Collected Exorcisms",
+          "slug": "collex",
+          "route": "/works/designprojects/collex",
+          "heroImage": "images/design/collex-images/collex_pngs47.png",
+          "image": "images/design/collex-images/collex_pngs47.png",
+          "extraImages": [
+            "images/design/collex-images/grid/collex_pngs2.png",
+            "images/design/collex-images/grid/collex_pngs3.png",
+            "images/design/collex-images/grid/collex_pngs4.png",
+            "images/design/collex-images/grid/collex_pngs5.png",
+            "images/design/collex-images/grid/collex_pngs6.png",
+            "images/design/collex-images/grid/collex_pngs7.png",
+            "images/design/collex-images/grid/collex_pngs8.png",
+            "images/design/collex-images/grid/collex_pngs9.png",
+            "images/design/collex-images/grid/collex_pngs10.png",
+            "images/design/collex-images/grid/collex_pngs11.png",
+            "images/design/collex-images/grid/collex_pngs12.png",
+            "images/design/collex-images/grid/collex_pngs13.png",
+            "images/design/collex-images/grid/collex_pngs14.png",
+            "images/design/collex-images/grid/collex_pngs15.png",
+            "images/design/collex-images/grid/collex_pngs16.png",
+            "images/design/collex-images/grid/collex_pngs17.png",
+            "images/design/collex-images/grid/collex_pngs18.png",
+            "images/design/collex-images/grid/collex_pngs19.png",
+            "images/design/collex-images/grid/collex_pngs20.png",
+            "images/design/collex-images/grid/collex_pngs21.png",
+            "images/design/collex-images/grid/collex_pngs22.png",
+            "images/design/collex-images/grid/collex_pngs23.png",
+            "images/design/collex-images/grid/collex_pngs24.png",
+            "images/design/collex-images/grid/collex_pngs25.png",
+            "images/design/collex-images/grid/collex_pngs26.png",
+            "images/design/collex-images/grid/collex_pngs27.png",
+            "images/design/collex-images/grid/collex_pngs28.png",
+            "images/design/collex-images/grid/collex_pngs29.png",
+            "images/design/collex-images/grid/collex_pngs30.png",
+            "images/design/collex-images/grid/collex_pngs31.png",
+            "images/design/collex-images/grid/collex_pngs32.png",
+            "images/design/collex-images/grid/collex_pngs33.png",
+            "images/design/collex-images/grid/collex_pngs34.png",
+            "images/design/collex-images/grid/collex_pngs35.png",
+            "images/design/collex-images/grid/collex_pngs36.png",
+            "images/design/collex-images/grid/collex_pngs37.png",
+            "images/design/collex-images/grid/collex_pngs38.png",
+            "images/design/collex-images/grid/collex_pngs39.png",
+            "images/design/collex-images/grid/collex_pngs40.png",
+            "images/design/collex-images/grid/collex_pngs41.png",
+            "images/design/collex-images/grid/collex_pngs42.png",
+            "images/design/collex-images/grid/collex_pngs43.png",
+            "images/design/collex-images/grid/collex_pngs44.png",
+            "images/design/collex-images/grid/collex_pngs45.png",
+            "images/design/collex-images/grid/collex_pngs46.png",
+            "images/design/collex-images/grid/collex_pngs48.png"
+          ],
+          "year": 2025,
+          "alt": "Collected Exorcisms",
+          "description": "Collected Exorcisms is a poetry collection that I’m developing through an extended engagement with memory, loss, and the creative processes that arise in the midst of both. This project is part of my thesis for my M.P.S. at NYU Tisch School of the Arts, where I’m pursuing a degree in Interactive Telecommunications. The book gathers (approximately) twenty poetic vignettes and visual collages drawn from personal memories and photographs. Rather than beginning with a fixed structure, the work is unfolding through an iterative, exploratory practice that involves returning to fragments, reworking them across multiple mediums, and allowing each version to shape the next. This process is becoming a way for me to understand how I navigate grief, using revisitation, rearrangement, and layering as methods for processing difficult experiences. The project is still in development, but I’m excited to share the work as it evolves. The images below are from the current iteration of the book, which is being designed in Adobe InDesign and will be printed as a physical book. An interactive website will also accompany this book, and is forthcoming.",
+          "tags": ["Print", "Multimedia", "Poetry", "Visual Design"],
+          "blurb": "A multimedia poetry book exploring themes of grief and transformation."
         }
       ]
     },
     {
-      "id": "collage",
-      "title": "Collage",
+      "id": "staticdesign",
+      "title": "Static Design",
       "hasIndividualPages": false,
-      "route": "/works/collage",
+      "route": "/works/staticdesign",
       "heroImages": [
-        "images/design/IMG_0908.JPG",
+        "images/design/collage/IMG_0908.JPG",
         "images/design/collage/thumbnails/perspective.jpg",
         "images/design/collage/thumbnails/voyeur.jpg"
       ],
-      "blurb": "Layered compositions blending photography, typography, and mixed media.",
+      "blurb": "Visual media compositions including photography, digital design, and mixed media.",
       "items": [
         {
           "id": "IMG_0908",
@@ -440,6 +342,13 @@
           "alt": "Alter Egos Poster"
         },
         {
+          "id": "wildflower",
+          "title": "Wildflower",
+          "image": "images/design/collage/wildflower.jpg",
+          "thumbnail": "images/design/collage/thumbnails/wildflower.jpg",
+          "alt": "Wildflower"
+        },
+        {
           "id": "IMG_1827",
           "title": "Collage 2",
           "image": "images/design/collage/IMG_1827.JPG",
@@ -452,6 +361,41 @@
           "image": "images/design/collage/IMG_1828.JPG",
           "thumbnail": "images/design/collage/thumbnails/IMG_1828.jpg",
           "alt": "Collage 3"
+        },
+        {
+          "id": "DL-1",
+          "title": "DL 1",
+          "image": "images/design/collage/DL-1.png",
+          "thumbnail": "images/design/collage/thumbnails/DL-1.jpg",
+          "alt": "DL 1"
+        },
+        {
+          "id": "DL-2",
+          "title": "DL 2",
+          "image": "images/design/collage/DL-2.png",
+          "thumbnail": "images/design/collage/thumbnails/DL-2.jpg",
+          "alt": "DL 2"
+        },
+        {
+          "id": "DL-3",
+          "title": "DL 3",
+          "image": "images/design/collage/DL-3.png",
+          "thumbnail": "images/design/collage/thumbnails/DL-3.jpg",
+          "alt": "DL 3"
+        },
+        {
+          "id": "DL-4",
+          "title": "DL 4",
+          "image": "images/design/collage/DL-4.png",
+          "thumbnail": "images/design/collage/thumbnails/DL-4.jpg",
+          "alt": "DL 4"
+        },
+        {
+          "id": "DL-5",
+          "title": "DL 5",
+          "image": "images/design/collage/DL-5.png",
+          "thumbnail": "images/design/collage/thumbnails/DL-5.jpg",
+          "alt": "DL 5"
         },
         {
           "id": "IMG_1829",
@@ -550,13 +494,6 @@
           "image": "images/design/collage/voyeur.jpg",
           "thumbnail": "images/design/collage/thumbnails/voyeur.jpg",
           "alt": "Voyeur"
-        },
-        {
-          "id": "wildflower",
-          "title": "Wildflower",
-          "image": "images/design/collage/wildflower.jpg",
-          "thumbnail": "images/design/collage/thumbnails/wildflower.jpg",
-          "alt": "Wildflower"
         }
       ]
     },

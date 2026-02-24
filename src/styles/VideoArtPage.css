@@ -1,8 +1,18 @@
 .videoart-page {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw; */
+  min-height: 100vh;
   overflow-y: auto;
-  background-color: #0f0f0f;
+  background: #f8f6f3;
+  color: #222;
+}
+
+.videoart-column {
+  /* max-width: 720px; */
+  margin: 0 auto;
+  padding: 2.4rem 4vw 4rem 0vw;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
 .videoart-grid {
@@ -20,9 +30,9 @@
   transition: transform 0.2s ease;
 }
 
-.videoart-grid-item:hover {
-  transform: scale(1.02);
-}
+/* .videoart-grid-item:hover {
+ transform: scale(1.02); 
+} */
 
 .videoart-grid-item img {
   width: 100%;

@@ -1,14 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "./BackToHomeButton.css";
 
-export default function BackToHomeButton() {
-  const navigate = useNavigate();
-
+export default function BackToHomeButton({ onClick }) {
   return (
     <button
       className="back-to-home-button"
-      onClick={() => navigate("/")}
+      onClick={onClick}
       aria-label="Back to home"
     >
       ★
