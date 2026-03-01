@@ -9,6 +9,12 @@ if (window.location.pathname === "/portfolio") {
   window.location.replace("/portfolio/");
 } else {
   // Handle redirect from 404.html for GitHub Pages client-side routing
+  // const redirectPath = sessionStorage.getItem("redirectPath");
+  // if (redirectPath) {
+  //   sessionStorage.removeItem("redirectPath");
+  //   window.history.replaceState(null, "", redirectPath);
+  // }
+
   const redirectPath = sessionStorage.getItem("redirectPath");
   if (redirectPath) {
     sessionStorage.removeItem("redirectPath");
@@ -19,9 +25,9 @@ if (window.location.pathname === "/portfolio") {
 
   root.render(
     <React.StrictMode>
-      <BrowserRouter basename="/portfolio">
+      <BrowserRouter basename="/">
         <App />
       </BrowserRouter>
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 }

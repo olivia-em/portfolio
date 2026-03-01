@@ -2,13 +2,13 @@ import React from "react";
 import "../styles/magazine.css";
 
 const images = [
-  "/images/aboutolivia/IMG_1298.JPG",
-  "/images/aboutolivia/IMG_1377.jpg",
-  "/images/aboutolivia/IMG_9088.JPG",
-  "/images/aboutolivia/IMG_9115.jpg",
-  "/images/aboutolivia/olivia-alterego.png",
-  "/images/aboutolivia/oliviaMOM.PNG",
-  "/images/aboutolivia/LIP2.png",
+  "images/aboutolivia/IMG_1298.JPG",
+  "images/aboutolivia/IMG_1377.jpg",
+  "images/aboutolivia/IMG_9088.JPG",
+  "images/aboutolivia/IMG_9115.jpg",
+  "images/aboutolivia/olivia-alterego.png",
+  "images/aboutolivia/oliviaMOM.PNG",
+  "images/aboutolivia/LIP2.png",
 ];
 
 export default function HomeCollage({

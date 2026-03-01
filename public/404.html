@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -10,6 +10,24 @@
         window.location.pathname + window.location.search + window.location.hash
       );
       window.location.replace("/portfolio/");
+    </script>
+  </head>
+  <body></body>
+</html> -->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      sessionStorage.setItem(
+        "redirectPath",
+        window.location.pathname +
+          window.location.search +
+          window.location.hash,
+      );
+      window.location.replace("/");
     </script>
   </head>
   <body></body>

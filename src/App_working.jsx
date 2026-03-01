@@ -46,11 +46,11 @@ export default function App() {
     () => typeof window !== "undefined" && window.innerWidth <= 920,
   );
   const [pendingScrollTarget, setPendingScrollTarget] = React.useState(null);
-
-  // Preloader now fires for ALL visitors on first load, not just mobile
   const [showInitialPreloader, setShowInitialPreloader] = React.useState(
     () =>
-      typeof window !== "undefined" && window.location.pathname === "/",
+      typeof window !== "undefined" &&
+      window.innerWidth <= 920 &&
+      window.location.pathname === "/",
   );
   const [isInitialPreloaderFading, setIsInitialPreloaderFading] =
     React.useState(false);

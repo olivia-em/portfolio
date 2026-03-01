@@ -9,7 +9,7 @@
 .videoart-column {
   /* max-width: 720px; */
   margin: 0 auto;
-  padding: 2.4rem 4vw 4rem 0vw;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;

@@ -1,3 +1,68 @@
+.collage-preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.collage-preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.collage-preloader-stars {
+  position: relative;
+  width: clamp(140px, 20vw, 280px);
+  height: clamp(140px, 20vw, 280px);
+}
+
+.collage-preloader-star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: clamp(96px, 16vw, 220px);
+  line-height: 1;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+#s1 {
+  color: #fff;
+  transform: translate(calc(-50% - 14px), -50%);
+  animation: starSpinClockwise 8s linear infinite;
+}
+
+#s2 {
+  color: #00c8ff;
+  transform: translate(calc(-50% + 14px), calc(-50% - 14px));
+  animation: starSpinClockwise 5s linear infinite;
+}
+
+@keyframes starSpinClockwise {
+  from {
+    transform: translate(calc(-50% - 14px), -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(calc(-50% - 14px), -50%) rotate(360deg);
+  }
+}
+/* 
+@keyframes starSpinCounterClockwise {
+  from {
+    transform: translate(calc(-50% + 14px), calc(-50% - 14px)) rotate(0deg);
+  }
+  to {
+    transform: translate(calc(-50% + 14px), calc(-50% - 14px)) rotate(-360deg);
+  }
+} */
+
 /* Lightbox */
 .lightbox {
   position: fixed;

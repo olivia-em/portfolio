@@ -556,28 +556,112 @@
   /* max-height: 32vh; */
 }
 
+/* Mobile toggle button */
+.mobile-toggle-button {
+  display: none;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #00c8ff;
+  box-shadow: 0 2px 12px rgba(0, 200, 255, 0.3);
+  cursor: pointer;
+  z-index: 2000;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-toggle-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 200, 255, 0.5);
+}
+
+.mobile-toggle-button:active {
+  transform: scale(0.95);
+}
+
+.mobile-toggle-star {
+  font-size: 28px;
+  line-height: 1;
+  color: #00c8ff;
+  display: block;
+}
+
+.mobile-toggle-button.open {
+  background: #00c8ff;
+}
+
+.mobile-toggle-star.inverted {
+  color: #fff;
+}
+
+body.collage-preloading .mobile-toggle-button {
+  display: none !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 920px) {
+  /* Show mobile toggle button */
+  .mobile-toggle-button {
+    display: flex;
+  }
+
+  /* Hide back to home button on mobile */
+  .back-to-home-button {
+    display: none !important;
+  }
+
   .magazine-root {
     grid-template-columns: 1fr;
     gap: 0;
-    /* padding: 1.6rem; */
   }
+
   .magazine-left {
-    order: 2;
-    padding: 1.2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg);
+    z-index: 1999;
+    overflow-y: auto;
+    padding: 1.5rem;
+    /* padding-top: 5rem; */
   }
+
+  .magazine-left.mobile-hide {
+    display: none;
+  }
+
+  .magazine-left.mobile-show {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .app-right {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .app-right.mobile-hide {
+    display: none;
+  }
+
+  .app-right.mobile-show {
+    display: block;
+  }
+
   .magazine-right {
     order: 1;
     overflow-x: hidden;
   }
 
   .magazine-home-backtohome-star {
-    position: fixed;
-    bottom: 1vh;
-    left: 75vw;
-    color: black;
-    z-index: 100;
+    display: none;
   }
 
   /* Disable hover preview on mobile */

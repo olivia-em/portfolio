@@ -48,6 +48,7 @@ export default function MagazineHome({
   setGlowingTags = () => {},
   hoveredItem,
   setHoveredItem,
+  onReady = () => {},
 }) {
   const sectionIds = [
     "home",
@@ -63,6 +64,74 @@ export default function MagazineHome({
     "about",
   ];
 
+  React.useEffect(() => {
+    // Force all images to load eagerly so they don't defer
+    const imgs = Array.from(document.querySelectorAll(".magazine-scroll img"));
+    imgs.forEach((img) => {
+      img.loading = "eager";
+    });
+  }, []);
+
+  React.useEffect(() => {
+    let observer;
+
+    const tryAttach = () => {
+      const imgs = Array.from(
+        document.querySelectorAll(".magazine-scroll img"),
+      );
+      console.log("[READY] tryAttach found imgs:", imgs.length);
+
+      if (imgs.length === 0) {
+        observer = new MutationObserver(() => {
+          const newImgs = Array.from(
+            document.querySelectorAll(".magazine-scroll img"),
+          );
+          if (newImgs.length > 0) {
+            console.log("[READY] MutationObserver found imgs:", newImgs.length);
+            observer.disconnect();
+            attachListeners(newImgs);
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        return;
+      }
+
+      attachListeners(imgs);
+    };
+
+    const attachListeners = (imgs) => {
+      let remaining = imgs.filter(
+        (img) => !img.complete || img.naturalWidth === 0,
+      ).length;
+
+      console.log("[READY] total imgs:", imgs.length, "pending:", remaining);
+
+      if (remaining === 0) {
+        console.log("[READY] all cached, calling onReady immediately");
+        onReady();
+        return;
+      }
+
+      const onSettle = () => {
+        remaining -= 1;
+        console.log("[READY] image settled, remaining:", remaining);
+        if (remaining === 0) {
+          console.log("[READY] all done, calling onReady");
+          onReady();
+        }
+      };
+
+      imgs.forEach((img) => {
+        if (!img.complete || img.naturalWidth === 0) {
+          img.addEventListener("load", onSettle, { once: true });
+          img.addEventListener("error", onSettle, { once: true });
+        }
+      });
+    };
+
+    tryAttach();
+    return () => observer?.disconnect();
+  }, []);
   // URL hash tracking + tag glowing via scroll
   React.useEffect(() => {
     const container = getScrollContainer();

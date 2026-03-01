@@ -70,7 +70,7 @@ const VideoArtPage = () => {
     >
       <h1
         className="section-title"
-        style={{ textAlign: "left", margin: "2rem 0 0rem 0" }}
+        style={{ textAlign: "left", margin: "2rem 0rem 0rem 2rem" }}
       >
         Video Art
       </h1>

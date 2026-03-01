@@ -5,6 +5,7 @@ import "../styles/WebArtPage.css";
 
 import projectsData from "../data/projects.json";
 
+// Find the static design shelf and get its items
 const collageShelf = projectsData.shelves.find(
   (shelf) => shelf.id === "staticdesign",
 );
@@ -16,10 +17,96 @@ const collageImages = collageShelf
     }))
   : [];
 
+const PRELOADER_MIN_DURATION_MS = 3000;
+
 export default function CollagePage() {
   const navigate = useNavigate();
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [areImagesReady, setAreImagesReady] = React.useState(false);
+  const [isMinTimeComplete, setIsMinTimeComplete] = React.useState(false);
+  const [isFadingOut, setIsFadingOut] = React.useState(false);
+  const [isPreloaderDone, setIsPreloaderDone] = React.useState(false);
+
+  // Minimum preloader duration timer
+  React.useEffect(() => {
+    const minTimer = window.setTimeout(() => {
+      setIsMinTimeComplete(true);
+    }, PRELOADER_MIN_DURATION_MS);
+
+    return () => {
+      window.clearTimeout(minTimer);
+    };
+  }, []);
+
+  // Fade out preloader when both conditions met
+  React.useEffect(() => {
+    if (areImagesReady && isMinTimeComplete && !isFadingOut) {
+      setIsFadingOut(true);
+    }
+  }, [areImagesReady, isMinTimeComplete, isFadingOut]);
+
+  // Fallback: ensure preloader completes even if transitionend does not fire
+  React.useEffect(() => {
+    if (!isFadingOut || isPreloaderDone) return;
+
+    const fallbackTimer = window.setTimeout(() => {
+      setIsPreloaderDone(true);
+    }, 1200);
+
+    return () => {
+      window.clearTimeout(fallbackTimer);
+    };
+  }, [isFadingOut, isPreloaderDone]);
+
+  // Preload all collage images
+  React.useEffect(() => {
+    if (collageImages.length === 0) {
+      setAreImagesReady(true);
+      return;
+    }
+
+    let isCancelled = false;
+    let loadedCount = 0;
+    const baseUrl = import.meta.env.BASE_URL;
+
+    const onImageFinished = () => {
+      loadedCount += 1;
+      if (!isCancelled && loadedCount === collageImages.length) {
+        setAreImagesReady(true);
+      }
+    };
+
+    const preloaders = collageImages.map((img) => {
+      const preloader = new window.Image();
+      preloader.onload = onImageFinished;
+      preloader.onerror = onImageFinished;
+      preloader.src = `${baseUrl}${img.thumb}`;
+      return preloader;
+    });
+
+    return () => {
+      isCancelled = true;
+      preloaders.forEach((preloader) => {
+        preloader.onload = null;
+        preloader.onerror = null;
+      });
+    };
+  }, []);
+
+  const isPageLoading = !isPreloaderDone;
+
+  React.useEffect(() => {
+    if (isPageLoading) {
+      document.body.classList.add("collage-preloading");
+    } else {
+      document.body.classList.remove("collage-preloading");
+    }
+
+    return () => {
+      document.body.classList.remove("collage-preloading");
+    };
+  }, [isPageLoading]);
 
   const openLightbox = (index) => {
     setIsLoading(true);
@@ -45,6 +132,7 @@ export default function CollagePage() {
       prev === collageImages.length - 1 ? 0 : prev + 1,
     );
 
+  // Keyboard navigation
   React.useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -61,6 +149,29 @@ export default function CollagePage() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedImageIndex, navigate]);
+
+  if (isPageLoading) {
+    return (
+      <div
+        className={`collage-preloader ${isFadingOut ? "fade-out" : ""}`}
+        aria-label="Loading collage images"
+        onTransitionEnd={() => {
+          if (isFadingOut) {
+            setIsPreloaderDone(true);
+          }
+        }}
+      >
+        <div className="collage-preloader-stars">
+          <div id="s1" className="collage-preloader-star">
+            ★
+          </div>
+          <div id="s2" className="collage-preloader-star">
+            ★
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -102,6 +213,7 @@ export default function CollagePage() {
             <img
               src={`${import.meta.env.BASE_URL}${img.thumb}`}
               alt={`Collage ${index + 1}`}
+              loading="lazy"
             />
           </div>
         ))}
