@@ -221,6 +221,31 @@
   /* padding: 0.1em 2em; */
   transition: color 0.2s;
 }
+
+.toc-subitems {
+  margin: 0.35rem 0 0.45rem 0.9rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.toc-subitem-link {
+  display: block;
+  font-size: 0.9rem;
+  font-style: normal;
+  color: var(--muted);
+  opacity: 0.88;
+  text-decoration: none;
+}
+
+.toc-subitem-link:hover,
+.toc-subitem-link:focus {
+  color: var(--accent);
+  opacity: 1;
+}
+
 .toc-dropdown li a {
   color: var(--text);
   text-decoration: none;

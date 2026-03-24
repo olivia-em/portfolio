@@ -1,10 +1,7 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/ProjectDetail.css";
-import styles from "../styles/InstallationPage.module.css";
 import projectsData from "../data/projects.json";
-import BackToHomeButton from "../components/BackToHomeButton";
-import StarPreloader from "../components/StarPreloader";
 
 const designShelf = projectsData.shelves.find(
   (shelf) => shelf.id === "designprojects",
@@ -13,76 +10,157 @@ const project = designShelf?.items?.find((item) => item.id === "collex");
 
 export default function CollexPage() {
   const navigate = useNavigate();
-  const [selectedImageIndex, setSelectedImageIndex] = React.useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [selectedMediaIndex, setSelectedMediaIndex] = React.useState(null);
+  const [activeLightboxItems, setActiveLightboxItems] = React.useState([]);
 
   if (!project) return <div>Project not found</div>;
 
-  // Use grid images for grid, reconstruct high-res paths for lightbox
-  const gridImages = [
-    {
-      src: project.image,
-      alt: project.alt || project.title,
-    },
-    ...(project.extraImages || []).map((img, idx) => ({
+  const bookSection = project.sections?.find(
+    (section) => section.id === "book",
+  );
+  const websiteSection = project.sections?.find(
+    (section) => section.id === "website",
+  );
+
+  const buildImageItems = React.useCallback((section, labelPrefix) => {
+    const firstImage = section?.image
+      ? [
+          {
+            type: "image",
+            src: section.image,
+            fullSrc: section.image.replace("/grid/", "/"),
+            alt: `${labelPrefix} image 1`,
+          },
+        ]
+      : [];
+
+    const extraImages = (section?.extraImages || []).map((img, idx) => ({
+      type: "image",
       src: img,
-      alt: `${project.title} ${idx + 2}`,
-    })),
+      fullSrc: img.replace("/grid/", "/"),
+      alt: `${labelPrefix} image ${idx + 2}`,
+    }));
+
+    return [...firstImage, ...extraImages];
+  }, []);
+
+  const buildVideoItems = React.useCallback((section, labelPrefix) => {
+    return (section?.videos || []).map((video, idx) => ({
+      type: "video",
+      src: video,
+      alt: `${labelPrefix} video ${idx + 1}`,
+    }));
+  }, []);
+
+  // Book order: video first, then page images.
+  const bookMediaItems = [
+    ...buildVideoItems(bookSection, `${project.title} book`),
+    ...buildImageItems(bookSection, `${project.title} book`),
   ];
-  // Reconstruct high-res paths for lightbox
-  const lightboxImages = [
-    {
-      src: project.image.replace("/grid/", "/"),
-      alt: project.alt || project.title,
-    },
-    ...(project.extraImages || []).map((img, idx) => ({
-      src: img.replace("/grid/", "/"),
-      alt: `${project.title} ${idx + 2}`,
-    })),
+
+  // Website order: lead image(s), then videos.
+  const websiteMediaItems = [
+    ...buildImageItems(websiteSection, `${project.title} website`),
+    ...buildVideoItems(websiteSection, `${project.title} website`),
   ];
 
   // Keyboard navigation for lightbox and page
   React.useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
-        if (selectedImageIndex !== null) {
-          setSelectedImageIndex(null);
+        if (selectedMediaIndex !== null) {
+          setSelectedMediaIndex(null);
+          setActiveLightboxItems([]);
         } else {
           navigate("/");
         }
-      } else if (selectedImageIndex !== null) {
+      } else if (
+        selectedMediaIndex !== null &&
+        activeLightboxItems.length > 0
+      ) {
         if (e.key === "ArrowLeft") {
-          setSelectedImageIndex((prev) =>
-            prev === 0 ? lightboxImages.length - 1 : prev - 1,
+          setSelectedMediaIndex((prev) =>
+            prev === 0 ? activeLightboxItems.length - 1 : prev - 1,
           );
         } else if (e.key === "ArrowRight") {
-          setSelectedImageIndex((prev) =>
-            prev === lightboxImages.length - 1 ? 0 : prev + 1,
+          setSelectedMediaIndex((prev) =>
+            prev === activeLightboxItems.length - 1 ? 0 : prev + 1,
           );
         }
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedImageIndex, navigate, lightboxImages.length]);
+  }, [selectedMediaIndex, navigate, activeLightboxItems]);
 
-  // Lightbox open
-  const openLightbox = (index) => {
-    setIsLoading(true);
-    const img = new window.Image();
-    img.onload = () => {
-      setSelectedImageIndex(index);
-      setIsLoading(false);
-    };
-    img.onerror = () => {
-      setIsLoading(false);
-      alert("Failed to load image");
-    };
-    img.src = `${import.meta.env.BASE_URL}${lightboxImages[index].src}`;
+  const openLightbox = (items, index) => {
+    const selectedItem = items[index];
+    if (!selectedItem) return;
+
+    setActiveLightboxItems(items);
+
+    // Preload images before opening to avoid flashes.
+    if (selectedItem.type === "image") {
+      const img = new window.Image();
+      img.onload = () => {
+        setSelectedMediaIndex(index);
+      };
+      img.onerror = () => {
+        alert("Failed to load image");
+      };
+      img.src = `${import.meta.env.BASE_URL}${selectedItem.fullSrc}`;
+      return;
+    }
+
+    setSelectedMediaIndex(index);
   };
 
   // Lightbox close
-  const closeLightbox = () => setSelectedImageIndex(null);
+  const closeLightbox = () => {
+    setSelectedMediaIndex(null);
+    setActiveLightboxItems([]);
+  };
+
+  const renderMediaGrid = (items, sectionId) => (
+    <div className="collex-masonry-grid collex-section-masonry">
+      {items.map((item, index) => (
+        <button
+          key={`${item.type}-${item.src}-${index}`}
+          className="collex-masonry-item collex-grid-item collex-media-button"
+          type="button"
+          onClick={() => openLightbox(items, index)}
+        >
+          {item.type === "video" ? (
+            <video
+              src={`${import.meta.env.BASE_URL}${item.src}`}
+              className={`collex-grid-media ${
+                sectionId === "book" && index === 0
+                  ? "collex-book-lead-video"
+                  : ""
+              }`}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+          ) : (
+            <img
+              src={`${import.meta.env.BASE_URL}${item.src}`}
+              alt={item.alt}
+              loading="lazy"
+              className="collex-grid-media"
+            />
+          )}
+        </button>
+      ))}
+    </div>
+  );
+
+  const activeMediaItem =
+    selectedMediaIndex !== null
+      ? activeLightboxItems[selectedMediaIndex]
+      : null;
 
   return (
     <div className="project-single-column">
@@ -96,73 +174,138 @@ export default function CollexPage() {
           ))}
         </div>
       )}
-      <div className="project-description">
-        <p>{project.description}</p>
-      </div>
-      <div
-        className="collex-grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "1.5rem",
-          padding: "1rem",
-        }}
+
+      <section
+        id={bookSection?.anchor || "project-collex"}
+        className="collex-section"
       >
-        {gridImages.map((img, index) => (
-          <div
-            key={img.src}
-            className="collex-grid-item"
-            onClick={() => openLightbox(index)}
-            style={{ cursor: "pointer" }}
+        <h2 className="collex-section-title">
+          <a
+            href={bookSection?.link || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="collex-section-link"
           >
-            <img
-              src={`${import.meta.env.BASE_URL}${img.src}`}
-              alt={img.alt}
-              loading="lazy"
-              style={{
-                width: "100%",
-                borderRadius: "8px",
-                transition: "transform 0.3s cubic-bezier(.22,1,.36,1)",
-              }}
-              className="collex-grid-img"
-            />
-          </div>
-        ))}
+            a. Art Book
+          </a>
+        </h2>
+        <div className="project-description">
+          <p>{bookSection?.blurb || ""}</p>
+        </div>
+        {renderMediaGrid(bookMediaItems, "book")}
+      </section>
+
+      <section
+        id={websiteSection?.anchor || "project-collex-website"}
+        className="collex-section"
+      >
+        <h2 className="collex-section-title">
+          <a
+            href={websiteSection?.link || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="collex-section-link"
+          >
+            b. Website
+          </a>
+        </h2>
+        <div className="project-description">
+          <p>{websiteSection?.blurb || ""}</p>
+        </div>
+        {renderMediaGrid(websiteMediaItems, "website")}
+      </section>
+
+      <div className="project-links">
+        {bookSection?.link && (
+          <a
+            href={bookSection.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-link"
+          >
+            <span className="project-link-label">Book</span>
+            <span>→</span>
+          </a>
+        )}
+        {websiteSection?.link && (
+          <a
+            href={websiteSection.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-link"
+          >
+            <span className="project-link-label">Website</span>
+            <span>→</span>
+          </a>
+        )}
       </div>
-      {selectedImageIndex !== null && (
+
+      {selectedMediaIndex !== null && activeMediaItem && (
         <div className="lightbox" onClick={closeLightbox}>
           <div className="lightbox-backdrop"></div>
           <button
-            className="lightbox-arrow lightbox-arrow-left"
+            className="collex-lightbox-close"
+            type="button"
+            aria-label="Close media"
             onClick={(e) => {
               e.stopPropagation();
-              setSelectedImageIndex((prev) =>
-                prev === 0 ? lightboxImages.length - 1 : prev - 1,
-              );
+              closeLightbox();
             }}
           >
-            ←
+            x
           </button>
+          {activeLightboxItems.length > 1 && (
+            <button
+              className="lightbox-arrow lightbox-arrow-left"
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedMediaIndex((prev) =>
+                  prev === 0 ? activeLightboxItems.length - 1 : prev - 1,
+                );
+              }}
+            >
+              ←
+            </button>
+          )}
           <div className="lightbox-carousel">
-            <div className="lightbox-center-image">
-              <img
-                src={`${import.meta.env.BASE_URL}${lightboxImages[selectedImageIndex].src}`}
-                alt={lightboxImages[selectedImageIndex].alt}
-                style={{ maxHeight: "80vh", maxWidth: "90vw" }}
-              />
+            <div
+              className="lightbox-center-image"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {activeMediaItem.type === "video" ? (
+                <video
+                  src={`${import.meta.env.BASE_URL}${activeMediaItem.src}`}
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="collex-lightbox-media"
+                />
+              ) : (
+                <img
+                  src={`${import.meta.env.BASE_URL}${activeMediaItem.fullSrc}`}
+                  alt={activeMediaItem.alt}
+                  className="collex-lightbox-media"
+                />
+              )}
             </div>
           </div>
-          <button
-            className="lightbox-arrow lightbox-arrow-right"
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectedImageIndex((prev) =>
-                prev === lightboxImages.length - 1 ? 0 : prev + 1,
-              );
-            }}
-          >
-            →
-          </button>
+          {activeLightboxItems.length > 1 && (
+            <button
+              className="lightbox-arrow lightbox-arrow-right"
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedMediaIndex((prev) =>
+                  prev === activeLightboxItems.length - 1 ? 0 : prev + 1,
+                );
+              }}
+            >
+              →
+            </button>
+          )}
         </div>
       )}
     </div>

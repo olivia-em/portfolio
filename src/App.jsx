@@ -49,8 +49,7 @@ export default function App() {
 
   // Preloader now fires for ALL visitors on first load, not just mobile
   const [showInitialPreloader, setShowInitialPreloader] = React.useState(
-    () =>
-      typeof window !== "undefined" && window.location.pathname === "/",
+    () => typeof window !== "undefined" && window.location.pathname === "/",
   );
   const [isInitialPreloaderFading, setIsInitialPreloaderFading] =
     React.useState(false);
@@ -81,7 +80,22 @@ export default function App() {
   }, [location]);
 
   const navItems = [
-    { href: "#project-collex", label: "Collected Exorcisms" },
+    {
+      href: "#project-collex",
+      label: "Collected Exorcisms",
+      subItems: [
+        {
+          href: "#project-collex",
+          label: "a. Art Book",
+          hoverId: "project-collex",
+        },
+        {
+          href: "#project-collex-website",
+          label: "b. Website",
+          hoverId: "project-collex",
+        },
+      ],
+    },
     { href: "#project-lessons", label: "Lessons in Perspective" },
     { href: "#project-saintbreak", label: "Saint Break" },
     { href: "#project-newvoices", label: "New Voices" },
@@ -288,6 +302,40 @@ export default function App() {
                               <span className="toc-dots">{dots}</span>
                               {idx + 1}
                             </a>
+                            {Array.isArray(item.subItems) &&
+                              item.subItems.length > 0 && (
+                                <ul className="toc-subitems">
+                                  {item.subItems.map((subItem) => {
+                                    const subTargetId = subItem.href.replace(
+                                      "#",
+                                      "",
+                                    );
+                                    return (
+                                      <li key={subItem.href}>
+                                        <a
+                                          href={subItem.href}
+                                          className="toc-subitem-link"
+                                          onMouseEnter={() => {
+                                            setHoveredItem(
+                                              subItem.hoverId || sectionId,
+                                            );
+                                          }}
+                                          onMouseLeave={() =>
+                                            setHoveredItem(null)
+                                          }
+                                          onClick={(e) => {
+                                            e.preventDefault();
+                                            setShowTOC(false);
+                                            setPendingScrollTarget(subTargetId);
+                                          }}
+                                        >
+                                          {subItem.label}
+                                        </a>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              )}
                             {(item.label === "Tiny Desk VJ" ||
                               item.label === "Static Design") && <br />}
                           </li>
