@@ -301,7 +301,7 @@ export default function App() {
                 <li>
                   <span className="cite-num">1</span>
                   <a
-                    href="/portfolio/images/aboutolivia/Lee.Olivia_Resume_Dev.pdf"
+                    href={`${import.meta.env.BASE_URL}Lee.Olivia_Resume.pdf`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
