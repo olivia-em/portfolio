@@ -29,6 +29,7 @@ const buildSectionTags = () => {
   return {
     home: [],
     "project-collex": find("designprojects", "collex"),
+    "project-collex-website": find("designprojects", "collex"),
     "project-lessons": find("frontend", "lip"),
     "project-saintbreak": find("installation", "saintbreak"),
     "project-newvoices": find("frontend", "newvoices"),
@@ -48,11 +49,13 @@ export default function MagazineHome({
   setGlowingTags = () => {},
   hoveredItem,
   setHoveredItem,
+  onActiveSectionChange = () => {},
   onReady = () => {},
 }) {
   const sectionIds = [
     "home",
     "project-collex",
+    "project-collex-website",
     "project-lessons",
     "project-saintbreak",
     "project-newvoices",
@@ -159,6 +162,7 @@ export default function MagazineHome({
           if (container.scrollTop < 50) {
             window.history.replaceState(null, "", window.location.pathname);
             setGlowingTags([]);
+            onActiveSectionChange("home");
             ticking = false;
             return;
           }
@@ -180,6 +184,7 @@ export default function MagazineHome({
           if (closestSection) {
             window.history.replaceState(null, "", "#" + closestSection);
             setGlowingTags(sectionTags[closestSection] || []);
+            onActiveSectionChange(closestSection);
           }
           ticking = false;
         });
@@ -188,7 +193,7 @@ export default function MagazineHome({
 
     container.addEventListener("scroll", handleScroll, { passive: true });
     return () => container.removeEventListener("scroll", handleScroll);
-  }, [setGlowingTags]);
+  }, [setGlowingTags, onActiveSectionChange]);
 
   // Scroll to section
   const scrollToSection = (id) => {

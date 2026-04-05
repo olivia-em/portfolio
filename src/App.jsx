@@ -42,6 +42,7 @@ const navTags = (() => {
 export default function App() {
   const [glowingTags, setGlowingTags] = React.useState([]);
   const [hoveredItem, setHoveredItem] = React.useState(null);
+  const [activeSection, setActiveSection] = React.useState("home");
   const [showTOC, setShowTOC] = React.useState(
     () => typeof window !== "undefined" && window.innerWidth <= 920,
   );
@@ -191,6 +192,28 @@ export default function App() {
     };
   }, [pendingScrollTarget, showTOC]);
 
+  const handleBackToHome = React.useCallback((e) => {
+    if (e) e.preventDefault();
+    setShowTOC(false);
+    setActiveSection("home");
+
+    const container =
+      document.querySelector(".app-right.mobile-show") ||
+      document.querySelector(".app-right");
+
+    if (container) {
+      container.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => {
+        window.history.replaceState(null, "", window.location.pathname);
+        setGlowingTags([]);
+      }, 400);
+      return;
+    }
+
+    window.history.replaceState(null, "", window.location.pathname);
+    setGlowingTags([]);
+  }, []);
+
   return (
     <HomeProvider>
       <TagGlowContext.Provider value={glowingTags}>
@@ -231,29 +254,29 @@ export default function App() {
               className={`magazine-left ${showTOC ? "mobile-show" : "mobile-hide"}`}
             >
               <h1 className="magazine-name">
-                Olivia Lee
-                <span className="cite-sup" aria-hidden>
-                  1
-                </span>
+                <a
+                  href="#home"
+                  className="magazine-toc-link magazine-home-link"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                  onClick={handleBackToHome}
+                >
+                  Olivia Lee
+                  <span className="cite-sup" aria-hidden>
+                    1
+                  </span>
+                </a>
               </h1>
               <h2 className="magazine-name">
                 <i>
                   <a
                     href="#about"
-                    className="magazine-toc-link"
-                    style={{ color: "inherit", textDecoration: "none" }}
+                    className={`magazine-toc-link ${activeSection === "about" ? "is-active" : ""}`}
+                    style={{ textDecoration: "none" }}
                     onClick={(e) => {
                       e.preventDefault();
                       setShowTOC(false);
+                      setActiveSection("about");
                       setPendingScrollTarget("about");
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.classList.add("hovered");
-                      e.currentTarget.style.color = "#00c8ff";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.classList.remove("hovered");
-                      e.currentTarget.style.color = "inherit";
                     }}
                   >
                     {(() => {
@@ -281,11 +304,18 @@ export default function App() {
                         const sectionId = item.href.startsWith("#")
                           ? item.href.slice(1)
                           : item.href;
+                        const isItemActive =
+                          activeSection === sectionId ||
+                          (Array.isArray(item.subItems) &&
+                            item.subItems.some(
+                              (sub) =>
+                                sub.href.replace("#", "") === activeSection,
+                            ));
                         return (
                           <li key={item.href}>
                             <a
                               href={item.href}
-                              className="toc-index-link"
+                              className={`toc-index-link ${isItemActive ? "is-active" : ""}`}
                               onMouseEnter={() => {
                                 console.log("Nav hover:", sectionId);
                                 setHoveredItem(sectionId);
@@ -295,6 +325,7 @@ export default function App() {
                                 e.preventDefault();
                                 setShowTOC(false);
                                 const targetId = item.href.replace("#", "");
+                                setActiveSection(targetId);
                                 setPendingScrollTarget(targetId);
                               }}
                             >
@@ -314,7 +345,7 @@ export default function App() {
                                       <li key={subItem.href}>
                                         <a
                                           href={subItem.href}
-                                          className="toc-subitem-link"
+                                          className={`toc-subitem-link ${activeSection === subTargetId ? "is-active" : ""}`}
                                           onMouseEnter={() => {
                                             setHoveredItem(
                                               subItem.hoverId || sectionId,
@@ -326,6 +357,7 @@ export default function App() {
                                           onClick={(e) => {
                                             e.preventDefault();
                                             setShowTOC(false);
+                                            setActiveSection(subTargetId);
                                             setPendingScrollTarget(subTargetId);
                                           }}
                                         >
@@ -407,6 +439,7 @@ export default function App() {
               setGlowingTags={setGlowingTags}
               hoveredItem={hoveredItem}
               setHoveredItem={setHoveredItem}
+              onActiveSectionChange={setActiveSection}
               onReady={() => setMagazineReady(true)}
             />
           </div>

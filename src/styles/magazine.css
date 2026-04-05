@@ -45,7 +45,7 @@
   box-shadow: none;
 }
 .toc-index-link:hover,
-.toc-index-link:focus {
+.toc-index-link:focus-visible {
   color: var(--accent);
   font-style: italic;
   background: none;
@@ -86,16 +86,33 @@
   overflow: hidden;
   background: var(--bg);
 }
-/* Match TOC hover effect for about link in subtitle */
-.magazine-toc-link.hovered,
-.magazine-toc-link:focus {
+/* Legacy hovered helper class, no persistent focus styling */
+.magazine-toc-link.hovered {
   color: var(--accent, #00c8ff);
-  background: rgba(0, 200, 255, 0.08);
-  border-radius: 8px;
-  outline: none;
+}
+
+/* Home title link should invert into the background tone with a cyan glow */
+.magazine-home-link {
+  color: var(--text) !important;
   transition:
     color 0.2s,
-    background 0.2s;
+    text-shadow 0.2s,
+    filter 0.2s;
+}
+
+.magazine-home-link:visited {
+  color: var(--text) !important;
+}
+
+.magazine-home-link:hover,
+.magazine-home-link:focus-visible {
+  color: var(--bg) !important;
+  text-shadow:
+    0 0 8px rgba(0, 200, 255, 0.9),
+    0 0 18px rgba(0, 200, 255, 0.8),
+    0 0 28px rgba(0, 200, 255, 0.6);
+  filter: saturate(1.15);
+  outline: none;
 }
 /* Custom styling for MagazineHome star SVG home button */
 .magazine-home-backtohome-star {
@@ -241,7 +258,7 @@
 }
 
 .toc-subitem-link:hover,
-.toc-subitem-link:focus {
+.toc-subitem-link:focus-visible {
   color: var(--accent);
   opacity: 1;
 }
@@ -929,6 +946,18 @@ body.collage-preloading .mobile-toggle-button {
   padding: 0.18em 0;
   letter-spacing: 0.01em;
 }
+
+.toc-index-link.is-active {
+  color: var(--accent) !important;
+  text-shadow: 0 0 8px rgba(0, 200, 255, 0.6);
+}
+
+.toc-subitem-link.is-active {
+  color: var(--accent) !important;
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(0, 200, 255, 0.45);
+}
+
 /* Remove .toc-label, .toc-dots, .toc-num classes if present */
 .toc-dots {
   color: #00c8ff;
@@ -936,4 +965,24 @@ body.collage-preloading .mobile-toggle-button {
 
 .magazine-toc-link:hover {
   background-color: transparent;
+}
+
+.magazine-toc-link,
+.magazine-toc-link:visited {
+  color: var(--text) !important;
+}
+
+.magazine-toc-link:hover,
+.magazine-toc-link:focus-visible {
+  color: var(--accent) !important;
+}
+
+.magazine-toc-link.magazine-home-link:hover,
+.magazine-toc-link.magazine-home-link:focus-visible {
+  color: var(--bg) !important;
+}
+
+.magazine-toc-link.is-active {
+  color: var(--accent) !important;
+  text-shadow: 0 0 8px rgba(0, 200, 255, 0.55);
 }
