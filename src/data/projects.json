@@ -343,7 +343,7 @@
       "title": "Static Design",
       "hasIndividualPages": false,
       "route": "/works/staticdesign",
-      "heroImages": ["images/design/design/peripheryRGB.png"],
+      "heroImages": ["images/design/design/AE_IMA_26_rgb_v2.png"],
       "blurb": "A selection of static design work spanning brand identity, event posters, and print projects, using tools such as Photoshop, Illustrator, InDesign, and Figma.",
       "items": [
         {
@@ -361,18 +361,25 @@
           "alt": "AE IMA 26 RGB v2"
         },
         {
-          "id": "collex_cover",
-          "title": "Collex Cover",
-          "image": "images/design/design/collex_cover.png",
-          "thumbnail": "images/design/design/thumbnails/collex_cover.jpg",
-          "alt": "Collex Cover"
-        },
-        {
           "id": "peripheryRGB",
           "title": "Periphery RGB",
           "image": "images/design/design/peripheryRGB.png",
           "thumbnail": "images/design/design/thumbnails/peripheryRGB.jpg",
           "alt": "Periphery RGB"
+        },
+        {
+          "id": "collexPoster",
+          "title": "Collex Poster",
+          "image": "images/design/design/collexPoster.png",
+          "thumbnail": "images/design/design/thumbnails/collexPoster.jpg",
+          "alt": "Collex Poster"
+        },
+        {
+          "id": "collex_cover",
+          "title": "Collex Cover",
+          "image": "images/design/design/collex_cover.png",
+          "thumbnail": "images/design/design/thumbnails/collex_cover.jpg",
+          "alt": "Collex Cover"
         },
         {
           "id": "AlterEgosPoster",
