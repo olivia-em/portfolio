@@ -354,11 +354,18 @@
           "alt": "Collage 1"
         },
         {
-          "id": "AE_IMA_26_rgb_v2",
-          "title": "AE IMA 26 RGB v2",
-          "image": "images/design/design/AE_IMA_26_rgb_v2.png",
-          "thumbnail": "images/design/design/thumbnails/AE_IMA_26_rgb_v2.jpg",
-          "alt": "AE IMA 26 RGB v2"
+          "id": "AE_IMA_26_EB",
+          "title": "AE IMA 26 EB",
+          "image": "images/design/design/AE_IMA_26_EB.jpg",
+          "thumbnail": "images/design/design/thumbnails/AE_IMA_26_EB.jpg",
+          "alt": "AE IMA 26 EB"
+        },
+        {
+          "id": "AE_IMA_26_Insta",
+          "title": "AE IMA 26 Insta",
+          "image": "images/design/design/AE_IMA_26_Insta.jpg",
+          "thumbnail": "images/design/design/thumbnails/AE_IMA_26_Insta.jpg",
+          "alt": "AE IMA 26 Insta"
         },
         {
           "id": "peripheryRGB",
@@ -366,6 +373,20 @@
           "image": "images/design/design/peripheryRGB.png",
           "thumbnail": "images/design/design/thumbnails/peripheryRGB.jpg",
           "alt": "Periphery RGB"
+        },
+        {
+          "id": "periphery1-1",
+          "title": "Periphery 1",
+          "image": "images/design/design/periphery1-1.jpg",
+          "thumbnail": "images/design/design/thumbnails/periphery1-1.jpg",
+          "alt": "Periphery 1"
+        },
+        {
+          "id": "periphery2-1",
+          "title": "Periphery 2",
+          "image": "images/design/design/periphery2-1.jpg",
+          "thumbnail": "images/design/design/thumbnails/periphery2-1.jpg",
+          "alt": "Periphery 2"
         },
         {
           "id": "collexPoster",

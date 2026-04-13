@@ -1,15 +1,7 @@
 import React from "react";
 import "../styles/magazine.css";
 
-const images = [
-  "images/aboutolivia/IMG_1298.JPG",
-  "images/aboutolivia/IMG_1377.jpg",
-  "images/aboutolivia/IMG_9088.JPG",
-  "images/aboutolivia/IMG_9115.jpg",
-  "images/aboutolivia/olivia-alterego.png",
-  "images/aboutolivia/oliviaMOM.PNG",
-  "images/aboutolivia/LIP2.png",
-];
+const images = ["images/design/design/aboutOlivia.jpg"];
 
 export default function HomeCollage({
   showCollage = true,
@@ -19,6 +11,8 @@ export default function HomeCollage({
   revealed,
   onBackToHome,
 }) {
+  const isSingleBackground = images.length === 1;
+
   // Scroll-to-top handler for star button
   const handleBackToHome = () => {
     if (typeof onBackToHome === "function") {
@@ -39,7 +33,7 @@ export default function HomeCollage({
     <section id="collage" className="magazine-section">
       <div className="collage-wrap">
         <div
-          className={`collage ${previewData ? "blurred" : ""}`}
+          className={`collage ${previewData ? "blurred" : ""} ${isSingleBackground ? "single-bg" : ""}`}
           aria-hidden={!showCollage}
         >
           {showCollage &&
@@ -48,7 +42,11 @@ export default function HomeCollage({
                 key={src}
                 src={`${import.meta.env.BASE_URL}${src}`}
                 className={`c-img c-img-${i + 1}`}
-                alt={`Olivia collage ${i + 1}`}
+                alt={
+                  isSingleBackground
+                    ? "About Olivia background"
+                    : `Olivia collage ${i + 1}`
+                }
                 loading="lazy"
                 onLoad={onImageLoad}
               />

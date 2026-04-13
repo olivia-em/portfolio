@@ -524,6 +524,19 @@
   pointer-events: auto;
 }
 
+.collage.single-bg img.c-img {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: normal;
+  opacity: 1;
+  filter: none;
+  box-shadow: none;
+}
+
 /* Image 1 - top left */
 .c-img-1 {
   left: -10%;
